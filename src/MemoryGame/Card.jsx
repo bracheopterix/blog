@@ -11,14 +11,12 @@ function Card({ card, index, checkGame }) {
     const name = card.name;
 
     function onClick() {
-        console.log(card, card.index);
         checkGame(card, card.index);
     }
 
     return <div className={`${styles.card} ${styles.buttonLike} ${card.won ? styles.won : ''} ${(card.open && !card.won) ? styles.open : ''}`} onClick={onClick}>
         <div className={(card.open || card.won) ? '' : styles.hidden}>
-            <p className={styles.name}>{name}</p>
-            <p className={styles.name}>{card.index}</p>
+            <img className = {styles.cardImg}src={card.src}></img>
         </div>
 
     </div>

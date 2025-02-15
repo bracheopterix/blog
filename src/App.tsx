@@ -5,7 +5,6 @@ import './App.css'
 import MemoryGame from './MemoryGame/Game.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -17,13 +16,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Carpentory Testing Ground</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button><br/>
 
-        <br/>
         <MemoryGame/>
 
         <p>
