@@ -1,0 +1,107 @@
+.gameTable {
+    background-color: lightblue;
+    margin: auto;
+    width: 60%;
+    min-height: 100pxs;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* row-gap: 10px;
+    column-gap: 10px; */
+    /* position: relative; */
+
+
+}
+
+.gameName{
+    font-size: 50px;
+    margin: 0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.cardHolder{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.card {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: block;
+    padding: 10px;
+    user-select: none;
+}
+
+
+/* .card:hover{
+    box-shadow: 2px 3px black 10px;
+}
+
+.card:active{
+    box-shadow: inset 2px 3px black 10px;
+} */
+
+.name {
+    width: 100%;
+    color: darkblue;
+    margin: 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.hidden {
+display: none;}
+
+.startGame {
+    /* position: absolute;
+    bottom: -65px; */
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.335);
+    text-transform: capitalize;
+    user-select: none;
+
+}
+
+.buttonLike {
+    box-shadow: none;
+    box-shadow: 1px 1px 10px rgb(132, 196, 219);
+    border: solid 0px;
+    border-radius: 10px;
+
+}
+
+.buttonLike:hover {
+    /* box-shadow: 2px 3px 10px darkcyan,inset 0 0 10px lightblue; */
+    /* box-shadow: inset 0 0 5px white; */
+    
+    /* border:solid 1px white; */
+    animation-duration: 10ms;
+}
+
+.buttonLike:active {
+    box-shadow:inset 2px 2px 10px rgb(126, 173, 189);
+}
+
+/* for future use */
+
+.open{
+    background-color: white;
+    box-shadow: 0px 0px 5px rgb(103, 156, 173);
+}
+
+.won{
+    background-color: lightblue;
+    box-shadow:inset 2px 2px 10px rgb(126, 173, 189);
+}
+
