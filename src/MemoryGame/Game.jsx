@@ -1,6 +1,6 @@
 import react, { useState, useEffect } from "react";
 import styles from "./card.module.css";
-import Card from "./Card";
+import CardType from "./Card";
 
 /// make it TSx
 /// make it pretty
@@ -22,8 +22,6 @@ function MemoryGame() {
 
     const market = [{ name: 'fish', src: './src/MemoryGame/img/market/salmon.png' }, { name: 'berry', src: './src/MemoryGame/img/market/blueberry.png' }, { name: 'cheese', src: './src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: './src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: './src/MemoryGame/img/market/vegetable.png' }, { name: 'wine', src: './src/MemoryGame/img/market/wine-bottle.png' }];
     const sushi = [{ name: 'sauce', src: './src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: './src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: './src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: './src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: './src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: './src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: './src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: './src/MemoryGame/img/sushi/gyoza.png' }];
-
-
 
 
     /// STATES ///
@@ -86,7 +84,7 @@ function MemoryGame() {
         return array;
     }
 
-    function cardChooser(pool,n) { // DOESN'T WORK!!!  set exact number of cards to play - n 
+    function cardChooser(pool,n) { // DOESN'T WORK!!! // set exact number of cards to play - n 
         const chosenHashMap = {};
         // console.log(pool);
 
@@ -110,7 +108,7 @@ function MemoryGame() {
 
         let game = [];
         pool = checkStyle();
-        // pool = cardChooser(pool,6); // doesn't work yet!
+        // pool = cardChooser(pool,6); not working
         console.log(pool);
 
         for (let el of pool) {
