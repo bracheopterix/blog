@@ -1,6 +1,6 @@
 import react, { useState, useEffect } from "react";
 import styles from "./card.module.css";
-import CardType from "./Card";
+import CardType from "./Card.jsx";
 
 /// make it TSx
 /// make it pretty
