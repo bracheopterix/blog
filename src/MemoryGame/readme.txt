@@ -6,6 +6,10 @@
     // then make a manual choosing how many cards do you want (only x2), maybe make it like volume choosing?
     // make an option to use every tile from every pool together
     
+
+
+
+    
     Designwise
     
     // maybe, it is a good idea to have styles in the obj to just make pool = obj.key 

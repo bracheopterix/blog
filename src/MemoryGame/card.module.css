@@ -2,7 +2,7 @@
     background-color: lightblue;
     margin: auto;
     width: 60%;
-    min-height: 100pxs;
+    min-height: 100px;
     height: fit-content;
     padding: 20px;
     display: flex;
@@ -25,9 +25,9 @@
     position: absolute;
     margin: 0;
     top: 0%;
-    left:25%;
+    left: 25%;
     transform: rotate(-40deg);
-    color:crimson;
+    color: crimson;
 }
 
 .cardHolder {
@@ -65,15 +65,26 @@
     display: none;
 }
 
+.buttonHolder {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 10px;
+    padding: 15px;
+}
+
 .startGame {
     color: rgb(3, 108, 144);
     width: fit-content;
     height: fit-content;
     padding: 10px;
+    margin: 0;
     background-color: rgba(255, 255, 255, 0.335);
     text-transform: capitalize;
+    text-wrap: nowrap;
     user-select: none;
-
 }
 
 .stepCounter {
@@ -86,7 +97,32 @@
 }
 
 .gameStyle {
-    margin: 10px
+    margin: 10px;
+}
+
+.tileCount {
+    min-width: 30%;
+    margin-left: 10px;
+    position: relative;
+    accent-color: rgb(61, 152, 182);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.range {
+    width: 100%;
+
+
+}
+
+datalist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    writing-mode: horizontal-tb;
+    width: 93%;
+    font-size: small;
 }
 
 .buttonLike {

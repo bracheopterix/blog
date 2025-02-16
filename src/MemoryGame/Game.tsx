@@ -1,13 +1,13 @@
 import { JSX, useState, useEffect } from "react";
 import styles from "./card.module.css";
 import Card from "./Card.tsx";
-import {CardType,Style} from './types.ts'
+import { CardType, Style } from './types.ts'
 
 /// make it TSx
 /// make it pretty
 
 
-function MemoryGame():JSX.Element {
+function MemoryGame(): JSX.Element {
 
     /// CHECKS ///
 
@@ -15,7 +15,7 @@ function MemoryGame():JSX.Element {
         throw new Error('styles are absent');
     }
 
-    
+
 
     /// DATA ///
     // ! to add new style to pool - add array, add his name to stylePool and add variant to styleSwitch
@@ -37,10 +37,11 @@ function MemoryGame():JSX.Element {
     const [chosen1, setChosen1] = useState<CardType | undefined>(undefined);
     const [chosen2, setChosen2] = useState<CardType | undefined>(undefined);
     const [style, setStyle] = useState<string>('market');
+    const [cardAmmount,setCardAmmount] = useState<number>(5);
 
-    
+
     /// STYLE SWITCH ///
-    function checkStyle():Style {
+    function checkStyle(): Style {
         switch (style) {
             case 'market':
                 console.log('chosen pool = market');
@@ -53,7 +54,7 @@ function MemoryGame():JSX.Element {
         }
     }
 
-
+    
     /// EFFECTS ///
 
     useEffect(() => {
@@ -62,7 +63,7 @@ function MemoryGame():JSX.Element {
 
     /// FUNCTIONS ///
 
-    function shuffleArray(array:Style):Style {
+    function shuffleArray(array: Style): Style {
         // Fisher–Yates (aka Knuth) Shuffle.
         let currentIndex = array.length;
 
@@ -76,32 +77,28 @@ function MemoryGame():JSX.Element {
             // swapping places
             [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
 
-            // let swap = array[currentIndex];
-            // array[currentIndex] = array[randomIndex];
-            // array[randomIndex] = swap;
-            //
-
         }
         console.log('game shuffled');
         return array;
     }
 
-    
 
-    function createGame():Style { // uses shiffleArray()
+
+    function createGame(): Style { // uses shiffleArray()
         setChosen1(undefined);
         setChosen2(undefined);
         setWonCounter(0);
         setStepCounter(0);
 
-        let game:Style = [];
-        pool = checkStyle();
-        // pool = cardChooser(pool,6); // doesn't work yet!
-        // console.log(pool);
-
+        let game: Style = []; 
+        pool = checkStyle();    
+        pool = shuffleArray(pool);
+        pool = pool.slice(0,cardAmmount);
+        console.log(cardAmmount,pool);
+        
         for (let el of pool) {
-            const el1:CardType = { ...el, open: false, won: false };  // { } means that we are cteating new entity, not just making references
-            const el2:CardType = { ...el, open: false, won: false };  // and then transfer all el data as props
+            const el1: CardType = { ...el, open: false, won: false };  // { } means that we are cteating new entity, not just making references
+            const el2: CardType = { ...el, open: false, won: false };  // and then transfer all el data as props
             game.push(el1);
             game.push(el2);
         }
@@ -111,74 +108,85 @@ function MemoryGame():JSX.Element {
         return game;
     }
 
-/////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
 
-    function checkGame(card:CardType):void {
-        if(Card!==undefined){
+    function checkGame(card: CardType): void {
+        if (Card !== undefined) {
             if (wonCounter !== game.length) {
                 let index = card.index;
-    
+
                 /// OPENING CARD
-                let openedCardGame:Style = game.map(gameCard => // ATTENTION!! `V` CHOSEN1 is '?'
+                let openedCardGame: Style = game.map(gameCard => // ATTENTION!! `V` CHOSEN1 is '?'
                     ((card.index === gameCard.index && !gameCard.open || chosen1?.index === gameCard.index) ? { ...gameCard, open: true } : { ...gameCard, open: false })
                     // this card that we opened, which wasn't opened before 
                     //and which is setChosen1!!!
                 );
                 setGame(openedCardGame);
-    
-    
+
+
                 if (!chosen1) {
                     setChosen1(card);
-    
+
                 }
                 else {
-    
+
                     if (card.index === chosen1.index) {
-    
+
                         console.log('you choosed the same tile, nothing have changed')
                     }
                     else {
                         if (card.name === chosen1.name && index !== chosen1.index) {
                             console.log('right move', chosen1, chosen2);
                             setWonCounter((wonCounter) => wonCounter + 2);
-    
+
                             /// ADDING WON STATE to the won cards
                             let updatedGame = game.map(gameCard =>
                                 (chosen1.index === gameCard.index || card.index === gameCard.index) ? { ...gameCard, won: true, open: false } : gameCard
                             ); // after: - is what to do if you would not find the match
-    
+
                             setGame(updatedGame);
                             // first - change data, second - rewrite state.
                         }
-    
+
                         console.log('resetting')
                         setChosen1(undefined);
                         setChosen2(undefined);
                         setStepCounter((stepCounter) => stepCounter + 1);
-    
+
                     }
-    
+
                 }
             }
         }
-        
+
 
 
     }
 
-//////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////
 
-    function changeStyle():void {
-        
-        const selectStyle = document.getElementById('gameStyle') as HTMLInputElement;  
+    function changeStyle(): void {
+
+        const selectStyle = document.getElementById('gameStyle') as HTMLInputElement;
         // IMPORTANT! just HTMLElement doesn't have .value, but this ^ does.
-        if(selectStyle){
+        if (selectStyle) {
             setStyle(selectStyle.value);
             console.log('selected style - ', selectStyle.value);
         }
-        else{
+        else {
             throw new Error("didn't find select game style element");
         }
+    }
+
+    function changeCardAmmount(){
+        const selectAmmount = document.getElementById('gameCardAmmount') as HTMLInputElement;
+        if(selectAmmount){
+            setCardAmmount(Number(selectAmmount.value));
+        }
+        else{
+            throw new Error("didn't find select game card ammount element");
+        }
+
     }
 
 
@@ -188,7 +196,7 @@ function MemoryGame():JSX.Element {
         </div>
         <div className={styles.cardHolder}>
             {
-                game.map((card:CardType, index:number) => ( ///////////////
+                game.map((card: CardType, index: number) => ( ///////////////
                     <Card
                         card={card}
                         index={index}
@@ -199,7 +207,7 @@ function MemoryGame():JSX.Element {
                 )
             }
         </div>
-        <div className={styles.cardHolder}>
+        <div className={styles.buttonHolder}>
             <div className={styles.stepCounter}>Steps: {stepCounter}</div>
 
             <p className={`${styles.startGame} ${styles.buttonLike}`} onClick={() => setGame(createGame())}>Start Game</p>
@@ -209,16 +217,22 @@ function MemoryGame():JSX.Element {
                     <option value={styleName} key={index}>{styleName}</option> // or make it outside of the map by hand lol
                 ))}
             </select>
+
+
+
+        </div >
+        <div className={styles.tileCount}>
+            <label htmlFor="gameCardAmmount">Ammount of pairs</label>
+            <input className={styles.range} id="gameCardAmmount" type='range' min="1" max="5" step="1" list="markers" onChange={changeCardAmmount}/>
+            <datalist id="markers">
+                <option value="1" label="1"></option>
+                <option value="2" label="2"></option>
+                <option value="3" label="3"></option>
+                <option value="4" label="4"></option>
+                <option value="5" label="5"></option>
+            </datalist>
         </div>
-
-
-
-
-    </div >
-
-
-
-
+    </div>
 
 }
 
