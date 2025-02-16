@@ -2,7 +2,9 @@
 
     // TS MAKE IT ALL TS!    
     
-    
+    // make function of a random take from the pool, ad it to the game start
+    // then make a manual choosing how many cards do you want (only x2), maybe make it like volume choosing?
+    // make an option to use every tile from every pool together
     
     Designwise
     

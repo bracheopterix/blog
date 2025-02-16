@@ -16,23 +16,12 @@ function MemoryGame() {
 
     /// DATA ///
     // ! to add new style to pool - add array, add his name to stylePool and add variant to styleSwitch
-    // maybe, it is a good idea to have styles in the obj to just make pool = obj.key 
-    // so no need to add to switch every time, just add that short-cut in check-style
-    // anyway, keys in obj are already in strings AND we have stylePool (but it is an array->
-    // so rewrite auto-generation of dropdown style selection to be able to eat that)
-
-    // also, add to the sushi style more things
-    // also, make two icons near the game name to show what style is on
-    // and change table background and all colours. And Font Styles!!!
-    // make them like in obj? or to chose from?
-    // also, make tic-tac-toe
-    // also, make chimp-race
 
     let pool = []; //starter pool
     let stylePool = ['market', 'sushi'];
 
     const market = [{ name: 'fish', src: './src/MemoryGame/img/market/salmon.png' }, { name: 'berry', src: './src/MemoryGame/img/market/blueberry.png' }, { name: 'cheese', src: './src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: './src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: './src/MemoryGame/img/market/vegetable.png' }, { name: 'wine', src: './src/MemoryGame/img/market/wine-bottle.png' }];
-    const sushi = [{ name: 'sauce', src: './src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: './src/MemoryGame/img/sushi/nigiri.png' },];
+    const sushi = [{ name: 'sauce', src: './src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: './src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: './src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: './src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: './src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: './src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: './src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: './src/MemoryGame/img/sushi/gyoza.png' }];
 
 
 
@@ -73,28 +62,6 @@ function MemoryGame() {
 
     /// FUNCTIONS ///
 
-    function createGame() { // uses shiffleArray()
-        setChosen1(false);
-        setChosen2(false);
-        setWonCounter(0);
-        setStepCounter(0);
-
-        let game = [];
-        pool = checkStyle();
-        console.log(pool);
-
-        for (let el of pool) {
-            const el1 = { ...el, open: false, won: false };  // { } means that we are cteating new entity, not just making references
-            const el2 = { ...el, open: false, won: false };  // and then transfer all el data as props
-            game.push(el1);
-            game.push(el2);
-        }
-        console.log('game created');
-
-        game = shuffleArray(game);
-        return game;
-    }
-
     function shuffleArray(array) {
         // Fisher–Yates (aka Knuth) Shuffle.
         let currentIndex = array.length;
@@ -118,6 +85,47 @@ function MemoryGame() {
         console.log('game shuffled');
         return array;
     }
+
+    function cardChooser(pool,n) { // DOESN'T WORK!!!  set exact number of cards to play - n 
+        const chosenHashMap = {};
+        // console.log(pool);
+
+        for (let i = 0; i < n; i++) {
+            const newCardIndex = Math.floor(Math.random * pool.length);
+            if (!Object.hasOwn(chosenHashMap,newCardIndex.toString)) {
+                chosenHashMap[newCardIndex] = pool[newCardIndex];
+            }
+        }
+        pool = Object.values(chosenHashMap);
+        console.log(pool);
+        // return pool;
+    }
+    cardChooser(pool,2);
+
+    function createGame() { // uses shiffleArray()
+        setChosen1(false);
+        setChosen2(false);
+        setWonCounter(0);
+        setStepCounter(0);
+
+        let game = [];
+        pool = checkStyle();
+        // pool = cardChooser(pool,6); // doesn't work yet!
+        console.log(pool);
+
+        for (let el of pool) {
+            const el1 = { ...el, open: false, won: false };  // { } means that we are cteating new entity, not just making references
+            const el2 = { ...el, open: false, won: false };  // and then transfer all el data as props
+            game.push(el1);
+            game.push(el2);
+        }
+        console.log('game created');
+
+        game = shuffleArray(game);
+        return game;
+    }
+
+  
 
     function checkGame(card) {
         if (wonCounter !== game.length) {
@@ -169,6 +177,7 @@ function MemoryGame() {
 
 
     }
+
 
     function changeStyle() {
         const selectStyle = document.getElementById('gameStyle');
