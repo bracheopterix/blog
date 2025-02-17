@@ -19,6 +19,7 @@ function MemoryGame(): JSX.Element {
 
     /// DATA ///
     // ! to add new style to pool - add array, add his name to stylePool and add variant to styleSwitch
+    const styleClassName:string = 'market';
 
     let pool: Style = []; //starter pool
     let stylePool: string[] = ['market', 'sushi','harvest'];
@@ -43,7 +44,7 @@ function MemoryGame(): JSX.Element {
     const [style, setStyle] = useState<string>('market');
     const [cardAmmount, setCardAmmount] = useState<number>(5);
 
-
+    
     /// EFFECTS ///
 
     useEffect(() => {
@@ -189,7 +190,7 @@ function MemoryGame(): JSX.Element {
     }
 
 
-    return <div id="gameTable" className={styles.gameTable}>
+    return <div id="gameTable" className={`${styles.gameTable} ${styles[style]}`}>
         <div className={styles.gameName}>Fair and Square
             <p className={wonCounter !== game.length ? styles.hidden : styles.winningP}>WON</p>
         </div>
