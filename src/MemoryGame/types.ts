@@ -8,6 +8,8 @@ export type CardType = {
 };
 export type Style = CardType[];
 
+export type StyleObj = Record<string,Style>;
+
 export type CheckGameFunction = (card: CardType) => void;
 
 

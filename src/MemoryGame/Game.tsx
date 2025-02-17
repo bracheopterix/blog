@@ -1,7 +1,7 @@
 import { JSX, useState, useEffect } from "react";
 import styles from "./card.module.css";
 import Card from "./Card.tsx";
-import { CardType, Style } from './types.ts'
+import { CardType, Style,StyleObj } from './types.ts'
 
 /// make it TSx
 /// make it pretty
@@ -21,12 +21,16 @@ function MemoryGame(): JSX.Element {
     // ! to add new style to pool - add array, add his name to stylePool and add variant to styleSwitch
 
     let pool: Style = []; //starter pool
-    let stylePool: string[] = ['market', 'sushi'];
+    let stylePool: string[] = ['market', 'sushi','harvest'];
 
-    const market: Style = [{ name: 'fish', src: './src/MemoryGame/img/market/salmon.png' }, { name: 'berry', src: './src/MemoryGame/img/market/blueberry.png' }, { name: 'cheese', src: './src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: './src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: './src/MemoryGame/img/market/vegetable.png' }, { name: 'wine', src: './src/MemoryGame/img/market/wine-bottle.png' }];
-    const sushi: Style = [{ name: 'sauce', src: './src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: './src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: './src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: './src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: './src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: './src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: './src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: './src/MemoryGame/img/sushi/gyoza.png' }];
+    
+    const AllStyles:StyleObj = {
+        'market':[{ name: 'fish', src: './src/MemoryGame/img/market/salmon.png' }, { name: 'cider', src: './src/MemoryGame/img/market/cider-drink.png' }, { name: 'cheese', src: './src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: './src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: './src/MemoryGame/img/market/vegetable.png' }, { name: 'beer', src: './src/MemoryGame/img/market/beer.png' }, { name: 'apple3', src: './src/MemoryGame/img/market/apple(3).png' }, { name: 'bread&fish', src: './src/MemoryGame/img/market/bread-and-fish.png' }],
+        'sushi':[{ name: 'sauce', src: './src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: './src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: './src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: './src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: './src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: './src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: './src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: './src/MemoryGame/img/sushi/gyoza.png' }],
+        'harvest':[{ name: 'apple', src: './src/MemoryGame/img/harvest/apple.png' }, { name: 'apple1', src: './src/MemoryGame/img/harvest/apple(1).png' }, { name: 'apple2', src: './src/MemoryGame/img/harvest/apple(2).png' }, { name: 'blueberry', src: './src/MemoryGame/img/harvest/blueberry.png' }, { name: 'oak', src: './src/MemoryGame/img/harvest/oak.png' }, { name: 'orange', src: './src/MemoryGame/img/harvest/orange.png' }, { name: 'pomegranate', src: './src/MemoryGame/img/harvest/pomegranate.png' }, { name: 'pumpkin', src: './src/MemoryGame/img/harvest/pumpkin.png' },{ name: 'grape', src: './src/MemoryGame/img/harvest/grape.png' }],
 
-
+    };
+    ///////
 
 
     /// STATES ///
@@ -37,29 +41,26 @@ function MemoryGame(): JSX.Element {
     const [chosen1, setChosen1] = useState<CardType | undefined>(undefined);
     const [chosen2, setChosen2] = useState<CardType | undefined>(undefined);
     const [style, setStyle] = useState<string>('market');
-    const [cardAmmount,setCardAmmount] = useState<number>(5);
+    const [cardAmmount, setCardAmmount] = useState<number>(5);
 
 
-    /// STYLE SWITCH ///
-    function checkStyle(): Style {
-        switch (style) {
-            case 'market':
-                console.log('chosen pool = market');
-                return market;
-            case 'sushi':
-                console.log('chosen pool = sushi');
-                return sushi;
-            default:
-                throw new Error('there is no such style yet');
-        }
-    }
-
-    
     /// EFFECTS ///
 
     useEffect(() => {
-        setGame(createGame()); // First render game creation
-    }, []);
+        // changing when game is not started with changing cardAnnount
+        const hasOpenCards: Boolean = game.some(card => card.open);
+        {
+            if (!hasOpenCards) {
+                setGame(createGame());
+            }
+        }
+    }, [cardAmmount]
+
+        // changes only when StartButton on
+        // setGame(createGame());
+        // }, []
+    );
+
 
     /// FUNCTIONS ///
 
@@ -90,12 +91,12 @@ function MemoryGame(): JSX.Element {
         setWonCounter(0);
         setStepCounter(0);
 
-        let game: Style = []; 
-        pool = checkStyle();    
+        let game: Style = [];
+        pool = AllStyles[style];   
         pool = shuffleArray(pool);
-        pool = pool.slice(0,cardAmmount);
-        console.log(cardAmmount,pool);
-        
+        pool = pool.slice(0, cardAmmount);
+        console.log(cardAmmount, pool);
+
         for (let el of pool) {
             const el1: CardType = { ...el, open: false, won: false };  // { } means that we are cteating new entity, not just making references
             const el2: CardType = { ...el, open: false, won: false };  // and then transfer all el data as props
@@ -111,7 +112,7 @@ function MemoryGame(): JSX.Element {
     /////////////////////////////////////////////////////////////////////////
 
     function checkGame(card: CardType): void {
-        if (Card !== undefined) {
+        if (Card !== undefined&&!card.won) {
             if (wonCounter !== game.length) {
                 let index = card.index;
 
@@ -154,11 +155,9 @@ function MemoryGame(): JSX.Element {
                         setStepCounter((stepCounter) => stepCounter + 1);
 
                     }
-
                 }
             }
         }
-
 
 
     }
@@ -178,12 +177,12 @@ function MemoryGame(): JSX.Element {
         }
     }
 
-    function changeCardAmmount(){
+    function changeCardAmmount() {
         const selectAmmount = document.getElementById('gameCardAmmount') as HTMLInputElement;
-        if(selectAmmount){
+        if (selectAmmount) {
             setCardAmmount(Number(selectAmmount.value));
         }
-        else{
+        else {
             throw new Error("didn't find select game card ammount element");
         }
 
@@ -223,17 +222,19 @@ function MemoryGame(): JSX.Element {
         </div >
         <div className={styles.tileCount}>
             <label htmlFor="gameCardAmmount">Ammount of pairs</label>
-            <input className={styles.range} id="gameCardAmmount" type='range' min="1" max="5" step="1" list="markers" onChange={changeCardAmmount}/>
+            <input className={styles.range} id="gameCardAmmount" type='range' min="1" max="6" step="1" list="markers" onChange={changeCardAmmount} />
             <datalist id="markers">
                 <option value="1" label="1"></option>
                 <option value="2" label="2"></option>
                 <option value="3" label="3"></option>
                 <option value="4" label="4"></option>
                 <option value="5" label="5"></option>
+                <option value="6" label="6"></option>
+
             </datalist>
         </div>
     </div>
 
 }
 
-export default MemoryGame;
+export default MemoryGame; 
