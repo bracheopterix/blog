@@ -1,0 +1,222 @@
+.gameTable {
+    /* background-color: lightblue; */
+    border: solid 0;
+    border-radius: 20px;
+    margin: auto;
+    width: 60%;
+    min-height: 100px;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameName {
+    font-size: 50px;
+    margin: 0;
+    margin-bottom: 20px;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.winningP {
+    position: absolute;
+    margin: 0;
+    top: 0%;
+    left: 25%;
+    transform: rotate(-40deg);
+    color: crimson;
+}
+
+.cardHolder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.card {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: block;
+    padding: 10px;
+    user-select: none;
+}
+
+.cardImg {
+
+    width: 100%;
+}
+
+.name {
+    width: 100%;
+    /* color: darkblue; */
+    margin: 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.hidden {
+    display: none;
+}
+
+.buttonHolder {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 10px;
+    padding: 15px;
+}
+
+.startGame {
+    /* color: rgb(3, 108, 144); */
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    margin: 0;
+    /* background-color: rgba(255, 255, 255, 0.335); */
+    text-transform: capitalize;
+    text-wrap: nowrap;
+    user-select: none;
+}
+
+.stepCounter {
+    min-width: 100px;
+    max-width: fit-content;
+    height: fit-content;
+    width: fit-content;
+    font-size: 20px;
+    top: 20px;
+    left: 20px;
+}
+
+.gameStyle {
+    margin: 10px;
+}
+
+.tileCount {
+    min-width: 30%;
+    width: 200px;
+    margin-left: 10px;
+    position: relative;
+    /* accent-color: rgb(61, 152, 182); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.range {
+    width: 100%;
+
+
+}
+
+datalist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    writing-mode: horizontal-tb;
+    width: 93%;
+    font-size: small;
+}
+
+.buttonLike {
+    box-shadow: none;
+    border: solid 0px;
+    border-radius: 10px;
+
+}
+
+/* .buttonLike:hover {
+    box-shadow: inset 0 0 5px white;
+} */
+
+
+/* for future use */
+
+.open {
+    background-color: white;
+    box-shadow: 0px 0px 5px;
+    /* rgb(103, 156, 173) */
+}
+
+.won {
+    /* background-color: lightblue; */
+    box-shadow: inset 2px 2px 10px;
+    /* rgb(126, 173, 189) */
+}
+
+/* STYLES */
+
+.sushi {
+    background-color: lightblue;
+    accent-color: rgb(40, 148, 184);
+    color: rgb(40, 148, 184);
+}
+
+.sushi .buttonLike:hover{
+    box-shadow: 2px 2px 10px;
+}
+
+/* MARKET */
+
+.market {
+    background-color: lightgoldenrodyellow;
+    accent-color: orange;
+    color: brown;
+}
+
+.market .buttonLike {
+    background-color: orange;
+}
+
+.market .buttonLike:hover {
+    box-shadow: 2px 2px 10px;
+
+}
+
+.market .open {
+    background-color: white;
+}
+
+.market .won {
+    background-color: lightgoldenrodyellow;
+}
+
+/* HARVEST */
+
+.harvest {
+    background-color: bisque;
+    accent-color: rgb(145, 14, 53);
+    box-shadow: wheat;
+    color: rgb(145, 14, 53);
+}
+
+.harvest .buttonLike{
+    border: solid 1px rgb(249, 214, 148);
+}
+
+.harvest .open {
+    background-color: bisque;
+}
+
+.harvest .buttonLike:hover {
+    box-shadow: 0 0 5px brown;
+
+}
+
+.harvest .startGame {
+    background-color: rgb(145, 14, 53);
+    color: bisque;
+    border: 0px;
+
+}
