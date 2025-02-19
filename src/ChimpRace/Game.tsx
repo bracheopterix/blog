@@ -1,66 +1,153 @@
-import React, { JSX, useState } from "react";
-import styles from './card.module.css';
+import { JSX, useEffect, useState } from "react";
+import styles from './card.module.css'
+import { CardType } from './types'
+import Card from './Card'
 
-/// DATA ///
-let pool = [];
 
-/// STATES ///
 
-const [chosenNumbers, setChosenNumbers] = useState<number>(5);
-
-/// FUNCTIONS ///
-
-function choosePool(): void {
-    let chooseNumbers = document.getElementById('gameNumbersAmmount') as HTMLInputElement;
-    setChosenNumbers(Number(chooseNumbers.value));
-}
-
-function startGame(): void {
-
-}
-
-// Chimp-i-on?
 
 function ChimpRace(): JSX.Element {
-    return <div id="gameTable" className={`${styles.gameTable} ${styles[classStyle]}`}>
-        <div className={styles.gameName}>Chimp Race</div>
+
+    /// TYPES ///
+
+
+
+
+    /// STATES ///
+    const [game, setGame] = useState<CardType[]>([]);
+    const [checkGame, setCheckGame] = useState<number[]>([])
+    const [cardAmount, setCardAmount] = useState<number>(5);
+    const [stepCounter, setStepCounter] = useState(0);
+
+    let checkIndex = 0;
+
+    /// FUNCTIONS ///
+
+    function getAmount() {
+        let amount = document.getElementById('getAmount') as HTMLInputElement;
+        const value = Number(amount.value);
+        if (value >= 2 && value <= 10) {
+            setCardAmount(Number(value));
+            console.log(cardAmount, value);
+        }
+        else {
+            throw new Error('Please, enter valid amount');
+        }
+    }
+
+    function shuffleArray(array: CardType[]): CardType[] {
+        // Fisher–Yates (aka Knuth) Shuffle.
+        let currentIndex = array.length;
+
+        while (currentIndex !== 0) {
+
+            // picking a remaining element (???)
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+
+            // swapping places
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+
+        }
+        console.log('game shuffled');
+        return array;
+    }
+
+    function createGame(): CardType[] {
+        let newGame: CardType[] = [];
+        let newPool: number[] = [...Array(cardAmount).keys()];
+        setCheckGame(newPool);
+        for (let el of newPool) {
+            const newEl: CardType = {
+                number: el,
+                open: false,
+            }
+            newGame.push(newEl);
+        }
+        newGame = shuffleArray(newGame);
+        console.log('game set');
+        return newGame;
+    }
+
+    function openCard(index: number) {
+        game[index].open = true;
+        console.log(`game[${index}]=${game[index].number}, checkGame[${checkIndex}]=${checkGame[checkIndex]}, Game = ${checkGame}`);
+
+        
+        if (game[index].number !== checkGame[checkIndex]) {
+            console.log('you lose');
+            checkIndex = 0;
+        }
+        if (checkIndex+1 === game.length) {
+            console.log('you won');
+            checkIndex = 0;
+        }
+        
+        checkIndex += 1;
+    }
+
+
+    /// TIMER ///
+    // const [time, setTime] = useState<number | undefined>(undefined);
+    // const [timer, setTimer] = useState<number>(0)
+
+
+    // useEffect(() => {
+    //     setTimer(memberTime(performance.now()));
+    //     console.log(timer);
+    // }, [time])
+
+
+    // function memberTime(now: number): number {
+    //     let difference = 0;
+    //     if (!time) {
+    //         setTime(now);
+    //     }
+    //     else {
+    //         difference = now - time;
+    //     }
+    //     return difference;
+    // }
+    ///
+
+    useEffect(() => {
+        setGame(createGame);
+        console.log('game started');
+
+    }, [cardAmount])
+
+
+    return <div className={styles.gameTable}>
+        <div className={styles.gameName}>Monkey-do</div>
+
+        <div className={styles.timer}>TIMER</div>
+
         <div className={styles.cardHolder}>
             {
-                game.map((card: CardType, index: number) => ( ///////////////
+                game.map((card: CardType, index: number) => (
                     <Card
                         card={card}
                         index={index}
+                        openCard={openCard}
                         key={index}
-                        checkGame={checkGame}
                     />
-                )
-                )
+                ))
             }
         </div>
         <div className={styles.buttonHolder}>
             <div className={styles.stepCounter}>Steps: {stepCounter}</div>
 
-            <p className={`${styles.startGame} ${styles.buttonLike}`} onClick={() => setGame(createGame())}>Start Game</p>
+            <div className={`${styles.startGame} ${styles.buttonLike}`} onClick={() => setGame(createGame())}>Start Game</div>
 
-            <select name="style" id="gameStyle" className={styles.gameStyle} onChange={changeStyle}>
-                {stylePool.map((styleName, index) => (
-                    <option value={styleName} key={index}>{styleName}</option> // or make it outside of the map by hand lol
-                ))}
-            </select>
-
-
-
-        </div >
-        <div className={styles.tileCount}>
-            <label htmlFor="gameNumbersAmmount">Ammount of pairs</label>
-            <input className={styles.range} id="gameNumbersAmmount" type='range' min="1" max="6" step="1" list="markers" onChange={changeCardAmmount} />
-            <datalist id="markers">
-                <option value="1" label="1"></option>
-                <option value="2" label="2"></option>
-
-            </datalist>
+            <div className={styles.amount}>
+                <label htmlFor="getAmount">2 - 10</label>
+                <input id='getAmount' type='number' className={styles.tileCount} step='1' min='2' max='10' onChange={getAmount}></input>
+            </div>
         </div>
+
+
     </div>
 }
 
-return default ChimpRace;
+export default ChimpRace;

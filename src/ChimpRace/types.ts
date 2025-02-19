@@ -1,12 +1,8 @@
 /// TYPES ///
 export type CardType = {
-    name: string,
-    src: string,
-    index?: number,
-    open?: boolean,
-    won?: boolean
-};
-export type Style = CardType[];
+    number:number,
+    open:boolean,
+}
 
 export type CheckGameFunction = (card: CardType) => void;
 

@@ -3,6 +3,7 @@ import reactLogo from './assets/salmon.png'
 import viteLogo from '/vite.svg'
 import './App.css'
 import MemoryGame from './MemoryGame/Game.tsx'
+import ChimpRace from './ChimpRace/Game.tsx'
 
 function App() {
 
@@ -19,7 +20,8 @@ function App() {
       <h1>Carpentory Testing Ground</h1>
       <div className="card">
 
-        <MemoryGame/>
+        {/* <MemoryGame/> */}
+        <ChimpRace/>
 
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR

@@ -3,9 +3,6 @@ import styles from "./card.module.css";
 import Card from "./Card.tsx";
 import { CardType, Style,StyleObj } from './types.ts'
 
-/// make it TSx
-/// make it pretty
-
 
 function MemoryGame(): JSX.Element {
 
@@ -14,7 +11,6 @@ function MemoryGame(): JSX.Element {
     if (!styles) {
         throw new Error('styles are absent');
     }
-
 
 
     /// DATA ///
@@ -30,8 +26,6 @@ function MemoryGame(): JSX.Element {
         'harvest':[{ name: 'apple', src: './src/MemoryGame/img/harvest/apple.png' }, { name: 'apple1', src: './src/MemoryGame/img/harvest/apple(1).png' }, { name: 'apple2', src: './src/MemoryGame/img/harvest/apple(2).png' }, { name: 'blueberry', src: './src/MemoryGame/img/harvest/blueberry.png' }, { name: 'oak', src: './src/MemoryGame/img/harvest/oak.png' }, { name: 'orange', src: './src/MemoryGame/img/harvest/orange.png' }, { name: 'pomegranate', src: './src/MemoryGame/img/harvest/pomegranate.png' }, { name: 'pumpkin', src: './src/MemoryGame/img/harvest/pumpkin.png' },{ name: 'grape', src: './src/MemoryGame/img/harvest/grape.png' }],
 
     };
-    ///////
-
 
     /// STATES ///
 
@@ -84,8 +78,6 @@ function MemoryGame(): JSX.Element {
         return array;
     }
 
-
-
     function createGame(): Style { // uses shiffleArray()
         setChosen1(undefined);
         setChosen2(undefined);
@@ -110,8 +102,6 @@ function MemoryGame(): JSX.Element {
         game = shuffleArray(game);
         return game;
     }
-
-    /////////////////////////////////////////////////////////////////////////
 
     function checkGame(card: CardType): void {
         if (Card !== undefined&&!card.won) {
@@ -163,8 +153,6 @@ function MemoryGame(): JSX.Element {
 
 
     }
-
-    //////////////////////////////////////////////////////////////
 
     function changeStyle(): void {
 
