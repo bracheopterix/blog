@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState, useRef } from "react";
 import styles from './card.module.css'
 import { CardType } from './types'
 import Card from './Card'
@@ -17,16 +17,20 @@ function ChimpRace(): JSX.Element {
     const [game, setGame] = useState<CardType[]>([]);
     const [checkGame, setCheckGame] = useState<number[]>([])
     const [cardAmount, setCardAmount] = useState<number>(5);
-    const [stepCounter, setStepCounter] = useState(0);
+    const [stepCounter, setStepCounter] = useState<number>(0);
+    const [gameStatus, setGameStatus] = useState<boolean | undefined>(undefined);
+    const [timer, setTimer] = useState<number>(0);
 
-    let checkIndex = 0;
+    const checkIndex = useRef(0);
+    const startTime = useRef(0);
 
     /// FUNCTIONS ///
 
     function getAmount() {
         let amount = document.getElementById('getAmount') as HTMLInputElement;
         const value = Number(amount.value);
-        if (value >= 2 && value <= 10) {
+        console.log(value);
+        if (value >= 2 && value <= 11) {
             setCardAmount(Number(value));
             console.log(cardAmount, value);
         }
@@ -55,73 +59,120 @@ function ChimpRace(): JSX.Element {
     }
 
     function createGame(): CardType[] {
+        setGameStatus(undefined);
+        setStepCounter(0);
+
+        checkIndex.current = 0;
+        startTime.current = performance.now();
+
+
         let newGame: CardType[] = [];
         let newPool: number[] = [...Array(cardAmount).keys()];
+        console.log(newPool);
         setCheckGame(newPool);
         for (let el of newPool) {
             const newEl: CardType = {
                 number: el,
-                open: false,
+                open: true,
+                lost: false,
             }
             newGame.push(newEl);
         }
         newGame = shuffleArray(newGame);
         console.log('game set');
+
         return newGame;
     }
 
-    function openCard(index: number) {
-        game[index].open = true;
-        console.log(`game[${index}]=${game[index].number}, checkGame[${checkIndex}]=${checkGame[checkIndex]}, Game = ${checkGame}`);
 
-        
-        if (game[index].number !== checkGame[checkIndex]) {
-            console.log('you lose');
-            checkIndex = 0;
+    function openCard(index: number) {
+
+        if (gameStatus === undefined) {
+            game[index].open = true;
+
+            let updatedGame: CardType[] = game;
+            if (game[index].number !== checkGame[checkIndex.current]) {
+                console.log("you've lost", checkIndex);
+                setGameStatus(false);
+                updatedGame = updatedGame.map(gameCard => (game[index].number === gameCard.number) ? { ...gameCard, lost: true } : gameCard);
+                checkIndex.current = 0;
+            }
+            if (checkIndex.current + 1 === game.length) {
+                console.log("you've won", game.length, 'time = ', performance.now() - startTime.current, 'milliseconds');
+                setGameStatus(true);
+                checkIndex.current = 0;
+            }
+            updatedGame = updatedGame.map(gameCard => (game[index].number === gameCard.number) ? { ...gameCard, open: true, won: true } : gameCard);
+            setGame(updatedGame);
+            setStepCounter((stepCounter) => stepCounter + 1);
+            checkIndex.current += 1;
+
         }
-        if (checkIndex+1 === game.length) {
-            console.log('you won');
-            checkIndex = 0;
-        }
-        
-        checkIndex += 1;
+
     }
 
 
-    /// TIMER ///
-    // const [time, setTime] = useState<number | undefined>(undefined);
-    // const [timer, setTimer] = useState<number>(0)
 
 
-    // useEffect(() => {
-    //     setTimer(memberTime(performance.now()));
-    //     console.log(timer);
-    // }, [time])
+    // function openCardReverse(index: number) {
+    //     // checkIndex = game.length;
 
+    //     game[index].open = true;
+    //     console.log(`game[${index}]=${game[index].number}, checkGame[${checkIndex}]=${checkGame[checkIndex]}, Game = ${checkGame}`);
+    //     console.log('reverse');
 
-    // function memberTime(now: number): number {
-    //     let difference = 0;
-    //     if (!time) {
-    //         setTime(now);
+    //     if (game[index].number !== checkGame[checkIndex]) {
+    //         console.log('you lose');
+    //         checkIndex = 0;
     //     }
-    //     else {
-    //         difference = now - time;
+    //     if (game.length === 0) {
+    //         console.log('you won');
+    //         checkIndex = 0;
     //     }
-    //     return difference;
+
+    //     checkIndex -= 1;
     // }
-    ///
+
+
 
     useEffect(() => {
+        //starting game
         setGame(createGame);
-        console.log('game started');
+    }, [cardAmount]);
 
-    }, [cardAmount])
+    useEffect(() => {
+        // closing cards
+        if (!gameStatus && checkIndex.current === 0) {
+            const blindTime: number = game.length * 1000;   //// TIMEEEE!
+
+            if (game.length > 0) {
+                const timer = setTimeout(() => {
+                    setGame((prevGame) => prevGame.map(card => ({ ...card, open: false }))
+                    );
+                }, blindTime);
+                startTime.current = performance.now();
+                return () => clearTimeout(timer);
+            }
+        }
+
+    }, [game]);
+
+    useEffect(() => {
+
+        setTimer(performance.now() - startTime.current);
+
+    }, [gameStatus])
 
 
     return <div className={styles.gameTable}>
-        <div className={styles.gameName}>Monkey-do</div>
+        <div className={styles.gameHeader}>
 
-        <div className={styles.timer}>TIMER</div>
+            <div className={styles.timer}>{timer}</div>
+
+            <div className={styles.gameName}>Monkey-do</div>
+
+            <div className={styles.stepCounter}>Steps: {stepCounter}</div>
+        </div>
 
         <div className={styles.cardHolder}>
             {
@@ -136,18 +187,26 @@ function ChimpRace(): JSX.Element {
             }
         </div>
         <div className={styles.buttonHolder}>
-            <div className={styles.stepCounter}>Steps: {stepCounter}</div>
+            {/* <div className={styles.amount}>
+                <input id='getAmount' className={styles.tileCount} onChange={getAmount}></input>
+            </div> */}
+            <input type='range' id='getAmount' className={styles.tileCount} step='1' min='2' max='11' onChange={getAmount}></input>
 
             <div className={`${styles.startGame} ${styles.buttonLike}`} onClick={() => setGame(createGame())}>Start Game</div>
 
-            <div className={styles.amount}>
-                <label htmlFor="getAmount">2 - 10</label>
-                <input id='getAmount' type='number' className={styles.tileCount} step='1' min='2' max='10' onChange={getAmount}></input>
-            </div>
+            {/* <div className={styles.nn}>
+                <input type='range' id='getAmount' className={styles.tileCount} step='1' min='2' max='11' onChange={getAmount}></input>
+            </div> */}
+
+
+
+
+
+
         </div>
 
 
-    </div>
+    </div >
 }
 
 export default ChimpRace;
