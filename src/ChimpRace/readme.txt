@@ -29,8 +29,10 @@
 
 // Distorted reflection
 // For you it is strictly one way (1-10)
+// You have some time to remember the cards before thei would be flipped
+// More cards - more time, help yourself. 
 // You are human, your win is just what you are expected from you. So it has no gratification
-// Otherwise - you are worse than a chimps in the laboratory.
+// Otherwise - you are worse than a chimps in the laboratory. Guess which counter is what.
 // Red is bad. You are punished for taking more burden, for doing anythin wrong or sometimes anything at all
 
 

@@ -4,6 +4,7 @@
     border-radius: 20px;
     margin: auto;
     width: 60%;
+    min-width: 60%;
     min-height: 100px;
     height: fit-content;
     padding: 20px;

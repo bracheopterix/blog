@@ -16,7 +16,7 @@ function ChimpRace(): JSX.Element {
     /// STATES ///
     const [game, setGame] = useState<CardType[]>([]);
     const [checkGame, setCheckGame] = useState<number[]>([])
-    const [cardAmount, setCardAmount] = useState<number>(5);
+    const [cardAmount, setCardAmount] = useState<number>(7);
     const [stepCounter, setStepCounter] = useState<number>(0);
     const [gameStatus, setGameStatus] = useState<boolean | undefined>(undefined);
     const [timer, setTimer] = useState<number>(0);
@@ -88,7 +88,7 @@ function ChimpRace(): JSX.Element {
 
     function openCard(index: number) {
 
-        if (gameStatus === undefined&&gameStarted.current) {
+        if (gameStatus === undefined && gameStarted.current) {
 
             let updatedGame: CardType[] = game;
             if (game[index].number !== checkGame[checkIndex.current]) {
@@ -159,19 +159,30 @@ function ChimpRace(): JSX.Element {
 
     useEffect(() => {
 
-        setTimer(performance.now() - startTime.current-1);
-
+        const diff = performance.now() - startTime.current;
+        // buffer
+        if (diff > 10) {
+            setTimer(diff);
+        }
+        else {
+            setTimer(0);
+        }
     }, [gameStatus])
 
 
     return <div className={styles.gameTable}>
+
+        <div className={styles.gameName}>Monkey-do</div>
+
         <div className={styles.gameHeader}>
+
+            <div className={styles.stepCounter}>{stepCounter}</div>
+
+            {/* <div className={styles.gameName}>Monkey-do</div> */}
 
             <div className={styles.timer}>{timer}</div>
 
-            <div className={styles.gameName}>Monkey-do</div>
 
-            <div className={styles.stepCounter}>Steps: {stepCounter}</div>
         </div>
 
         <div className={styles.cardHolder}>
@@ -192,9 +203,9 @@ function ChimpRace(): JSX.Element {
             </div> */}
             <input type='range' id='getAmount' className={styles.tileCount} step='1' min='2' max='11' onChange={getAmount}></input>
 
-                <div className={styles.calc66}>
+            <div className={styles.calc66}>
                 <div className={`${styles.startGame} ${styles.buttonLike}`} onClick={() => setGame(createGame())}>Start Game</div>
-                </div>
+            </div>
 
             {/* <div className={styles.nn}>
                 <input type='range' id='getAmount' className={styles.tileCount} step='1' min='2' max='11' onChange={getAmount}></input>

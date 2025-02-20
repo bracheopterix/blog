@@ -20,7 +20,7 @@ function App() {
       <h1>Carpentory Testing Ground</h1>
       <div className="card">
 
-        {/* <MemoryGame/> */}
+        <MemoryGame/>
         <ChimpRace/>
 
         <p>
