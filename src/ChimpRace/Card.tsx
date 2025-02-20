@@ -19,7 +19,7 @@ function Card({ card, index, openCard }: CardProps): JSX.Element {
 
     const number = card.number
     return <div className={`${styles.card} ${styles.buttonLike} ${(card.open && !card.lost) ? styles.open : ''}${card.lost ? styles.lost : ''} `} onClick={onClick}>
-        <p className={`${styles.cardNumber}${card.open ? '' : styles.hidden}`}>{number}</p>
+        <p className={`${styles.cardNumber} ${card.open ? '' : styles.hidden}`}>{number}</p>
         {/* <p className={`${styles.cardNumber}`}>{number}</p> */}
 
     </div>

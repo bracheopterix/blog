@@ -1,8 +1,8 @@
-/// MAKE INPUT by YOUR OWN DIV LIKE   < NUMBER 
-/// GIVE HIM DEBOUNCE
+/// Nah, range forever MAKE INPUT by YOUR OWN DIV LIKE   < NUMBER 
+/// Nah, range forever GIVE HIM DEBOUNCE
 
 
-/// CHANGE GAME BACK TO HAVING {value:1,open:true};
+/// OK CHANGE GAME BACK TO HAVING {value:1,open:true};
 
 // with step-counter, we need a timer with milliseconds.
 // won state is stopping timer
@@ -10,6 +10,34 @@
 // it is sorted by both values. 
 // you can choose to sort them with only one steps value like {table of 7steps games won} (7steps 3sec) (7steps 4sec)...
 
+// OK Old timer doesn't count as it should. Idk why.
+// -> set him up to the game start UseEffect, not game update UseEffect
+// OK not it shows '1' every time we start. sad
+// -> added correction '-1'
+
+// add info window with the legend about the game:
+
+// Lore
+// there is a laboratory in Japan that studies chimpanzees
+// scientists there run to a conclusion that chimps are very talented in memory-game 
+// It seems, their ability to remember numbers in order is connected 
+// to their nature defence mechanisms against predators in wildlife
+// and that we, as a species,had repurposed that sector of our brain 
+// and exchanged said ability to be able to use language.
+// This is a sample of the game that chimps play to get treats
+// =>
+
+// Distorted reflection
+// For you it is strictly one way (1-10)
+// You are human, your win is just what you are expected from you. So it has no gratification
+// Otherwise - you are worse than a chimps in the laboratory.
+// Red is bad. You are punished for taking more burden, for doing anythin wrong or sometimes anything at all
+
+
+
+// Later we would need a leaderboard with names, when we would be able to save it. 
+// its pages are about the amount of tiles and are sort by time and winning.
+// 7 tiles are better than 6 with every time. 6 tiles with 5s are better than 6 tiles with 8 seconds
 
 
 

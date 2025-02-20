@@ -21,8 +21,9 @@ function ChimpRace(): JSX.Element {
     const [gameStatus, setGameStatus] = useState<boolean | undefined>(undefined);
     const [timer, setTimer] = useState<number>(0);
 
-    const checkIndex = useRef(0);
-    const startTime = useRef(0);
+    const checkIndex = useRef<number>(0);
+    const startTime = useRef<number>(0);
+    const gameStarted = useRef<boolean>(false);
 
     /// FUNCTIONS ///
 
@@ -80,15 +81,14 @@ function ChimpRace(): JSX.Element {
         }
         newGame = shuffleArray(newGame);
         console.log('game set');
-
+        gameStarted.current = false;
         return newGame;
     }
 
 
     function openCard(index: number) {
 
-        if (gameStatus === undefined) {
-            game[index].open = true;
+        if (gameStatus === undefined&&gameStarted.current) {
 
             let updatedGame: CardType[] = game;
             if (game[index].number !== checkGame[checkIndex.current]) {
@@ -138,6 +138,7 @@ function ChimpRace(): JSX.Element {
     useEffect(() => {
         //starting game
         setGame(createGame);
+        startTime.current = performance.now();
     }, [cardAmount]);
 
     useEffect(() => {
@@ -146,12 +147,11 @@ function ChimpRace(): JSX.Element {
             const blindTime: number = game.length * 1000;   //// TIMEEEE!
 
             if (game.length > 0) {
-                const timer = setTimeout(() => {
-                    setGame((prevGame) => prevGame.map(card => ({ ...card, open: false }))
-                    );
+                const timerOk = setTimeout(() => {
+                    setGame((prevGame) => prevGame.map(card => ({ ...card, open: false })));
+                    gameStarted.current = true;
                 }, blindTime);
-                startTime.current = performance.now();
-                return () => clearTimeout(timer);
+                return () => clearTimeout(timerOk);
             }
         }
 
@@ -159,7 +159,7 @@ function ChimpRace(): JSX.Element {
 
     useEffect(() => {
 
-        setTimer(performance.now() - startTime.current);
+        setTimer(performance.now() - startTime.current-1);
 
     }, [gameStatus])
 
@@ -192,7 +192,9 @@ function ChimpRace(): JSX.Element {
             </div> */}
             <input type='range' id='getAmount' className={styles.tileCount} step='1' min='2' max='11' onChange={getAmount}></input>
 
-            <div className={`${styles.startGame} ${styles.buttonLike}`} onClick={() => setGame(createGame())}>Start Game</div>
+                <div className={styles.calc66}>
+                <div className={`${styles.startGame} ${styles.buttonLike}`} onClick={() => setGame(createGame())}>Start Game</div>
+                </div>
 
             {/* <div className={styles.nn}>
                 <input type='range' id='getAmount' className={styles.tileCount} step='1' min='2' max='11' onChange={getAmount}></input>

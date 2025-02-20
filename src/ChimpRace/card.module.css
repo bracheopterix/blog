@@ -2,7 +2,7 @@
 
 .gameTable {
     background-color: white;
-    border: solid 0;
+    border: solid 1px black;
     border-radius: 20px;
     margin: auto;
     width: 100%;
@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .stepCounter {
@@ -48,6 +49,7 @@
     margin: 0;
     color: black;
     font-size: 20px;
+    width: 100px;
     /* margin-bottom: 15px; */
 }
 
@@ -122,16 +124,12 @@
     user-select: none;
 }
 
-.nn{
-    flex-grow: 2;
-    justify-content: start;
-
+.startGame:active{
+    background-color: crimson;
 }
 
-.reverse{
-    color:black;
-    padding: 10px;
-    /* margin:10px; */
+.calc66{
+
 }
 
 
@@ -177,14 +175,15 @@
 /* for future use */
 
 .open {
-    background-color: white;
     box-shadow: black 0px 0px 5px;
-    /* rgb(103, 156, 173) */
 }
+
 
 .lost {
     background-color: crimson;
-    border: solid 0px crimson;
+    box-shadow: crimson 0px 0px 5px;
+    
+    border: solid 1px crimson;
     border-radius: 0;
     animation: lostRotation 3s 1 forwards;
 }
@@ -198,4 +197,6 @@
         transform: rotate(45deg);
     }
   }
+
+  
   
