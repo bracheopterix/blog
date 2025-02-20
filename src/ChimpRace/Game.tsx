@@ -172,7 +172,10 @@ function ChimpRace(): JSX.Element {
 
     return <div className={styles.gameTable}>
 
-        <div className={styles.gameName}>Monkey-do</div>
+        <div className={styles.gameName}>Monkey-do
+
+            <div className={styles.clue}>?</div>
+        </div>
 
         <div className={styles.gameHeader}>
 
