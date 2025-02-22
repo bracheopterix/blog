@@ -1,5 +1,5 @@
 import { JSX, useEffect, useState, useRef } from "react";
-import styles from './card.module.css'
+import styles from './Game.module.css'
 import { CardType } from './types'
 import Card from './Card'
 
@@ -8,9 +8,11 @@ import Card from './Card'
 
 function ChimpRace(): JSX.Element {
 
-    /// TYPES ///
+    /// DATA ///
 
-
+    function timeFormula(checkGame:number[]){
+        return game.length * 1000;
+    }
 
 
     /// STATES ///
@@ -144,7 +146,7 @@ function ChimpRace(): JSX.Element {
     useEffect(() => {
         // closing cards
         if (!gameStatus && checkIndex.current === 0) {
-            const blindTime: number = game.length * 1000;   //// TIMEEEE!
+            const blindTime: number = timeFormula(checkGame);   //// TIMEEEE!
 
             if (game.length > 0) {
                 const timerOk = setTimeout(() => {
@@ -159,7 +161,7 @@ function ChimpRace(): JSX.Element {
 
     useEffect(() => {
 
-        const diff = performance.now() - startTime.current;
+        const diff = performance.now() - startTime.current - (timeFormula(checkGame));
         // buffer
         if (diff > 10) {
             setTimer(Math.floor(diff));

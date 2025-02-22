@@ -1,5 +1,5 @@
 import { useState, JSX, useEffect } from "react";
-import styles from './card.module.css'
+import styles from './Game.module.css'
 import { CardType } from './types'
 
 interface CardProps {

@@ -37,7 +37,7 @@ function MemoryGame(): JSX.Element {
     const [chosen2, setChosen2] = useState<CardType | undefined>(undefined);
     const [style, setStyle] = useState<string>('market');
     const [classStyle,setClassStyle] = useState<string>(style);
-    const [cardAmmount, setCardAmmount] = useState<number>(5);
+    const [cardAmmount, setCardAmmount] = useState<number>(4);
 
     
     /// EFFECTS ///
