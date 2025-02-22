@@ -14,6 +14,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+ /* this is new */
+
+.rootClass{
+  width:100%;
+}
+/* this is new */
+
 a {
   font-weight: 500;
   color: #646cff;

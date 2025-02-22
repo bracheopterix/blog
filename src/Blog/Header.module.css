@@ -1,0 +1,29 @@
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    color: gray;
+    box-shadow: 0px 2px 3px lightgray;
+    position:relative;
+}
+
+.headerLink {
+    width: fit-content;
+    padding: 10pt;
+    font-size: 30pt;
+    flex-grow: 1;
+    text-align:center;
+    user-select: none;
+}
+
+.headerLink:hover{
+    /* box-shadow: 0px 0px 3px lightgray; */
+    text-decoration: underline aquamarine;
+    color: black;
+
+}
+
+.headerDummy {
+    flex-grow: 2;
+}
+

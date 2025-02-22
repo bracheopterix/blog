@@ -162,7 +162,7 @@ function ChimpRace(): JSX.Element {
         const diff = performance.now() - startTime.current;
         // buffer
         if (diff > 10) {
-            setTimer(diff);
+            setTimer(Math.floor(diff));
         }
         else {
             setTimer(0);

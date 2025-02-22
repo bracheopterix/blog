@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MemoryGame from './MemoryGame/Game.tsx'
 import ChimpRace from './ChimpRace/Game.tsx'
+import Blog from './Blog/Sertar.tsx'
 
 function App() {
 
@@ -17,11 +18,15 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+
       <h1>Carpentory Testing Ground</h1>
+
+      <Blog />
+
       <div className="card">
 
-        <MemoryGame/>
-        <ChimpRace/>
+        <MemoryGame />
+        <ChimpRace />
 
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR

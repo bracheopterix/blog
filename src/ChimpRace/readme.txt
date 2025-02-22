@@ -15,6 +15,9 @@
 // OK not it shows '1' every time we start. sad
 // -> added correction '-1'
 
+
+-----------------------------------------
+
 // add info window with the legend about the game:
 
 // Lore
@@ -35,12 +38,14 @@
 // Otherwise - you are worse than a chimps in the laboratory. Guess which counter is what.
 // Red is bad. You are punished for taking more burden, for doing anythin wrong or sometimes anything at all
 
-
+-----------------------------------------
+// CHECK DESIGN ON CHROME! RANGE IS SRANGE! MINUS VALUES, LINE NOT UNDER THE O
 
 // Later we would need a leaderboard with names, when we would be able to save it. 
 // its pages are about the amount of tiles and are sort by time and winning.
 // 7 tiles are better than 6 with every time. 6 tiles with 5s are better than 6 tiles with 8 seconds
 
+-----------------------------------------
 
 
 
