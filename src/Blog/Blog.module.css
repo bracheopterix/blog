@@ -15,7 +15,26 @@ h2 {
     align-items: start;
     background-color: white;
     box-shadow: 0px 2px 15px lightgray;
+    position: relative;
+    top:0px;
+    /* animation: recordFall forwards;
+    animation-delay: 0s;
+    animation-duration: 3s; */
     /* margin: 0 50px; */
+    z-index: 0;
+}
+
+@keyframes recordFall {
+    from {
+        top:-50px;
+        box-shadow: 0px 2px 50px gray(82, 81, 81);
+    }
+
+    to {
+        top:0px;
+        box-shadow: 0px 2px 15px lightgray;
+
+    }
 }
 
 .record h2 {
@@ -37,4 +56,3 @@ h2 {
     /* margin-bottom: 5px; */
     /* padding: 0 10px 0 0 ; */
 }
-

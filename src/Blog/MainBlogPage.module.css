@@ -1,13 +1,52 @@
+.yatoSan {
+    margin-top: 10px;
+    /* margin-left: -50px; */
+    margin-left: -500px;
 
-.yatoSan{
-    margin: 20px -35px ;
-height: 300px;
+
+    height: 300px;
+    animation: yatoSanMooooving forwards;
+    animation-delay: 2s;
+    animation-duration: 2s;
 }
 
-.announcement{
+
+@keyframes yatoSanMooooving {
+    from {
+        margin-top:100px;
+        margin-left: -500px;
+        transform: rotate(-90deg);
+        opacity: 50%;
+    }
+
+    to {
+        margin-top:10px;
+        margin-left: -50px;
+        transform: rotate(0deg);
+        opacity: 100%;
+    }
+}
+
+.announcement {
     font-size: 30px;
     color: burlywood;
-    margin: 15px auto;
     width: fit-content;
+    position: absolute;
+    top:50%;
+    left: 40%;
+    animation: announcementing;
+    animation-delay: 0s;
+    animation-duration: 2s;
 }
 
+@keyframes announcementing {
+from{
+    top:80%;
+
+}
+to{
+    top:50%;
+
+}
+
+}

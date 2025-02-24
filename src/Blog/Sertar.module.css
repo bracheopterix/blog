@@ -30,4 +30,5 @@ body {
     width: 100%;
     height: 10pt;
     background-color: rgb(191, 245, 227);
+    z-index: 1;
 }

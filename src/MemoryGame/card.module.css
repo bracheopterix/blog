@@ -119,8 +119,13 @@
 
 .range {
     width: 100%;
+}
 
-
+.rangeNotActive{
+    color:gray;
+    accent-color: darkgray;
+    width: 100%;
+    background-color: red;
 }
 
 datalist {

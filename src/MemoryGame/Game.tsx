@@ -1,7 +1,7 @@
 import { JSX, useState, useEffect } from "react";
 import styles from "./card.module.css";
 import Card from "./Card.tsx";
-import { CardType, Style,StyleObj } from './types.ts'
+import { CardType, Style, StyleObj } from './types.ts'
 
 
 
@@ -18,13 +18,13 @@ function MemoryGame(): JSX.Element {
     // ! to add new style to pool - add array, add his name to stylePool and add variant to styleSwitch
 
     let pool: Style = []; //starter pool
-    let stylePool: string[] = ['market', 'sushi','harvest'];
+    let stylePool: string[] = ['market', 'sushi', 'harvest'];
 
-    
-    const AllStyles:StyleObj = {
-        'market':[{ name: 'fish', src: './src/MemoryGame/img/market/salmon.png' }, { name: 'cider', src: './src/MemoryGame/img/market/cider-drink.png' }, { name: 'cheese', src: './src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: './src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: './src/MemoryGame/img/market/vegetable.png' }, { name: 'beer', src: './src/MemoryGame/img/market/beer.png' }, { name: 'apple3', src: './src/MemoryGame/img/market/apple(3).png' }, { name: 'bread&fish', src: './src/MemoryGame/img/market/bread-and-fish.png' }],
-        'sushi':[{ name: 'sauce', src: './src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: './src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: './src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: './src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: './src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: './src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: './src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: './src/MemoryGame/img/sushi/gyoza.png' }],
-        'harvest':[{ name: 'apple', src: './src/MemoryGame/img/harvest/apple.png' }, { name: 'apple1', src: './src/MemoryGame/img/harvest/apple(1).png' }, { name: 'apple2', src: './src/MemoryGame/img/harvest/apple(2).png' }, { name: 'blueberry', src: './src/MemoryGame/img/harvest/blueberry.png' }, { name: 'oak', src: './src/MemoryGame/img/harvest/oak.png' }, { name: 'orange', src: './src/MemoryGame/img/harvest/orange.png' }, { name: 'pomegranate', src: './src/MemoryGame/img/harvest/pomegranate.png' }, { name: 'pumpkin', src: './src/MemoryGame/img/harvest/pumpkin.png' },{ name: 'grape', src: './src/MemoryGame/img/harvest/grape.png' }],
+
+    const AllStyles: StyleObj = {
+        'market': [{ name: 'fish', src: '/src/MemoryGame/img/market/salmon.png' }, { name: 'cider', src: '/src/MemoryGame/img/market/cider-drink.png' }, { name: 'cheese', src: '/src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: '/src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: '/src/MemoryGame/img/market/vegetable.png' }, { name: 'beer', src: '/src/MemoryGame/img/market/beer.png' }, { name: 'apple3', src: '/src/MemoryGame/img/market/apple(3).png' }, { name: 'bread&fish', src: '/src/MemoryGame/img/market/bread-and-fish.png' }],
+        'sushi': [{ name: 'sauce', src: '/src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: '/src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: '/src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: '/src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: '/src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: '/src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: '/src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: '/src/MemoryGame/img/sushi/gyoza.png' }],
+        'harvest': [{ name: 'apple', src: '/src/MemoryGame/img/harvest/apple.png' }, { name: 'apple1', src: '/src/MemoryGame/img/harvest/apple(1).png' }, { name: 'apple2', src: '/src/MemoryGame/img/harvest/apple(2).png' }, { name: 'blueberry', src: '/src/MemoryGame/img/harvest/blueberry.png' }, { name: 'oak', src: '/src/MemoryGame/img/harvest/oak.png' }, { name: 'orange', src: '/src/MemoryGame/img/harvest/orange.png' }, { name: 'pomegranate', src: '/src/MemoryGame/img/harvest/pomegranate.png' }, { name: 'pumpkin', src: '/src/MemoryGame/img/harvest/pumpkin.png' }, { name: 'grape', src: '/src/MemoryGame/img/harvest/grape.png' }],
 
     };
 
@@ -34,12 +34,12 @@ function MemoryGame(): JSX.Element {
     const [stepCounter, setStepCounter] = useState<number>(0);
     const [wonCounter, setWonCounter] = useState<number>(0);
     const [chosen1, setChosen1] = useState<CardType | undefined>(undefined);
-    const [chosen2, setChosen2] = useState<CardType | undefined>(undefined);
+    // const [chosen2, setChosen2] = useState<CardType | undefined>(undefined);
     const [style, setStyle] = useState<string>('market');
-    const [classStyle,setClassStyle] = useState<string>(style);
+    const [classStyle, setClassStyle] = useState<string>(style);
     const [cardAmmount, setCardAmmount] = useState<number>(4);
 
-    
+
     /// EFFECTS ///
 
     useEffect(() => {
@@ -51,11 +51,12 @@ function MemoryGame(): JSX.Element {
             }
         }
     }, [cardAmmount]
-
         // changes only when StartButton on
         // setGame(createGame());
         // }, []
     );
+
+    
 
 
     /// FUNCTIONS ///
@@ -81,13 +82,13 @@ function MemoryGame(): JSX.Element {
 
     function createGame(): Style { // uses shiffleArray()
         setChosen1(undefined);
-        setChosen2(undefined);
+        // setChosen2(undefined);
         setWonCounter(0);
         setStepCounter(0);
         setClassStyle(style);
 
         let game: Style = [];
-        pool = AllStyles[style];   
+        pool = AllStyles[style];
         pool = shuffleArray(pool);
         pool = pool.slice(0, cardAmmount);
         // console.log(cardAmmount, pool);
@@ -105,7 +106,7 @@ function MemoryGame(): JSX.Element {
     }
 
     function checkGame(card: CardType): void {
-        if (Card !== undefined&&!card.won) {
+        if (Card !== undefined && !card.won) {
             if (wonCounter !== game.length) {
                 let index = card.index;
 
@@ -130,7 +131,7 @@ function MemoryGame(): JSX.Element {
                     }
                     else {
                         if (card.name === chosen1.name && index !== chosen1.index) {
-                            console.log('right move', chosen1, chosen2);
+                            // console.log('right move', chosen1, chosen2);
                             setWonCounter((wonCounter) => wonCounter + 2);
 
                             /// ADDING WON STATE to the won cards
@@ -140,16 +141,20 @@ function MemoryGame(): JSX.Element {
 
                             setGame(updatedGame);
                             // first - change data, second - rewrite state.
+
+
                         }
 
                         console.log('resetting')
                         setChosen1(undefined);
-                        setChosen2(undefined);
+                        // setChosen2(undefined);
                         setStepCounter((stepCounter) => stepCounter + 1);
 
                     }
                 }
             }
+
+
         }
 
 

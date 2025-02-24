@@ -36,7 +36,11 @@
 
 
     Designwise
-    
+
+    // Make range gray when it is inactive - we don't have "game started" state, just game won and first two cards open.
+    // It is hard cause of inner logic.
+
+
     // OK maybe, it is a good idea to have styles in the obj to just make pool = obj.key 
     // OK so no need to add to switch every time, just add that short-cut in check-style
     // OK anyway, keys in obj are already in strings AND we have stylePool (but it is an array->
