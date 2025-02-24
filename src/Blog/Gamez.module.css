@@ -1,8 +1,36 @@
-.gamesHolder{
+.page {
     /* margin: auto; */
     margin: 0 auto 0 auto;
-    width:30%;
-    padding: 30px 0 0 0 ;
+    width: 30%;
+    padding: 30px 0 0px 0;
     background-color: white;
     box-shadow: 0 0 5px lightgray;
+}
+
+.gamesHolder {
+    margin-bottom: 30px;
+}
+
+.arrowHolder {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    position: relative;
+}
+
+.arrow {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.arrow.left {
+    left: -25%;
+    top: 50px;
+    transform: rotate(180deg);
+}
+
+.arrow.right {
+    right: -25%;
+    top: 50px;
 }

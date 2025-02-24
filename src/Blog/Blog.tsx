@@ -28,7 +28,27 @@ function Blog() {
                 </p>
             </div>
 
-            <div className={styles.footer}></div>
+            <div className={`${styles.record} ${defStyles.flexColumn}`}>
+                <h2 id='recordHeader'>In terms of time wasting</h2>
+                <div className={`${styles.details} ${defStyles.flexRow}`}>
+                    <p id='date'>23.02.25</p> <p id='author'>Olga</p>
+                </div>
+                <p id='recordText'>
+                    I want an mmo game where I can hoard items
+                </p>
+            </div>
+
+            <div className={`${styles.record} ${defStyles.flexColumn}`}>
+                <h2 id='recordHeader'>Routes, routes</h2>
+                <div className={`${styles.details} ${defStyles.flexRow}`}>
+                    <p id='date'>24.02.25</p> <p id='author'>Olga</p>
+                </div>
+                <p id='recordText'>
+                    It is quite relatable matter, lol. Do not forget /* to keep your relations deep.
+                </p>
+            </div>
+
+            <div className={defStyles.blockFooter}></div>
 
         </div>
 

@@ -17,7 +17,11 @@
 }
 
 .headerLink:hover{
-    /* box-shadow: 0px 0px 3px lightgray; */
+    text-decoration: underline aquamarine;
+    color: black;
+}
+
+.headerLinkActive{
     text-decoration: underline aquamarine;
     color: black;
 

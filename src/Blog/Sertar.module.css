@@ -3,6 +3,10 @@
 
 }
 
+a{
+    color: gray;
+}
+
 .flexRow {
     display: flex;
     flex-direction: row;
@@ -21,3 +25,9 @@ body {
 }
 
 
+
+.blockFooter {
+    width: 100%;
+    height: 10pt;
+    background-color: rgb(191, 245, 227);
+}

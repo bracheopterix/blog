@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate, Link } from 'react-router-dom';
 import styles from './Gamez.module.css';
 import defStyles from './Sertar.module.css'
 import ChimpRace from "../ChimpRace/Game";
@@ -5,16 +7,55 @@ import MemoryGame from "../MemoryGame/Game";
 
 
 
-function Games (){
+function Games() {
+
+    const [gameNumber, setGameNumber] = useState<number>(0);
+    const maxGameAmount: number = 1;
+
+    const navigate = useNavigate();
+
+    function onClickLeft(): void {
+        if (gameNumber !== 0) {
+
+            const prevGame = gameNumber - 1;
+            setGameNumber(prevGame);
+            navigate(`/games/game${prevGame}`);
+        }
+    }
+
+    function onClickRight(): void {
+        if (gameNumber < maxGameAmount) {
+            const nextGame = gameNumber + 1;
+            setGameNumber(nextGame);
+            navigate(`/games/game${nextGame}`)
+        }
+    }
+
 
 
     return (<>
-    
-        <div className={`${styles.gamesHolder} ${defStyles.flexColumn}`}>
-        <MemoryGame />
-        <ChimpRace />
-        </div>
-        
+
+        <div className={`${styles.page} ${defStyles.flexColumn}`}>
+
+            <div className={`${styles.arrowHolder} ${defStyles.flexRow}`}>
+                {/* <div className={`${styles.arrow} ${styles.left}`} onClick={onClickLeft}></div> */}
+                <img src='../src/assets/icons/right-arrow.png' className={`${styles.arrow} ${styles.left}`} onClick={onClickLeft}></img>
+                {/* <div className={`${styles.arrow} ${styles.right}`} onClick={onClickRight}></div> */}
+                <img src='../src/assets/icons/right-arrow.png' className={`${styles.arrow} ${styles.right}`} onClick={onClickRight}></img>
+
+            </div>
+
+            <div className={styles.gamesHolder}>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/games/game0" replace />} />
+                    <Route path="/game0" element={<MemoryGame />} />
+                    <Route path="/game1" element={<ChimpRace />} />
+                </Routes>
+            </div>
+            <div className={defStyles.blockFooter}></div>
+
+        </div >
+
     </>)
 }
 

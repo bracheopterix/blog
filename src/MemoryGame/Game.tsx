@@ -90,7 +90,7 @@ function MemoryGame(): JSX.Element {
         pool = AllStyles[style];   
         pool = shuffleArray(pool);
         pool = pool.slice(0, cardAmmount);
-        console.log(cardAmmount, pool);
+        // console.log(cardAmmount, pool);
 
         for (let el of pool) {
             const el1: CardType = { ...el, open: false, won: false };  // { } means that we are cteating new entity, not just making references

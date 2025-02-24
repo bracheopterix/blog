@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MemoryGame from './MemoryGame/Game.tsx'
 import ChimpRace from './ChimpRace/Game.tsx'
-import Blog from './Blog/Sertar.tsx'
+import Page from './Blog/Sertar.tsx'
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
 
       <h1>Carpentory Testing Ground</h1>
 
-      <Blog />
+      <Page />
 
       <div className="card">
 
