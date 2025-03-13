@@ -38,8 +38,11 @@ function Games() {
         <div className={`${styles.page} ${defStyles.flexColumn}`}>
 
             <div className={`${styles.arrowHolder} ${defStyles.flexRow}`}>
-                <img src='../src/assets/icons/ArrowCopy.svg' className={`${styles.arrow} ${styles.left}`} onClick={onClickLeft}></img>
-                <img src='../src/assets/icons/ArrowCopy.svg' className={`${styles.arrow} ${styles.right}`} onClick={onClickRight}></img>
+                <img src='../src/assets/icons/ArrowCopyGray.svg' className={`${styles.arrow} ${styles.left}`}></img>
+                <div className={`${styles.arrow} ${styles.left} ${styles.arrowTop}`} onClick={onClickLeft}></div>
+                <img src='../src/assets/icons/ArrowCopyGray.svg' className={`${styles.arrow} ${styles.right}`}></img>
+                <div className={`${styles.arrow} ${styles.right} ${styles.arrowTop}`} onClick={onClickRight}></div>
+
 
             </div>
 

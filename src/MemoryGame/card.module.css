@@ -23,6 +23,7 @@
     display: inline-block;
     position: relative;
     text-align: center;
+    user-select: none;
 }
 
 
@@ -100,6 +101,7 @@
     font-size: 20px;
     top: 20px;
     left: 20px;
+    user-select: none;
 }
 
 .gameStyle {
@@ -115,6 +117,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    user-select: none;
+
 }
 
 .range {

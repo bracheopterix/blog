@@ -1,10 +1,9 @@
 :root html #root {
     width: 100%;
-
 }
 
 a{
-    color: gray;
+    color: #808080;
 }
 
 .flexRow {

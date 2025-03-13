@@ -7,3 +7,6 @@ Maybe context for variables with records data
 Add Games now, under the Header 
 
 Make it clear with light theme / dark theme - don't like that shift when half of the page is still light
+
+
+// Make that arrows don't brightened if there is no page in that direction. Top arrow may become hidden.

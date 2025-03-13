@@ -22,7 +22,41 @@
     width: 100px;
     height: 100px;
     position: absolute;
+    background-image: url('/src/assets/icons/ArrowCopyGray.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    user-select: none;
+
 }
+
+
+@keyframes brighterArrow {
+    from{
+       opacity: 0%;
+
+    }
+    to{
+        opacity: 100%;
+    }
+}
+
+.arrowTop{
+    background-image: url('/src/assets/icons/ArrowCopyColor.svg');
+
+    transition: opacity .3s ease-in-out;
+    opacity: 1; /* Начальное состояние */
+}
+
+.arrowTop:not(:hover) {
+    opacity: 0; 
+}
+
+/* .arrowTop:hover{
+    animation: brighterArrow;
+    animation-duration: 1s;
+} */
+
 
 .arrow.left {
     left: -25%;

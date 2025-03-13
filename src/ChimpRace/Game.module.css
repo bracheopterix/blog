@@ -36,6 +36,8 @@
     top: 20px;
     left: 20px;
     text-align: center;
+    user-select: none;
+
 }
 
 .gameName {
@@ -47,6 +49,8 @@
     width: fit-content;
     display: inline-block;
     position: relative;
+    user-select: none;
+
 }
 
 .clue{
@@ -79,6 +83,7 @@
     font-size: 20px;
     width: 100px;
     text-align: center;
+    user-select: none;
     /* margin-bottom: 15px; */
 }
 

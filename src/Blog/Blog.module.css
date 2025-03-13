@@ -4,11 +4,83 @@
     width: 50%;
     height: fit-content;
     margin: auto;
+    position: relative;
 }
 
 h2 {
     margin: 10px 0;
 }
+
+
+.blogButton {
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    user-select: none;
+    position: absolute;
+}
+
+.clue {
+    color: gray;
+    background-color: white;
+    width: fit-content;
+    /* max-width: 200%; */
+    height: fit-content;
+    font-size: 10px;
+    padding: 5px;
+    border: solid 0px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -55px;
+}
+
+
+.addRecordButton {
+    top: 3%;
+    right: -10%;
+    z-index: 1;
+}
+
+.addRecordBGray {
+    background-image: url('/src/assets/icons/PlusGray.svg');
+
+}
+
+.addRecordBTop {
+    background-image: url('/src/assets/icons/PlusColor.svg');
+    transition: opacity .3s ease-in-out;
+    opacity: 1;
+}
+
+.addRecordBTop:not(:hover) {
+    opacity: 0;
+}
+
+.reverseRecordsButton {
+    top: 3%;
+    right: -18%;
+    z-index: 1;
+}
+
+.reverseRecordsBGray {
+    background-image: url('/src/assets/icons/ReverseGray.svg');
+
+}
+
+.reverseRecordsBTop {
+    background-image: url('/src/assets/icons/ReverseColor.svg');
+    transition: opacity .3s ease-in-out;
+    opacity: 1;
+}
+
+.reverseRecordsBTop:not(:hover) {
+    opacity: 0;
+
+}
+
+
 
 .record {
     padding: 5%;
@@ -16,7 +88,7 @@ h2 {
     background-color: white;
     box-shadow: 0px 2px 15px lightgray;
     position: relative;
-    top:0px;
+    top: 0px;
     /* animation: recordFall forwards;
     animation-delay: 0s;
     animation-duration: 3s; */
@@ -26,12 +98,12 @@ h2 {
 
 @keyframes recordFall {
     from {
-        top:-50px;
+        top: -50px;
         box-shadow: 0px 2px 50px gray(82, 81, 81);
     }
 
     to {
-        top:0px;
+        top: 0px;
         box-shadow: 0px 2px 15px lightgray;
 
     }
