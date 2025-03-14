@@ -5,7 +5,6 @@ import { diary } from './InjectDiary';
 
 import BlogRecord from './BlogRecord';
 import { useEffect, useState, useRef } from 'react';
-import AddRecord from './AddRecord';
 import AddRecordWindow from './AddRecordWindow'
 // import { useEffect } from 'react';
 
@@ -37,8 +36,6 @@ function Blog() {
 
     const [addRecordIsVisible, setAddRecordIsVisible] = useState<boolean>(false);
 
-    // let diaryGhost = useRef<Record[]>([]);
-
     /// FIRST LOAD ///
 
     useEffect(() => {
@@ -48,12 +45,14 @@ function Blog() {
             let parsedDiary: Record[] = JSON.parse(tempLocStorCast);
 
             setDiaryTwin([...parsedDiary].reverse());
-            // diaryGhost.current = JSON.parse(tempLocStorCast);
         }
 
-        // console.log(diaryGhost.current);
-
+        // loading visibility of the addRecordWindow //
+        const storedAddRecordIsVisible = localStorage.getItem("addRecordIsVisible");
+        setAddRecordIsVisible(storedAddRecordIsVisible ? JSON.parse(storedAddRecordIsVisible) : false);
     }, [])
+
+
 
     ///
 
@@ -63,9 +62,10 @@ function Blog() {
 
 
     function openAddRecordWindow() {
-        console.log('addRecordButton is working');
+        // setting visibility of the addRecordWindow //
         setAddRecordIsVisible(true);
-
+        // saving visibility of the addRecordWindow //
+        localStorage.setItem("addRecordIsVisible", "true");
     }
 
 
@@ -83,21 +83,6 @@ function Blog() {
                 <p className={styles.clue}>Add record</p>
 
             </div>
-
-
-
-            {/* <div className={`${styles.blogButton} ${styles.reverseRecordsButton} ${styles.reverseRecordsBGray}`}></div>
-            <div className={`${styles.blogButton} ${styles.reverseRecordsButton} ${styles.reverseRecordsBTop}`} >
-                <p className={styles.clue}>Reverse direction</p>
-            </div> */}
-
-            {/* <div className={styles.addRecord}></div> */}
-
-            {/* <AddRecord
-            addRecordVisible = {addRecordVisible}
-            setAddRecordVisible = {setAddRecordVisible}
-            /> */}
-
 
 
             {

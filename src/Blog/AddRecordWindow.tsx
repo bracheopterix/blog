@@ -1,5 +1,5 @@
 
-import { JSX,useRef,useEffect } from "react";
+import { JSX, useRef, useEffect } from "react";
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css'
 
@@ -10,30 +10,79 @@ type AddRecordWindowProps = {
 
 function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible: setAddRecordVisible }: AddRecordWindowProps): JSX.Element {
 
-    const textareaRef = useRef<HTMLTextAreaElement | null>(null);  
 
+    /// SAVING VALUES /// 
+
+    const titleRef = useRef<HTMLInputElement | null>(null);
+    const noteRef = useRef<HTMLInputElement | null>(null);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+    const recordTimeoutRef = useRef(0);
+
+    function saveTitle() {
+        if (recordTimeoutRef) { clearTimeout(recordTimeoutRef.current) }
+        recordTimeoutRef.current = setTimeout(() => {
+            localStorage.setItem("savedTitle", JSON.stringify(titleRef.current?.value));
+        }, 200)
+    }
+
+    function saveNote() {
+        if (recordTimeoutRef) { clearTimeout(recordTimeoutRef.current) }
+        recordTimeoutRef.current = setTimeout(() => {
+            localStorage.setItem("savedNote", JSON.stringify(noteRef.current?.value));
+        }, 200)
+    }
+
+    function saveText () {
+        if (recordTimeoutRef) { clearTimeout(recordTimeoutRef.current) }
+        recordTimeoutRef.current = setTimeout(() => {
+            localStorage.setItem("savedText", JSON.stringify(textareaRef.current?.value));
+        }, 200)
+    }
+
+
+    /// FUNCTIONAL ///
 
     function closeOnClick() {
         setAddRecordVisible(false);
+        localStorage.setItem("addRecordIsVisible", "false");
     }
 
-    function saveSize(){
+    /// Saving text area size ///
+    function saveSize() {
+
         if (textareaRef.current) {
             localStorage.setItem("textareaWidth", textareaRef.current.offsetWidth.toString());
             localStorage.setItem("textareaHeight", textareaRef.current.offsetHeight.toString());
-          }
+        }
     }
 
+    /// FIRST LOAD ///
+
     useEffect(() => {
+        // loading text area size //
         const savedWidth = localStorage.getItem("textareaWidth");
         const savedHeight = localStorage.getItem("textareaHeight");
-      
-        if (textareaRef.current) {
-          if (savedWidth) textareaRef.current.style.width = `${savedWidth}px`;
-          if (savedHeight) textareaRef.current.style.height = `${savedHeight}px`;
-        }
-      }, []);
 
+        if (textareaRef.current) {
+            if (savedWidth) { textareaRef.current.style.width = `${savedWidth}px` };
+            if (savedHeight) { textareaRef.current.style.height = `${savedHeight}px` };
+        }
+
+        // loading input values //
+        const savedTitle = localStorage.getItem("savedTitle");
+        if (savedTitle && titleRef.current) { titleRef.current.value = JSON.parse(savedTitle).toString() }
+
+        const savedNote = localStorage.getItem("savedNote");
+        if (savedNote && noteRef.current) { noteRef.current.value = JSON.parse(savedNote).toString() }
+
+        const savedText = localStorage.getItem("savedText");
+        if (savedText && textareaRef.current) { textareaRef.current.value = JSON.parse(savedText).toString() }
+
+
+    }, []);
+
+    
 
     return (
         <>
@@ -42,15 +91,15 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible: setAddReco
                 <h3>Add record to the blog</h3>
 
                 <form className={defStyles.flexColumn}>
-                    <input id="title" className = {styles.title} placeholder="Title"></input>
+                    <input ref={titleRef} id="title" onInput={saveTitle} className={styles.title} placeholder="Title"></input>
 
-                    <input id="note" placeholder="Note"></input>
+                    <input ref={noteRef} id="note" onInput={saveNote} placeholder="Note"></input>
 
-                    <textarea ref={textareaRef} onMouseUp={saveSize} placeholder="Text goes here..."></textarea>
+                    <textarea ref={textareaRef} onInput = {saveText} onMouseUp={saveSize} placeholder="Text goes here..."></textarea>
 
                 </form>
 
-{/* the value from the inputs should be saved in the Ref variables, to save them from loosing when the page is refreshing
+                {/* the value from the inputs should be saved in the Ref variables, to save them from loosing when the page is refreshing
 It's where debounce wins
 Also, on submit the values are refreshed.
 

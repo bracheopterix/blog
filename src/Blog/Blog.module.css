@@ -145,6 +145,7 @@ h2 {
     height: fit-content;
     z-index: 3;
     color: black;
+    box-shadow: 0 0 5px black;
 }
 
 .popUpCloseButton {
@@ -190,6 +191,7 @@ h2 {
 
 .popUp textarea {
     min-height: 100px;
+    min-width: 200px;
     margin-top: 5px;
     padding-top: 5px;
     line-height: normal;
