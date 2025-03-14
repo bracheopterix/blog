@@ -6,6 +6,7 @@ import { diary } from './InjectDiary';
 import BlogRecord from './BlogRecord';
 import { useEffect, useState, useRef } from 'react';
 import AddRecord from './AddRecord';
+import AddRecordWindow from './AddRecordWindow'
 // import { useEffect } from 'react';
 
 
@@ -13,17 +14,17 @@ import AddRecord from './AddRecord';
 function Blog() {
 
     type Code = {
-        day:number,
-        month:number,
-        year:number,
-        order:number,
+        day: number,
+        month: number,
+        year: number,
+        order: number,
     }
 
     type Record = {
         code: Code,
         note: string,
-        title:string,
-        text:string,
+        title: string,
+        text: string,
     };
 
 
@@ -33,17 +34,18 @@ function Blog() {
     /// STATES ///
 
     const [diaryTwin, setDiaryTwin] = useState<Record[]>([]);
-    const [addRecordVisible, setAddRecordVisible] = useState<boolean>(false);
+
+    const [addRecordIsVisible, setAddRecordIsVisible] = useState<boolean>(false);
 
     // let diaryGhost = useRef<Record[]>([]);
 
     /// FIRST LOAD ///
 
     useEffect(() => {
-        
-        let tempLocStorCast:string|null = localStorage.getItem("diary");
-        if(tempLocStorCast){
-            let parsedDiary:Record[]=JSON.parse(tempLocStorCast);
+
+        let tempLocStorCast: string | null = localStorage.getItem("diary");
+        if (tempLocStorCast) {
+            let parsedDiary: Record[] = JSON.parse(tempLocStorCast);
 
             setDiaryTwin([...parsedDiary].reverse());
             // diaryGhost.current = JSON.parse(tempLocStorCast);
@@ -59,33 +61,48 @@ function Blog() {
 
     console.log(diaryTwin);
 
-    
+
+    function openAddRecordWindow() {
+        console.log('addRecordButton is working');
+        setAddRecordIsVisible(true);
+
+    }
 
 
     return (<>
+        <AddRecordWindow
+            addRecordIsVisible={addRecordIsVisible}
+            setAddRecordIsVisible={setAddRecordIsVisible}
+
+        />
+
         <div className={`${styles.blog} ${defStyles.flexColumn}`}>
 
             <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBGray}`}></div>
-            <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBTop}`}>
+            <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBTop}`} onClick={openAddRecordWindow}>
                 <p className={styles.clue}>Add record</p>
 
             </div>
 
-            <div className={`${styles.blogButton} ${styles.reverseRecordsButton} ${styles.reverseRecordsBGray}`}></div>
+
+
+            {/* <div className={`${styles.blogButton} ${styles.reverseRecordsButton} ${styles.reverseRecordsBGray}`}></div>
             <div className={`${styles.blogButton} ${styles.reverseRecordsButton} ${styles.reverseRecordsBTop}`} >
                 <p className={styles.clue}>Reverse direction</p>
-            </div>
+            </div> */}
 
-            <div className={styles.addRecord}></div>
+            {/* <div className={styles.addRecord}></div> */}
 
-            <AddRecord
+            {/* <AddRecord
             addRecordVisible = {addRecordVisible}
             setAddRecordVisible = {setAddRecordVisible}
-            />
+            /> */}
+
+
 
             {
-                
-                diaryTwin.map((record:Record,index:number)=>(
+
+                diaryTwin.map((record: Record, index: number) => (
                     <BlogRecord
                         key={index}
                         // index={index}

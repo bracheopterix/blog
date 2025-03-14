@@ -31,3 +31,7 @@ body {
     background-color: rgb(191, 245, 227);
     z-index: 1;
 }
+
+.hidden {
+    display: none;
+}
