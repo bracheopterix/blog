@@ -2,13 +2,15 @@
 import { JSX, useRef, useEffect } from "react";
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css'
+import { Code, Record } from './Blog'
 
 type AddRecordWindowProps = {
     addRecordIsVisible: boolean,
     setAddRecordIsVisible: (addRecordIsVisible: boolean) => void,
+    setRefershed: (refreshed: number) => void,
 }
 
-function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible: setAddRecordVisible }: AddRecordWindowProps): JSX.Element {
+function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefershed }: AddRecordWindowProps): JSX.Element {
 
 
     /// SAVING VALUES /// 
@@ -33,7 +35,7 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible: setAddReco
         }, 200)
     }
 
-    function saveText () {
+    function saveText() {
         if (recordTimeoutRef) { clearTimeout(recordTimeoutRef.current) }
         recordTimeoutRef.current = setTimeout(() => {
             localStorage.setItem("savedText", JSON.stringify(textareaRef.current?.value));
@@ -44,7 +46,7 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible: setAddReco
     /// FUNCTIONAL ///
 
     function closeOnClick() {
-        setAddRecordVisible(false);
+        setAddRecordIsVisible(false);
         localStorage.setItem("addRecordIsVisible", "false");
     }
 
@@ -82,7 +84,72 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible: setAddReco
 
     }, []);
 
-    
+
+    function submitRecord() {
+
+        if (titleRef.current?.value && textareaRef.current?.value) {
+
+            // checking today's date
+            const newDate = new Date;
+            const day: number = newDate.getDay();
+            const month: number = newDate.getMonth();
+            const year: number = newDate.getFullYear();
+
+            // creating record's code
+            const newCode: Code = {
+                "day": day,
+                "month": month,
+                "year": year,
+                "order": 0,
+            }
+
+            // checking latest order //
+            const newRecord: Record = {
+                title: titleRef.current?.value,
+                note: noteRef.current?.value,
+                text: textareaRef.current?.value,
+                code: newCode,
+            }
+
+            // checking existing diary records 
+            const diaryGhost = localStorage.getItem("diary");
+            if (diaryGhost) {
+                const castRecords: Record[] = JSON.parse(localStorage.getItem("diary") || "[]");
+                // getting only same date records
+                const sameDayRecords: Record[] = castRecords.filter(
+                    (record) => record.code.day === day && record.code.month === month && record.code.year === year
+                );
+
+                if (sameDayRecords.length !== 0) {
+                    // finding the record with the highest 'order' value
+                    const latestOrder = sameDayRecords.reduce((max, record) => Math.max(max, record.code.order), 0);
+                    newCode.order = latestOrder + 1;
+                }
+
+                castRecords.push(newRecord);
+                localStorage.setItem("diary", JSON.stringify(castRecords));
+
+            }
+            else {
+                localStorage.setItem("diary", JSON.stringify([newRecord]));
+            }
+            setAddRecordIsVisible(false);
+            localStorage.setItem("addRecordIsVisible", "false");
+            titleRef.current.value = null;
+            noteRef.current.value = null;
+            textareaRef.current.value = null;
+
+            setRefershed((prevRefreshed) => prevRefreshed + 1);
+
+            //// MISTAKEEEE   ////
+        }
+        else {
+            throw new Error("please, enter title and text");
+        }
+
+
+    }
+
 
     return (
         <>
@@ -90,21 +157,17 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible: setAddReco
                 <div className={styles.popUpCloseButton} onClick={closeOnClick}></div>
                 <h3>Add record to the blog</h3>
 
-                <form className={defStyles.flexColumn}>
+                <form onSubmit={(event) => event.preventDefault()} className={defStyles.flexColumn}>
+
                     <input ref={titleRef} id="title" onInput={saveTitle} className={styles.title} placeholder="Title"></input>
 
                     <input ref={noteRef} id="note" onInput={saveNote} placeholder="Note"></input>
 
-                    <textarea ref={textareaRef} onInput = {saveText} onMouseUp={saveSize} placeholder="Text goes here..."></textarea>
+                    <textarea ref={textareaRef} onInput={saveText} onMouseUp={saveSize} placeholder="Text goes here..."></textarea>
 
+                    <button onClick={submitRecord}>Save</button>
                 </form>
 
-                {/* the value from the inputs should be saved in the Ref variables, to save them from loosing when the page is refreshing
-It's where debounce wins
-Also, on submit the values are refreshed.
-
-Magister knew how to save textarea size after it is changed by hand. Already asked - look for it
-*/}
 
 
             </div>

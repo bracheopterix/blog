@@ -1,20 +1,13 @@
 import { JSX } from "react";
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css'
-
-type Code = {
-    day:number,
-    month:number,
-    year:number,
-    order:number,
-}
-
+import {Code} from './Blog'
 
 
 type BlogRecordParams = {
     // index: number,
     code: Code,
-    note: string,
+    note?: string,
     title: string,
     text: string,
 }

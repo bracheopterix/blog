@@ -8,23 +8,22 @@ import { useEffect, useState, useRef } from 'react';
 import AddRecordWindow from './AddRecordWindow'
 // import { useEffect } from 'react';
 
+export type Code = {
+    day: number,
+    month: number,
+    year: number,
+    order?: number,
+} 
+
+export type Record = {
+    code: Code,
+    note?: string,
+    title: string,
+    text: string,
+};
 
 
 function Blog() {
-
-    type Code = {
-        day: number,
-        month: number,
-        year: number,
-        order: number,
-    }
-
-    type Record = {
-        code: Code,
-        note: string,
-        title: string,
-        text: string,
-    };
 
 
     /// INJECT DEFAULT DIARY ///
@@ -33,8 +32,10 @@ function Blog() {
     /// STATES ///
 
     const [diaryTwin, setDiaryTwin] = useState<Record[]>([]);
+    const [refreshed, setRefershed] = useState<number>(0);
 
     const [addRecordIsVisible, setAddRecordIsVisible] = useState<boolean>(false);
+
 
     /// FIRST LOAD ///
 
@@ -50,11 +51,10 @@ function Blog() {
         // loading visibility of the addRecordWindow //
         const storedAddRecordIsVisible = localStorage.getItem("addRecordIsVisible");
         setAddRecordIsVisible(storedAddRecordIsVisible ? JSON.parse(storedAddRecordIsVisible) : false);
-    }, [])
+    }, [refreshed])
 
 
 
-    ///
 
 
 
@@ -73,6 +73,7 @@ function Blog() {
         <AddRecordWindow
             addRecordIsVisible={addRecordIsVisible}
             setAddRecordIsVisible={setAddRecordIsVisible}
+            setRefershed = {setRefershed}
 
         />
 
