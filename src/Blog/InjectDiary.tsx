@@ -42,7 +42,7 @@ export const diary: Diary = [
         // code: [23, 2, 2025, 1],
         code: { day: 23, month: 2, year: 2025, order: 1 },
 
-        note: `The wisdom of the pool-senpai today is absent: full pool, fool`,
+        note: `The wisdom of the pool-senpai today is absent: full pool, you, fool`,
         title: `In terms of time wasting`,
         text: `I want an mmo game where I can hoard items`,
     },
@@ -75,7 +75,7 @@ export const diary: Diary = [
 
 const newRecord: Record = {
     code: { day: 6, month: 3, year: 2025, order: 1 },
-    note: `Did you know deer can jump higher than the average house? Yeah, you know where it goes.`,
+    note: `Did you know that the deer can jump higher than the average house? Yeah, you know where it goes.`,
     title: `Bit by bit, step by step`,
     text: `Changed little things, lighted up arrows in games, fixed there, cleaned here...
         Actually, all previous puns created today kek. I need to create another one - so hard.`,

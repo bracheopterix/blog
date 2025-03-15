@@ -1,5 +1,5 @@
 
-import { JSX, useRef, useEffect } from "react";
+import { JSX, useState, useRef, useEffect } from "react";
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css'
 import { Code, Record } from './Blog'
@@ -18,6 +18,8 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
     const titleRef = useRef<HTMLInputElement | null>(null);
     const noteRef = useRef<HTMLInputElement | null>(null);
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
+    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
     const recordTimeoutRef = useRef(0);
 
@@ -140,10 +142,12 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
             textareaRef.current.value = null;
 
             setRefershed((prevRefreshed) => prevRefreshed + 1);
+            setErrorMessage(undefined);
 
             //// MISTAKEEEE   ////
         }
         else {
+            setErrorMessage("please, enter title and text")
             throw new Error("please, enter title and text");
         }
 
@@ -156,7 +160,6 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
             <div className={`${addRecordIsVisible ? styles.popUp : defStyles.hidden}  ${defStyles.flexColumn}`}>
                 <div className={styles.popUpCloseButton} onClick={closeOnClick}></div>
                 <h3>Add record to the blog</h3>
-
                 <form onSubmit={(event) => event.preventDefault()} className={defStyles.flexColumn}>
 
                     <input ref={titleRef} id="title" onInput={saveTitle} className={styles.title} placeholder="Title"></input>
@@ -164,6 +167,8 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
                     <input ref={noteRef} id="note" onInput={saveNote} placeholder="Note"></input>
 
                     <textarea ref={textareaRef} onInput={saveText} onMouseUp={saveSize} placeholder="Text goes here..."></textarea>
+
+                    <p className={`${errorMessage ? styles.errorMessage : defStyles.hidden}`}>{errorMessage}</p>
 
                     <button onClick={submitRecord}>Save</button>
                 </form>

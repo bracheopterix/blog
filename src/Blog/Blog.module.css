@@ -132,7 +132,7 @@ h2 {
 
 .popUp {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: solid 0px;
@@ -167,6 +167,11 @@ h2 {
 
 .popUpCloseButton:hover {
     filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
+}
+
+.popUp .errorMessage {
+    color: palevioletred;
+    margin: 0 0 10px 0;
 }
 
 .popUp form {
