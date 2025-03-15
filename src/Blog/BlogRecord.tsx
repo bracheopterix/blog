@@ -20,6 +20,8 @@ function BlogRecord({ code, note, title, text }: BlogRecordParams): JSX.Element 
     return (
         <div className={`${styles.record} ${defStyles.flexColumn}`}>
 
+            <div className={styles.bin}></div>
+
             <h2 id='recordHeader'>{title}</h2>
 
             <div className={`${styles.details} ${defStyles.flexRow}`}>

@@ -96,6 +96,33 @@ h2 {
     z-index: 0;
 }
 
+
+
+
+.record .bin {
+    position: absolute;
+    top:15px;
+    right:15px;
+    height: 35px;
+    width: 35px;
+    background-image: url('./src/assets/icons/BinBlack.svg');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 200ms ease-in, filter 200ms ease-in;
+}
+
+.record:hover .bin {
+    opacity: 1;
+}
+
+
+.record .bin:hover {
+    filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
+}
+
+
 @keyframes recordFall {
     from {
         top: -50px;
