@@ -73,13 +73,7 @@ export const diary: Diary = [
 
 ]
 
-const newRecord: Record = {
-    code: { day: 6, month: 3, year: 2025, order: 1 },
-    note: `Did you know that the deer can jump higher than the average house? Yeah, you know where it goes.`,
-    title: `Bit by bit, step by step`,
-    text: `Changed little things, lighted up arrows in games, fixed there, cleaned here...
-        Actually, all previous puns created today kek. I need to create another one - so hard.`,
-}
+
 
 
 

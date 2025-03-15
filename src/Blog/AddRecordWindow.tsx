@@ -137,9 +137,9 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
             }
             setAddRecordIsVisible(false);
             localStorage.setItem("addRecordIsVisible", "false");
-            titleRef.current.value = null;
-            noteRef.current.value = null;
-            textareaRef.current.value = null;
+            titleRef.current.value = '';
+            if(noteRef.current){noteRef.current.value = '';}
+            textareaRef.current.value = '';
 
             setRefershed((prevRefreshed) => prevRefreshed + 1);
             setErrorMessage(undefined);

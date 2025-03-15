@@ -4,7 +4,7 @@ import defStyles from './Sertar.module.css';
 import { diary } from './InjectDiary';
 
 import BlogRecord from './BlogRecord';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import AddRecordWindow from './AddRecordWindow'
 // import { useEffect } from 'react';
 
@@ -12,7 +12,7 @@ export type Code = {
     day: number,
     month: number,
     year: number,
-    order?: number,
+    order: number,
 } 
 
 export type Record = {
