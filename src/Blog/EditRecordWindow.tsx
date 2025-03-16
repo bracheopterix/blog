@@ -4,14 +4,20 @@ import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css'
 import { Code, Record } from './Blog'
 
-type AddRecordWindowProps = {
-    addRecordIsVisible: boolean,
-    setAddRecordIsVisible: (addRecordIsVisible: boolean) => void,
+type EditRecordWindowProps = {
+    editRecordIsVisible: boolean,
+    setEditRecordIsVisible: (editRecordIsVisible: boolean) => void,
     setRefershed: (refreshed: number) => void,
+    editRecordWindowTitle: string,
 }
 
-function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefershed }: AddRecordWindowProps): JSX.Element {
+function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRecordIsVisible: setEditRecordIsVisible, setRefershed, editRecordWindowTitle }: EditRecordWindowProps): JSX.Element {
 
+    // checking if this an add or an edit window
+    let windowTitle = '';
+
+
+    
 
     /// SAVING VALUES /// 
 
@@ -48,8 +54,8 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
     /// FUNCTIONAL ///
 
     function closeOnClick() {
-        setAddRecordIsVisible(false);
-        localStorage.setItem("addRecordIsVisible", "false");
+        setEditRecordIsVisible(false);
+        localStorage.setItem("editRecordIsVisible", "false");
     }
 
     /// Saving text area size ///
@@ -83,6 +89,21 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
         const savedText = localStorage.getItem("savedText");
         if (savedText && textareaRef.current) { textareaRef.current.value = JSON.parse(savedText).toString() }
 
+        //deciding functionality depending is it add or edit
+        switch (editRecordWindowTitle) {
+            case "add":
+                windowTitle = "Add blog record";
+                break;
+            case "edit":
+                windowTitle = "Edit blog record";
+
+                // loadRecord();
+
+                break;
+            default:
+                windowTitle = "Title error";
+                break;
+        }
 
     }, []);
 
@@ -135,10 +156,10 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
             else {
                 localStorage.setItem("diary", JSON.stringify([newRecord]));
             }
-            setAddRecordIsVisible(false);
-            localStorage.setItem("addRecordIsVisible", "false");
+            setEditRecordIsVisible(false);
+            localStorage.setItem("editRecordIsVisible", "false");
             titleRef.current.value = '';
-            if(noteRef.current){noteRef.current.value = '';}
+            if (noteRef.current) { noteRef.current.value = ''; }
             textareaRef.current.value = '';
 
             setRefershed((prevRefreshed) => prevRefreshed + 1);
@@ -154,12 +175,22 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
 
     }
 
+    // function loadRecord(){
+    //     const diaryGhost = localStorage.getItem("diary");
+    //     if(diaryGhost){
+    //         const castRecords:Record[] = JSON.parse(diaryGhost);
+    //         const loadedRecord = castRecords.filter((record)=>record.code=code)
+    //         //// NEEDS CODE
+    //     }
+
+    // }
+
 
     return (
         <>
-            <div className={`${addRecordIsVisible ? styles.popUp : defStyles.hidden}  ${defStyles.flexColumn}`}>
+            <div className={`${editRecordIsVisible ? styles.popUp : defStyles.hidden}  ${defStyles.flexColumn}`}>
                 <div className={styles.popUpCloseButton} onClick={closeOnClick}></div>
-                <h3>Add record to the blog</h3>
+                <h3>{windowTitle}</h3>
                 <form onSubmit={(event) => event.preventDefault()} className={defStyles.flexColumn}>
 
                     <input ref={titleRef} id="title" onInput={saveTitle} className={styles.title} placeholder="Title"></input>
@@ -176,9 +207,9 @@ function AddRecordWindow({ addRecordIsVisible, setAddRecordIsVisible, setRefersh
 
 
             </div>
-            <div className={`${styles.popUpCurtain} ${addRecordIsVisible ? styles.popUpCurtainVisible : ''}`}></div>
+            <div className={`${styles.popUpCurtain} ${editRecordIsVisible ? styles.popUpCurtainVisible : ''}`}></div>
         </>
     )
 }
 
-export default AddRecordWindow;
+export default EditRecordWindow;

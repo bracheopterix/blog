@@ -5,7 +5,7 @@ import { diary } from './InjectDiary';
 
 import BlogRecord from './BlogRecord';
 import { useEffect, useState } from 'react';
-import AddRecordWindow from './AddRecordWindow'
+import EditRecordWindow from './EditRecordWindow'
 // import { useEffect } from 'react';
 
 export type Code = {
@@ -13,7 +13,7 @@ export type Code = {
     month: number,
     year: number,
     order: number,
-} 
+}
 
 export type Record = {
     code: Code,
@@ -34,9 +34,9 @@ function Blog() {
     const [diaryTwin, setDiaryTwin] = useState<Record[]>([]);
     const [refreshed, setRefershed] = useState<number>(0);
 
-    const [addRecordIsVisible, setAddRecordIsVisible] = useState<boolean>(false);
+    const [editRecordIsVisible, setEditRecordIsVisible] = useState<boolean>(false);
 
-
+    const [editRecordWindowTitle, setEditRecordWindowTitle] = useState<string>('edit');
     /// FIRST LOAD ///
 
     useEffect(() => {
@@ -48,9 +48,9 @@ function Blog() {
             setDiaryTwin([...parsedDiary].reverse());
         }
 
-        // loading visibility of the addRecordWindow //
-        const storedAddRecordIsVisible = localStorage.getItem("addRecordIsVisible");
-        setAddRecordIsVisible(storedAddRecordIsVisible ? JSON.parse(storedAddRecordIsVisible) : false);
+        // loading visibility of the editRecordWindow //
+        const storedEditRecordIsVisible = localStorage.getItem("editRecordIsVisible");
+        setEditRecordIsVisible(storedEditRecordIsVisible ? JSON.parse(storedEditRecordIsVisible) : false);
     }, [refreshed])
 
 
@@ -61,26 +61,33 @@ function Blog() {
     console.log(diaryTwin);
 
 
-    function openAddRecordWindow() {
-        // setting visibility of the addRecordWindow //
-        setAddRecordIsVisible(true);
-        // saving visibility of the addRecordWindow //
-        localStorage.setItem("addRecordIsVisible", "true");
+    function openEditRecordWindow() {
+        // setting visibility of the editRecordWindow //
+        setEditRecordIsVisible(true);
+        // saving visibility of the editRecordWindow //
+        setEditRecordWindowTitle("add");
+        localStorage.setItem("editRecordIsVisible", "true");
     }
 
+    function deleteRecord(code: Code) {
+        const updatedDiary = diaryTwin.filter((record) => record.code !== code);
+        // console.log(updatedDiary);
+        localStorage.setItem("diary", JSON.stringify(updatedDiary));
+        setRefershed((refreshed) => refreshed + 1);
+    }
 
     return (<>
-        <AddRecordWindow
-            addRecordIsVisible={addRecordIsVisible}
-            setAddRecordIsVisible={setAddRecordIsVisible}
-            setRefershed = {setRefershed}
-
+        <EditRecordWindow
+            editRecordIsVisible={editRecordIsVisible}
+            setEditRecordIsVisible={setEditRecordIsVisible}
+            setRefershed={setRefershed}
+            editRecordWindowTitle = {editRecordWindowTitle}
         />
 
         <div className={`${styles.blog} ${defStyles.flexColumn}`}>
 
             <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBGray}`}></div>
-            <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBTop}`} onClick={openAddRecordWindow}>
+            <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBTop}`} onClick={openEditRecordWindow}>
                 <p className={styles.clue}>Add record</p>
 
             </div>
@@ -96,12 +103,17 @@ function Blog() {
                         note={record.note}
                         title={record.title}
                         text={record.text}
+                        deleteRecord={deleteRecord}
+                        setEditRecordIsVisible={setEditRecordIsVisible}
+                        setEditRecordWindowTitle = {setEditRecordWindowTitle}
                     />
                 ))
 
             }
 
             <div className={defStyles.blockFooter}></div>
+            <div className={defStyles.blockFooterSpace}></div>
+
 
         </div>
 

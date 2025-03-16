@@ -11,6 +11,10 @@ h2 {
     margin: 10px 0;
 }
 
+button {
+    background-color: initial;
+}
+
 
 .blogButton {
     width: 50px;
@@ -98,30 +102,43 @@ h2 {
 
 
 
-
-.record .bin {
+.record .editPanel{
     position: absolute;
     top:15px;
     right:15px;
-    height: 35px;
-    width: 35px;
-    background-image: url('./src/assets/icons/BinBlack.svg');
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+    /* background-color: red; */
+    height: fit-content;
+    width: fit-content;
     opacity: 0;
-    transition: opacity 200ms ease-in, filter 200ms ease-in;
+    transition: opacity 200ms ease-in;
+
 }
 
-.record:hover .bin {
+
+.record:hover .editPanel {
     opacity: 1;
 }
 
+.editPanel .button {
+    height: 35px;
+    width: 35px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: filter 200ms ease-in;
+}
 
-.record .bin:hover {
+.record .button:hover {
     filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
 }
 
+.record .bin {   
+    background-image: url('./src/assets/icons/BinBlack.svg');
+}
+
+.record .edit {
+    background-image: url('./src/assets/icons/EditBlack.svg');
+}
 
 @keyframes recordFall {
     from {

@@ -60,11 +60,11 @@
 
 .arrow.left {
     left: -25%;
-    top: 50px;
+    top: 10px;
     transform: rotate(180deg);
 }
 
 .arrow.right {
     right: -25%;
-    top: 50px;
+    top: 10px;
 }
