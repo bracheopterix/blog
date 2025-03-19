@@ -7,7 +7,7 @@ import { Code, Record } from './Blog'
 type EditRecordWindowProps = {
     editRecordIsVisible: boolean,
     setEditRecordIsVisible: (editRecordIsVisible: boolean) => void,
-    setRefershed: (refreshed: number) => void,
+    setRefershed: (refreshedFn: (prev: number) => number) => void,
     editRecordWindowMode: string,
     editRecordSave: Record | undefined,
 }

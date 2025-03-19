@@ -76,7 +76,7 @@ function Blog() {
 
 
     function onClickDeleteRecordYes() {
-        if(deleteCodeRef){
+        if(deleteCodeRef.current){
             deleteRecord(deleteCodeRef.current);
             console.log(deleteCodeRef.current);
         }
@@ -135,7 +135,7 @@ function Blog() {
                         setEditRecordIsVisible={setEditRecordIsVisible}
                         setEditRecordWindowTitle={setEditRecordWindowTitle}
                         setEditRecordSave={setEditRecordSave}
-                        deleteCodeRef={deleteCodeRef}
+                        deleteCodeRef={deleteCodeRef.current}
                     />
                 ))
 
