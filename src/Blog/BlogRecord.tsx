@@ -13,24 +13,27 @@ type BlogRecordParams = {
     deleteRecord: (code: Code) => void,
     setEditRecordIsVisible: (EditRecordIsVisible: boolean) => void,
     setEditRecordWindowTitle: (editRecordWindowTitle: string) => void,
-    setEditRecordSave: (editRecordSave: Record) => void;
-
+    setEditRecordSave: (editRecordSave: Record) => void,
+    setDeleteWarningVisible: (isDeleteWarningVisible: boolean) => void,
+    deleteCodeRef:Code|undefined,
 }
 
-function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisible, setEditRecordWindowTitle,setEditRecordSave }: BlogRecordParams): JSX.Element {
+function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisible, setEditRecordWindowTitle, setEditRecordSave,setDeleteWarningVisible,deleteCodeRef }: BlogRecordParams): JSX.Element {
+
 
 
     function editOnClick() {
         setEditRecordWindowTitle("edit");
         setEditRecordIsVisible(true);
         localStorage.setItem("editRecordIsVisible", "true");
-        const newRecord:Record = {"code":code,"note":note,"title":title,"text":text};
+        const newRecord: Record = { "code": code, "note": note, "title": title, "text": text };
         setEditRecordSave(newRecord);
-
     }
 
     function binOnClick() {
-        deleteRecord(code);
+        setDeleteWarningVisible(true);
+        deleteCodeRef = code;
+        // deleteRecord(code);
     }
 
 

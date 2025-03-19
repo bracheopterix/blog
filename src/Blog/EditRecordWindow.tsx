@@ -134,17 +134,18 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
 
                 // checking today's date
                 const newDate = new Date;
-                const day: number = newDate.getDay();
-                const month: number = newDate.getMonth();
-                const year: number = newDate.getFullYear();
+                // const day: number = newDate.getDay();
+                // const month: number = newDate.getMonth();
+                // const year: number = newDate.getFullYear();
 
                 // creating record's code
-                const newCode: Code = {
-                    "day": day,
-                    "month": month,
-                    "year": year,
+                let newCode: Code = {
+                    "day": newDate.getDate(),
+                    "month": newDate.getMonth()+1,
+                    "year": newDate.getFullYear(),
                     "order": 0,
                 }
+                console.log(newDate,newCode);
 
                 // checking latest order //
                 const newRecord: Record = {
@@ -160,7 +161,7 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
                     const castRecords: Record[] = JSON.parse(localStorage.getItem("diary") || "[]");
                     // getting only same date records
                     const sameDayRecords: Record[] = castRecords.filter(
-                        (record) => record.code.day === day && record.code.month === month && record.code.year === year
+                        (record) => record.code.day === newCode.day && record.code.month === newCode.month && record.code.year === newCode.year
                     );
 
                     if (sameDayRecords.length !== 0) {
@@ -271,7 +272,6 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
 
                     <button onClick={submitRecord}>Save</button>
                 </form>
-
 
 
             </div>

@@ -74,7 +74,13 @@ export const diary: Diary = [
 ]
 
 
+// I am very unhappy
 
+// 03.02.2025
+
+// Do not dare to share your bear before it is at least mere fair
+
+// I am not really getting the 'record-code' juggling between record component and delete warning. Urrgh. But instead I now know that for reversing records button I just need to trigger refresh without any changes in 'diary' so React would think that it is still the same entity and there is no need to recreate it, but will reverse it anyway.
 
 
 

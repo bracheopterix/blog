@@ -4,7 +4,7 @@ import defStyles from './Sertar.module.css';
 import { diary } from './InjectDiary';
 
 import BlogRecord from './BlogRecord';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import EditRecordWindow from './EditRecordWindow'
 // import { useEffect } from 'react';
 
@@ -35,10 +35,13 @@ function Blog() {
     const [refreshed, setRefershed] = useState<number>(0);
 
     const [editRecordIsVisible, setEditRecordIsVisible] = useState<boolean>(false);
+    const [isDeleteWarningVisible, setDeleteWarningVisible] = useState<boolean>(false);
 
     const [editRecordWindowMode, setEditRecordWindowTitle] = useState<string>('edit');
 
-    const [editRecordSave, setEditRecordSave] = useState<Record|undefined>(undefined);
+    const [editRecordSave, setEditRecordSave] = useState<Record | undefined>(undefined);
+
+    const deleteCodeRef = useRef<Code|undefined>(undefined);
 
     /// FIRST LOAD ///
 
@@ -70,6 +73,20 @@ function Blog() {
         localStorage.setItem("editRecordIsVisible", "true");
     }
 
+
+
+    function onClickDeleteRecordYes() {
+        if(deleteCodeRef){
+            deleteRecord(deleteCodeRef.current);
+            console.log(deleteCodeRef.current);
+        }
+        setRefershed((refreshed)=>refreshed+1)
+    }
+
+    function closeEditRecordWindow() {
+        setDeleteWarningVisible(false);
+    }
+
     function deleteRecord(code: Code) {
         const updatedDiary = diaryTwin.filter((record) => record.code !== code);
         // console.log(updatedDiary);
@@ -82,9 +99,17 @@ function Blog() {
             editRecordIsVisible={editRecordIsVisible}
             setEditRecordIsVisible={setEditRecordIsVisible}
             setRefershed={setRefershed}
-            editRecordWindowMode = {editRecordWindowMode}
-            editRecordSave = {editRecordSave}
+            editRecordWindowMode={editRecordWindowMode}
+            editRecordSave={editRecordSave}
         />
+
+        <div className={`${isDeleteWarningVisible ? '' : defStyles.hidden} ${styles.popUp} ${styles.deleteWarning} ${defStyles.flexColumn} `}>
+            <p>Do you really want to delete this record?</p>
+            <div className={`${styles.buttonHolder}`}>
+                <button onClick={onClickDeleteRecordYes} onSubmit={(event) => event.preventDefault()}>Yes</button>
+                <button onClick={closeEditRecordWindow} onSubmit={(event) => event.preventDefault()}>No</button>
+            </div>
+        </div>
 
         <div className={`${styles.blog} ${defStyles.flexColumn}`}>
 
@@ -106,13 +131,17 @@ function Blog() {
                         title={record.title}
                         text={record.text}
                         deleteRecord={deleteRecord}
+                        setDeleteWarningVisible={setDeleteWarningVisible}
                         setEditRecordIsVisible={setEditRecordIsVisible}
-                        setEditRecordWindowTitle = {setEditRecordWindowTitle}
-                        setEditRecordSave = {setEditRecordSave}
+                        setEditRecordWindowTitle={setEditRecordWindowTitle}
+                        setEditRecordSave={setEditRecordSave}
+                        deleteCodeRef={deleteCodeRef}
                     />
                 ))
 
             }
+
+
 
             <div className={defStyles.blockFooter}></div>
             <div className={defStyles.blockFooterSpace}></div>

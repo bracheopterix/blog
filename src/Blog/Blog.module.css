@@ -102,10 +102,10 @@ button {
 
 
 
-.record .editPanel{
+.record .editPanel {
     position: absolute;
-    top:15px;
-    right:15px;
+    top: 15px;
+    right: 15px;
     /* background-color: red; */
     height: fit-content;
     width: fit-content;
@@ -132,7 +132,7 @@ button {
     filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
 }
 
-.record .bin {   
+.record .bin {
     background-image: url('./src/assets/icons/BinBlack.svg');
 }
 
@@ -249,7 +249,7 @@ button {
 }
 
 .popUp button {
-   user-select: none;
+    user-select: none;
 }
 
 .popUp button:hover {
@@ -259,6 +259,15 @@ button {
 
 .popUp button:active {
     background-color: aquamarine;
+}
+
+
+.deleteWarning .buttonHolder {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 10%;
 }
 
 
