@@ -106,7 +106,6 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
 
     useEffect(() => {
         if (editRecordWindowMode === "edit") {
-            console.log('edit');
 
             if (titleRef.current && editRecordSave) {
                 titleRef.current.value = editRecordSave.title;
@@ -117,11 +116,9 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
             if (textareaRef.current && editRecordSave) {
                 textareaRef.current.value = editRecordSave.text;
             }
-            console.log(editRecordSave);
 
         }
         if (editRecordWindowMode === "add") {
-            console.log('add');
         }
     }, [editRecordSave])
 
@@ -145,7 +142,6 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
                     "year": newDate.getFullYear(),
                     "order": 0,
                 }
-                console.log(newDate,newCode);
 
                 // checking latest order //
                 const newRecord: Record = {

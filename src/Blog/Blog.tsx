@@ -4,7 +4,7 @@ import defStyles from './Sertar.module.css';
 import { diary } from './InjectDiary';
 
 import BlogRecord from './BlogRecord';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import EditRecordWindow from './EditRecordWindow'
 // import { useEffect } from 'react';
 
@@ -41,7 +41,8 @@ function Blog() {
 
     const [editRecordSave, setEditRecordSave] = useState<Record | undefined>(undefined);
 
-    const deleteCodeRef = useRef<Code|undefined>(undefined);
+    const [deleteCode,setDeleteCode] = useState<Code|undefined>(undefined)
+    // const deleteCodeRef = useRef<Code|undefined>(undefined);
 
     /// FIRST LOAD ///
 
@@ -76,11 +77,13 @@ function Blog() {
 
 
     function onClickDeleteRecordYes() {
-        if(deleteCodeRef.current){
-            deleteRecord(deleteCodeRef.current);
-            console.log(deleteCodeRef.current);
+        console.log(deleteCode);
+        if(deleteCode){
+            deleteRecord(deleteCode);
+            console.log(deleteCode);
+            setDeleteWarningVisible(false);
         }
-        setRefershed((refreshed)=>refreshed+1)
+        // setRefershed((refreshed)=>refreshed+1);
     }
 
     function closeEditRecordWindow() {
@@ -90,7 +93,7 @@ function Blog() {
     function deleteRecord(code: Code) {
         const updatedDiary = diaryTwin.filter((record) => record.code !== code);
         // console.log(updatedDiary);
-        localStorage.setItem("diary", JSON.stringify(updatedDiary));
+        localStorage.setItem("diary", JSON.stringify(updatedDiary.reverse()));
         setRefershed((refreshed) => refreshed + 1);
     }
 
@@ -135,7 +138,7 @@ function Blog() {
                         setEditRecordIsVisible={setEditRecordIsVisible}
                         setEditRecordWindowTitle={setEditRecordWindowTitle}
                         setEditRecordSave={setEditRecordSave}
-                        deleteCodeRef={deleteCodeRef.current}
+                        setDeleteCode={setDeleteCode}
                     />
                 ))
 

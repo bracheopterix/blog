@@ -15,10 +15,10 @@ type BlogRecordParams = {
     setEditRecordWindowTitle: (editRecordWindowTitle: string) => void,
     setEditRecordSave: (editRecordSave: Record) => void,
     setDeleteWarningVisible: (isDeleteWarningVisible: boolean) => void,
-    deleteCodeRef:Code|undefined,
+    setDeleteCode: (deleteCode: Code | undefined)=> void,
 }
 
-function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisible, setEditRecordWindowTitle, setEditRecordSave,setDeleteWarningVisible,deleteCodeRef }: BlogRecordParams): JSX.Element {
+function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisible, setEditRecordWindowTitle, setEditRecordSave, setDeleteWarningVisible, setDeleteCode }: BlogRecordParams): JSX.Element {
 
 
 
@@ -32,7 +32,7 @@ function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisi
 
     function binOnClick() {
         setDeleteWarningVisible(true);
-        deleteCodeRef = code;
+        setDeleteCode(code);
         // deleteRecord(code);
     }
 
