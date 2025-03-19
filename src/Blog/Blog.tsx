@@ -36,7 +36,10 @@ function Blog() {
 
     const [editRecordIsVisible, setEditRecordIsVisible] = useState<boolean>(false);
 
-    const [editRecordWindowTitle, setEditRecordWindowTitle] = useState<string>('edit');
+    const [editRecordWindowMode, setEditRecordWindowTitle] = useState<string>('edit');
+
+    const [editRecordSave, setEditRecordSave] = useState<Record|undefined>(undefined);
+
     /// FIRST LOAD ///
 
     useEffect(() => {
@@ -52,8 +55,6 @@ function Blog() {
         const storedEditRecordIsVisible = localStorage.getItem("editRecordIsVisible");
         setEditRecordIsVisible(storedEditRecordIsVisible ? JSON.parse(storedEditRecordIsVisible) : false);
     }, [refreshed])
-
-
 
 
 
@@ -81,7 +82,8 @@ function Blog() {
             editRecordIsVisible={editRecordIsVisible}
             setEditRecordIsVisible={setEditRecordIsVisible}
             setRefershed={setRefershed}
-            editRecordWindowTitle = {editRecordWindowTitle}
+            editRecordWindowMode = {editRecordWindowMode}
+            editRecordSave = {editRecordSave}
         />
 
         <div className={`${styles.blog} ${defStyles.flexColumn}`}>
@@ -106,6 +108,7 @@ function Blog() {
                         deleteRecord={deleteRecord}
                         setEditRecordIsVisible={setEditRecordIsVisible}
                         setEditRecordWindowTitle = {setEditRecordWindowTitle}
+                        setEditRecordSave = {setEditRecordSave}
                     />
                 ))
 

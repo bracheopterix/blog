@@ -8,16 +8,16 @@ type EditRecordWindowProps = {
     editRecordIsVisible: boolean,
     setEditRecordIsVisible: (editRecordIsVisible: boolean) => void,
     setRefershed: (refreshed: number) => void,
-    editRecordWindowTitle: string,
+    editRecordWindowMode: string,
+    editRecordSave: Record | undefined,
 }
 
-function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRecordIsVisible: setEditRecordIsVisible, setRefershed, editRecordWindowTitle }: EditRecordWindowProps): JSX.Element {
+function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRecordIsVisible: setEditRecordIsVisible, setRefershed, editRecordWindowMode, editRecordSave }: EditRecordWindowProps): JSX.Element {
 
     // checking if this an add or an edit window
-    let windowTitle = '';
 
 
-    
+
 
     /// SAVING VALUES /// 
 
@@ -56,6 +56,25 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
     function closeOnClick() {
         setEditRecordIsVisible(false);
         localStorage.setItem("editRecordIsVisible", "false");
+        // if (editRecordWindowMode === "edit"&&titleRef.current) 
+        // {
+        //     titleRef.current.value = '';
+        // }
+
+        if (editRecordWindowMode === "edit") {
+            if (titleRef.current) {
+                titleRef.current.value = '';
+            }
+            if (noteRef.current?.value) { noteRef.current.value = ''; }
+            if (textareaRef.current) {
+                textareaRef.current.value = '';
+
+            }
+
+            localStorage.setItem("savedTitle", '');
+            localStorage.setItem("savedNote", '');
+            localStorage.setItem("savedText", '');
+        }
     }
 
     /// Saving text area size ///
@@ -79,101 +98,150 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
             if (savedHeight) { textareaRef.current.style.height = `${savedHeight}px` };
         }
 
-        // loading input values //
-        const savedTitle = localStorage.getItem("savedTitle");
-        if (savedTitle && titleRef.current) { titleRef.current.value = JSON.parse(savedTitle).toString() }
+        // checking mode //
 
-        const savedNote = localStorage.getItem("savedNote");
-        if (savedNote && noteRef.current) { noteRef.current.value = JSON.parse(savedNote).toString() }
 
-        const savedText = localStorage.getItem("savedText");
-        if (savedText && textareaRef.current) { textareaRef.current.value = JSON.parse(savedText).toString() }
-
-        //deciding functionality depending is it add or edit
-        switch (editRecordWindowTitle) {
-            case "add":
-                windowTitle = "Add blog record";
-                break;
-            case "edit":
-                windowTitle = "Edit blog record";
-
-                // loadRecord();
-
-                break;
-            default:
-                windowTitle = "Title error";
-                break;
-        }
 
     }, []);
+
+    useEffect(() => {
+        if (editRecordWindowMode === "edit") {
+            console.log('edit');
+
+            if (titleRef.current && editRecordSave) {
+                titleRef.current.value = editRecordSave.title;
+            }
+            if (noteRef.current && editRecordSave?.note) {
+                noteRef.current.value = editRecordSave.note;
+            }
+            if (textareaRef.current && editRecordSave) {
+                textareaRef.current.value = editRecordSave.text;
+            }
+            console.log(editRecordSave);
+
+        }
+        if (editRecordWindowMode === "add") {
+            console.log('add');
+        }
+    }, [editRecordSave])
 
 
     function submitRecord() {
 
         if (titleRef.current?.value && textareaRef.current?.value) {
 
-            // checking today's date
-            const newDate = new Date;
-            const day: number = newDate.getDay();
-            const month: number = newDate.getMonth();
-            const year: number = newDate.getFullYear();
+            if (editRecordWindowMode === "add") {
 
-            // creating record's code
-            const newCode: Code = {
-                "day": day,
-                "month": month,
-                "year": year,
-                "order": 0,
-            }
+                // checking today's date
+                const newDate = new Date;
+                const day: number = newDate.getDay();
+                const month: number = newDate.getMonth();
+                const year: number = newDate.getFullYear();
 
-            // checking latest order //
-            const newRecord: Record = {
-                title: titleRef.current?.value,
-                note: noteRef.current?.value,
-                text: textareaRef.current?.value,
-                code: newCode,
-            }
-
-            // checking existing diary records 
-            const diaryGhost = localStorage.getItem("diary");
-            if (diaryGhost) {
-                const castRecords: Record[] = JSON.parse(localStorage.getItem("diary") || "[]");
-                // getting only same date records
-                const sameDayRecords: Record[] = castRecords.filter(
-                    (record) => record.code.day === day && record.code.month === month && record.code.year === year
-                );
-
-                if (sameDayRecords.length !== 0) {
-                    // finding the record with the highest 'order' value
-                    const latestOrder = sameDayRecords.reduce((max, record) => Math.max(max, record.code.order), 0);
-                    newCode.order = latestOrder + 1;
+                // creating record's code
+                const newCode: Code = {
+                    "day": day,
+                    "month": month,
+                    "year": year,
+                    "order": 0,
                 }
 
-                castRecords.push(newRecord);
-                localStorage.setItem("diary", JSON.stringify(castRecords));
+                // checking latest order //
+                const newRecord: Record = {
+                    title: titleRef.current?.value,
+                    note: noteRef.current?.value,
+                    text: textareaRef.current?.value,
+                    code: newCode,
+                }
+
+                // checking existing diary records 
+                const diaryGhost = localStorage.getItem("diary");
+                if (diaryGhost) {
+                    const castRecords: Record[] = JSON.parse(localStorage.getItem("diary") || "[]");
+                    // getting only same date records
+                    const sameDayRecords: Record[] = castRecords.filter(
+                        (record) => record.code.day === day && record.code.month === month && record.code.year === year
+                    );
+
+                    if (sameDayRecords.length !== 0) {
+                        // finding the record with the highest 'order' value
+                        const latestOrder = sameDayRecords.reduce((max, record) => Math.max(max, record.code.order), 0);
+                        newCode.order = latestOrder + 1;
+                    }
+
+                    castRecords.push(newRecord);
+                    localStorage.setItem("diary", JSON.stringify(castRecords));
+
+                }
+                else {
+                    localStorage.setItem("diary", JSON.stringify([newRecord]));
+                }
+                setEditRecordIsVisible(false);
+                localStorage.setItem("editRecordIsVisible", "false");
+
+                titleRef.current.value = '';
+                if (noteRef.current) { noteRef.current.value = ''; }
+                textareaRef.current.value = '';
+
+                setRefershed((prevRefreshed) => prevRefreshed + 1);
+                setErrorMessage(undefined);
 
             }
-            else {
-                localStorage.setItem("diary", JSON.stringify([newRecord]));
+            if (editRecordWindowMode === "edit") {
+
+                const newRecord = {
+                    code: editRecordSave?.code,
+                    title: titleRef.current.value,
+                    note: noteRef.current?.value,
+                    text: textareaRef.current.value
+                }
+
+                const ghostDiary = localStorage.getItem("diary");
+                if (ghostDiary) {
+                    const parsedDiary = JSON.parse(ghostDiary);
+                    parsedDiary.map((record: Record) => {
+                        if (
+                            record.code.day === newRecord.code?.day &&
+                            record.code.month === newRecord.code?.month &&
+                            record.code.year === newRecord.code?.year &&
+                            record.code.order === newRecord.code?.order
+                        ) {
+                            record.title = newRecord.title;
+                            record.note = newRecord.note;
+                            record.text = newRecord.text;
+                        };
+
+                    })
+                    localStorage.setItem("diary", JSON.stringify(parsedDiary));
+                    setEditRecordIsVisible(false);
+                    localStorage.setItem("editRecordIsVisible", "false");
+
+                    titleRef.current.value = '';
+                    if (noteRef.current) { noteRef.current.value = ''; }
+                    textareaRef.current.value = '';
+
+                    localStorage.setItem("savedTitle", '');
+                    localStorage.setItem("savedNote", '');
+                    localStorage.setItem("savedText", '');
+
+                    setRefershed((prevRefreshed) => prevRefreshed + 1);
+                    setErrorMessage(undefined);
+
+                }
+
             }
-            setEditRecordIsVisible(false);
-            localStorage.setItem("editRecordIsVisible", "false");
-            titleRef.current.value = '';
-            if (noteRef.current) { noteRef.current.value = ''; }
-            textareaRef.current.value = '';
 
-            setRefershed((prevRefreshed) => prevRefreshed + 1);
-            setErrorMessage(undefined);
-
-            //// MISTAKEEEE   ////
         }
         else {
+            //// MISTAKEEEE   ////
+
             setErrorMessage("please, enter title and text")
             throw new Error("please, enter title and text");
         }
 
 
     }
+
 
     // function loadRecord(){
     //     const diaryGhost = localStorage.getItem("diary");
@@ -190,7 +258,7 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
         <>
             <div className={`${editRecordIsVisible ? styles.popUp : defStyles.hidden}  ${defStyles.flexColumn}`}>
                 <div className={styles.popUpCloseButton} onClick={closeOnClick}></div>
-                <h3>{windowTitle}</h3>
+                <h3>{editRecordWindowMode}</h3>
                 <form onSubmit={(event) => event.preventDefault()} className={defStyles.flexColumn}>
 
                     <input ref={titleRef} id="title" onInput={saveTitle} className={styles.title} placeholder="Title"></input>

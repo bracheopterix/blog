@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css'
-import { Code } from './Blog'
+import { Code, Record } from './Blog'
 
 
 type BlogRecordParams = {
@@ -12,16 +12,20 @@ type BlogRecordParams = {
     text: string,
     deleteRecord: (code: Code) => void,
     setEditRecordIsVisible: (EditRecordIsVisible: boolean) => void,
-    setEditRecordWindowTitle: (editRecordWindowTitle:string)=>void,
+    setEditRecordWindowTitle: (editRecordWindowTitle: string) => void,
+    setEditRecordSave: (editRecordSave: Record) => void;
+
 }
 
-function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisible, setEditRecordWindowTitle }: BlogRecordParams): JSX.Element {
+function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisible, setEditRecordWindowTitle,setEditRecordSave }: BlogRecordParams): JSX.Element {
 
 
     function editOnClick() {
         setEditRecordWindowTitle("edit");
         setEditRecordIsVisible(true);
         localStorage.setItem("editRecordIsVisible", "true");
+        const newRecord:Record = {"code":code,"note":note,"title":title,"text":text};
+        setEditRecordSave(newRecord);
 
     }
 

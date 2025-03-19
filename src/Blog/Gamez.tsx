@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate, Link } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import styles from './Gamez.module.css';
 import defStyles from './Sertar.module.css'
 import ChimpRace from "../ChimpRace/Game";
