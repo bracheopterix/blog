@@ -35,7 +35,7 @@ function Blog() {
     const [refreshed, setRefershed] = useState<number>(0);
 
     const [editRecordIsVisible, setEditRecordIsVisible] = useState<boolean>(false);
-    const [isDeleteWarningVisible, setDeleteWarningVisible] = useState<boolean>(false);
+    const [deleteWarningIsVisible, setDeleteWarningVisible] = useState<boolean>(false);
 
     const [editRecordWindowMode, setEditRecordWindowTitle] = useState<string>('edit');
 
@@ -61,8 +61,16 @@ function Blog() {
     }, [refreshed])
 
     useEffect (()=>{
+        if(deleteWarningIsVisible||editRecordIsVisible)
+        {
+            document.body.style.overflow = 'hidden';
+        }
+        else{
+            document.body.style.overflow = 'auto';
+        }
 
-    },[isDeleteWarningVisible,editRecordIsVisible])
+
+    },[deleteWarningIsVisible,editRecordIsVisible])
 
 
     console.log(diaryTwin);
@@ -113,7 +121,7 @@ function Blog() {
         />
 
 
-        <div className={`${isDeleteWarningVisible ? '' : defStyles.hidden} ${styles.popUp} ${styles.deleteWarning} ${defStyles.flexColumn} `}>
+        <div className={`${deleteWarningIsVisible ? '' : defStyles.hidden} ${styles.popUp} ${styles.deleteWarning} ${defStyles.flexColumn} `}>
             <p>Do you really want to delete this record?</p>
             <div className={`${styles.buttonHolder}`}>
                 <button onClick={onClickDeleteRecordYes} onSubmit={(event) => event.preventDefault()}>Yes</button>
