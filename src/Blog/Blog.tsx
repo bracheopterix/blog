@@ -41,7 +41,7 @@ function Blog() {
 
     const [editRecordSave, setEditRecordSave] = useState<Record | undefined>(undefined);
 
-    const [deleteCode,setDeleteCode] = useState<Code|undefined>(undefined)
+    const [deleteCode, setDeleteCode] = useState<Code | undefined>(undefined)
     // const deleteCodeRef = useRef<Code|undefined>(undefined);
 
     /// FIRST LOAD ///
@@ -60,7 +60,9 @@ function Blog() {
         setEditRecordIsVisible(storedEditRecordIsVisible ? JSON.parse(storedEditRecordIsVisible) : false);
     }, [refreshed])
 
+    useEffect (()=>{
 
+    },[isDeleteWarningVisible,editRecordIsVisible])
 
 
     console.log(diaryTwin);
@@ -78,7 +80,7 @@ function Blog() {
 
     function onClickDeleteRecordYes() {
         console.log(deleteCode);
-        if(deleteCode){
+        if (deleteCode) {
             deleteRecord(deleteCode);
             console.log(deleteCode);
             setDeleteWarningVisible(false);
@@ -98,6 +100,10 @@ function Blog() {
     }
 
     return (<>
+
+        <div className={`${styles.popUpCurtain} ${editRecordIsVisible ? styles.popUpCurtainVisible : ''}`}></div>
+
+
         <EditRecordWindow
             editRecordIsVisible={editRecordIsVisible}
             setEditRecordIsVisible={setEditRecordIsVisible}
@@ -105,6 +111,7 @@ function Blog() {
             editRecordWindowMode={editRecordWindowMode}
             editRecordSave={editRecordSave}
         />
+
 
         <div className={`${isDeleteWarningVisible ? '' : defStyles.hidden} ${styles.popUp} ${styles.deleteWarning} ${defStyles.flexColumn} `}>
             <p>Do you really want to delete this record?</p>

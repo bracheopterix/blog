@@ -271,7 +271,7 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
 
 
             </div>
-            <div className={`${styles.popUpCurtain} ${editRecordIsVisible ? styles.popUpCurtainVisible : ''}`}></div>
+            {/* <div className={`${styles.popUpCurtain} ${editRecordIsVisible ? styles.popUpCurtainVisible : ''}`}></div> */}
         </>
     )
 }
