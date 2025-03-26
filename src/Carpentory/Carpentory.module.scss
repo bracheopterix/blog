@@ -1,0 +1,110 @@
+$accent-color: aquamarine;
+$secont-accent-color: coral;
+$warning-color: palevioletred;
+
+$white-translucent: rgba(255, 255, 255, 0.791);
+
+body {
+    color: black;
+}
+
+h2 {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    text-decoration: underline $accent-color;
+
+}
+
+
+.undertext {
+    font-weight: 500;
+    text-align: center;
+    margin-top: 0;
+    text-decoration: none;
+}
+
+.subHeader {
+    width: 100%;
+    min-height: 100%;
+    height: fit-content;
+    background-color: $white-translucent;
+    box-shadow: 0 0 5px gray;
+}
+
+.mainContainer {
+    width: 70%;
+    min-height: 100%;
+    max-height: fit-content;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .card {
+        min-width: 100px;
+        max-width: fit-content;
+        min-height: 100px;
+        max-height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $white-translucent;
+
+    }
+}
+
+
+.adminPanel {
+    min-width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+
+    h3 {
+        margin: 0;
+
+    }
+
+    .check {
+        min-width: max-content;
+        display: flex;
+        flex-wrap: nowrap;
+
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        justify-content: start;
+
+
+        .lamp {
+            width: 15px;
+            height: 15px;
+            border: solid 1px white;
+            border-radius: 10px;
+            background-color: $warning-color;
+            margin: 0%;
+
+            &.on {
+                background-color: $accent-color;
+            }
+        }
+
+        .label {
+            min-width: max-content;
+        }
+
+        &:last-child {
+            padding-bottom: 5px;
+        }
+    }
+
+    
+
+
+
+}

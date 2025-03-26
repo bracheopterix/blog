@@ -1,29 +1,66 @@
 import { JSX } from "react"
-import defstyles from "../Blog/Sertar.module.css"
-import styles from "./Carpentory.module.css"
+// import defstyles from "../Blog/Sertar.module.css";
+// import styles from "./Carpentory.module.css";
+
+import styles from "./Carpentory.module.scss";
 
 
 function Carpentory(): JSX.Element {
 
-    styles ? console.log('styles on') : console.log('styles off');
 
     return (
         <>
-            <h1> Carpentory </h1>
+
+            <div className={styles.subHeader}>
+                <h2> Carpentory </h2>
+                <p className={styles.undertext}>the land of unknown</p>
+            </div>
 
             <div className={styles.mainContainer}>
-                <div className={`${styles.container} ${styles.adminPanel}`}>
 
+                <div className={styles.card}>
+                    <div className={styles.adminPanel}>
+                        <h3>Admin Panel</h3>
+                        <div className={styles.check}>
+                            <div className={`${styles ? styles.on : ""} ${styles.lamp}`}></div>
+                            <div className={styles.label}>Styles loaded</div>
+                        </div>
+                        <div className={styles.check}>
+                            <div className={`${styles.lamp}`}></div>
+                            <div className={styles.label}>I do have a job</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div className={`${styles.container} ${styles.x1}`}>1</div>
-                <div className={`${styles.container} ${styles.x2}`}>2</div>
+
+                <div className={styles.card}> No2</div>
+                <div className={styles.card}> No3</div>
+                <div className={styles.card}> No1</div>
+                <div className={styles.card}> No2</div>
+                <div className={styles.card}> No3</div>
+                <div className={styles.card}> No1</div>
+                <div className={styles.card}> No2</div>
+                <div className={styles.card}> No3</div>
+                <div className={styles.card}> No1</div>
+                <div className={styles.card}> No2</div>
+                <div className={styles.card}> No3</div>
+                <div className={styles.card}> No1</div>
+                <div className={styles.card}> No2</div>
+                <div className={styles.card}> No3</div>
+                <div className={styles.card}> No1</div>
+                <div className={styles.card}> No2</div>
+                <div className={styles.card}> No3</div>
+                <div className={styles.card}> No1</div>
+                <div className={styles.card}> No2</div>
+                <div className={styles.card}> No3</div>
+                <div className={styles.card}> No1</div>
 
 
-                <iframe className={`${styles.container} ${styles.player}`} style={{border: 0, width: "fit-content", height: "42px"}} src="https://bandcamp.com/EmbeddedPlayer/album=1106907556/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/"><a href="https://sigiloftime.bandcamp.com/album/half-of-the-circle">Half of The Circle by Sigil Of Time</a></iframe>
-                <div className={`${styles.container} ${styles.x3}`}>3</div>
 
             </div>
+
+
+
 
         </>
     )
