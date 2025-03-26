@@ -1,11 +1,12 @@
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css';
 
-import { diary } from './InjectDiary';
+import loadedDiary from './diary.json'
 
 import BlogRecord from './BlogRecord';
 import { useEffect, useState } from 'react';
 import EditRecordWindow from './EditRecordWindow'
+import { diary } from './InjectDiary';
 // import { useEffect } from 'react';
 
 export type Code = {
@@ -27,7 +28,21 @@ function Blog() {
 
 
     /// INJECT DEFAULT DIARY ///
-    // localStorage.setItem("diary",JSON.stringify(diary));
+    // localStorage.setItem("diary",JSON.stringify(loadedDiary));
+
+    function loadDiaryFromBackUp (){
+        const diaryCheck = localStorage.getItem("diary");
+        if(!diary){
+            localStorage.setItem("diary",JSON.stringify(loadedDiary));
+        }
+        else{
+            // for every existing record check analogue
+            // try to inject records in the right order by dates
+            // it is hard, you know.
+        }
+    }
+
+
 
     /// STATES ///
 
@@ -60,17 +75,16 @@ function Blog() {
         setEditRecordIsVisible(storedEditRecordIsVisible ? JSON.parse(storedEditRecordIsVisible) : false);
     }, [refreshed])
 
-    useEffect (()=>{
-        if(deleteWarningIsVisible||editRecordIsVisible)
-        {
+    useEffect(() => {
+        if (deleteWarningIsVisible || editRecordIsVisible) {
             document.body.style.overflow = 'hidden';
         }
-        else{
+        else {
             document.body.style.overflow = 'auto';
         }
 
 
-    },[deleteWarningIsVisible,editRecordIsVisible])
+    }, [deleteWarningIsVisible, editRecordIsVisible])
 
 
     console.log(diaryTwin);
@@ -107,10 +121,60 @@ function Blog() {
         setRefershed((refreshed) => refreshed + 1);
     }
 
+    function curtainOnClick() {
+
+        // Close pop up on click on curtain logic. Do I need this?
+
+        // setDeleteWarningVisible(false);
+        // localStorage.setItem("deleteWarningIsVisible","false");
+        // setEditRecordIsVisible(false);
+        // localStorage.setItem("editRecordIsVisible","false");
+
+        // if(editRecordWindowMode ==="edit") {
+
+
+        //             localStorage.setItem("savedTitle", '');
+        //             localStorage.setItem("savedNote", '');
+        //             localStorage.setItem("savedText", '');
+        // }
+    };
+
+    function diaryDownload() {
+        const loadedDiary = localStorage.getItem("diary");
+        if (!loadedDiary) {
+            throw new Error("there is nothing to download");
+        }
+        else {
+
+            const blob = new Blob([loadedDiary], { type: "application/json" });
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = blobUrl;
+
+            // const today = new Date();
+            // const day = today.getDate();
+            // const month = today.getMonth() + 1;
+            // const year = today.getFullYear();
+            // const date = `${day.toString().padStart(2,"0")}-${month.toString().padStart(2,"0")}-${year}`;
+
+            // a.download = `diary from ${date}`;
+            a.download = `diary`;
+            document.body.appendChild(a);
+            a.click();
+            URL.revokeObjectURL(blobUrl);
+        }
+
+    }
+
+
+
     return (<>
 
-        <div className={`${styles.popUpCurtain} ${editRecordIsVisible ? styles.popUpCurtainVisible : ''}`}></div>
+        {/* PopUp black curtain */}
 
+        <div className={`${styles.popUpCurtain} ${editRecordIsVisible ? styles.popUpCurtainVisible : ''}`} onClick={curtainOnClick}></div>
+
+        {/* // */}
 
         <EditRecordWindow
             editRecordIsVisible={editRecordIsVisible}
@@ -120,6 +184,7 @@ function Blog() {
             editRecordSave={editRecordSave}
         />
 
+        {/* DELETE STOP POP UP */}
 
         <div className={`${deleteWarningIsVisible ? '' : defStyles.hidden} ${styles.popUp} ${styles.deleteWarning} ${defStyles.flexColumn} `}>
             <p>Do you really want to delete this record?</p>
@@ -129,17 +194,57 @@ function Blog() {
             </div>
         </div>
 
+
         <div className={`${styles.blog} ${defStyles.flexColumn}`}>
 
-            <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBGray}`}></div>
-            <div className={`${styles.blogButton} ${styles.addRecordButton} ${styles.addRecordBTop}`} onClick={openEditRecordWindow}>
-                <p className={styles.clue}>Add record</p>
+            {/* Big buttons container */}
+            <div className={`${styles.blogButtons}`}>
+
+
+                <div className={styles.blogButton}>
+                    <div className={`${styles.blogButtonInner} ${styles.border}`}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.buttonIcon} ${styles.addRecord}`} onClick={openEditRecordWindow}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.background}`}></div>
+                    {/* clue on hover */}
+                    <p className={styles.clue}>Add record</p>
+                </div>
+
+                {/* <div className={styles.blogButton}>
+                    <div className={`${styles.blogButtonInner} ${styles.border}`}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.buttonIcon} ${styles.reverseRecords}`} onClick={reverse}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.background}`}></div>
+                    <p className={styles.clue}>Reverse records</p>
+                </div> */}
+
+                <div className={styles.blogButton}>
+                    <div className={`${styles.blogButtonInner} ${styles.border}`}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.buttonIcon} ${styles.downloadRecords}`} onClick={diaryDownload}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.background}`}></div>
+                    {/* clue on hover */}
+                    <p className={styles.clue}>Download records</p>
+                </div>
+
+                {/* Add record */}
+                {/* <div className={styles.addRecordButton}>
+                    <div className={`${styles.blogButton}  ${styles.addRecordBGray}`}></div>
+                    <div className={`${styles.blogButton}  ${styles.addRecordBTop}`} onClick={openEditRecordWindow}>
+                        // clue on hover
+                        <p className={styles.clue}>Add record</p>
+                    </div>
+                </div> */}
+
+
+                {/* Reverse records */}
+
+                {/* Download records */}
+
 
             </div>
 
 
-            {
+            {/* All records map */}
 
+            {
                 diaryTwin.map((record: Record, index: number) => (
                     <BlogRecord
                         key={index}
@@ -159,7 +264,7 @@ function Blog() {
 
             }
 
-
+            {/* Decorative */}
 
             <div className={defStyles.blockFooter}></div>
             <div className={defStyles.blockFooterSpace}></div>

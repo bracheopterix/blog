@@ -1,12 +1,6 @@
 
 
-I want the button on the menu be bright when we are on that page
+Export fucntion
+Import function is not so important
 
-Maybe context for variables with records data
-
-Add Games now, under the Header 
-
-Make it clear with light theme / dark theme - don't like that shift when half of the page is still light
-
-
-// Make that arrows don't brightened if there is no page in that direction. Top arrow may become hidden.
+redo all pop-ups into modals, all logic should be in order and replacable

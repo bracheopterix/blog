@@ -14,7 +14,7 @@ type BlogRecordParams = {
     setEditRecordIsVisible: (EditRecordIsVisible: boolean) => void,
     setEditRecordWindowTitle: (editRecordWindowTitle: string) => void,
     setEditRecordSave: (editRecordSave: Record) => void,
-    setDeleteWarningVisible: (isDeleteWarningVisible: boolean) => void,
+    setDeleteWarningVisible: (deleteWarningIsVisible: boolean) => void,
     setDeleteCode: (deleteCode: Code | undefined)=> void,
 }
 

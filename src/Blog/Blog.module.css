@@ -15,22 +15,81 @@ button {
     background-color: initial;
 }
 
+form {
+    accent-color: aquamarine;
+}
+
+
+/* BLOG MENU BUTONS */
+
+.blogButtons {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    right: -0;
+    transform: translate(120%, 50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    row-gap: 100px;
+}
+
 
 .blogButton {
     width: 50px;
     height: 50px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    transition: filter 200ms ease-in-out;
+    position: relative;
+    margin: 0 5px 0px 0 ;
+}
+
+.blogButtonInner {
+    width: 100%;
+    height: 100%;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
     user-select: none;
     position: absolute;
+    filter: invert(54%) sepia(7%) saturate(13%) hue-rotate(35deg) brightness(92%) contrast(91%);
+    transition: filter 200ms ease-in-out;
+}
+
+.blogButton .border {
+    background-image: url('/src/assets/icons/BorderColor.svg');
+}
+
+.blogButton:hover .border {
+    filter: invert(88%) sepia(10%) saturate(1641%) hue-rotate(96deg) brightness(104%) contrast(103%);
+}
+
+.blogButton .buttonIcon {
+    background-size: 70%;
+    z-index: 1;
+}
+
+.blogButton:hover .buttonIcon {
+    filter: none;
+}
+
+.blogButton .background {
+    background-size: 70%;
+    background-image: url('/src/assets/icons/Background.svg');
+    z-index: 0;
+    filter: none;
+}
+
+.blogButton:hover .clue {
+    opacity: 1;
 }
 
 .clue {
     color: gray;
     background-color: white;
     width: fit-content;
-    /* max-width: 200%; */
     height: fit-content;
     font-size: 10px;
     padding: 5px;
@@ -38,53 +97,32 @@ button {
     border-radius: 5px;
     position: absolute;
     bottom: -55px;
-}
-
-
-.addRecordButton {
-    transform: translate(0, 60%);
-    right: -10%;
-    z-index: 1;
-}
-
-.addRecordBGray {
-    background-image: url('/src/assets/icons/PlusGray.svg');
-
-}
-
-.addRecordBTop {
-    background-image: url('/src/assets/icons/PlusColor.svg');
-    transition: opacity .3s ease-in-out;
-    opacity: 1;
-}
-
-.addRecordBTop:not(:hover) {
     opacity: 0;
+    transition: opacity 200ms ease-in-out;
 }
 
-.reverseRecordsButton {
-    top: 3%;
-    right: -18%;
-    z-index: 1;
+/* actual icons */
+
+
+.addRecord {
+    background-image: url('/src/assets/icons/add.svg');
 }
 
-.reverseRecordsBGray {
-    background-image: url('/src/assets/icons/ReverseGray.svg');
-
+.reverseRecords {
+    background-image: url('/src/assets/icons/reverse.svg');
 }
 
-.reverseRecordsBTop {
-    background-image: url('/src/assets/icons/ReverseColor.svg');
-    transition: opacity .3s ease-in-out;
-    opacity: 1;
-}
-
-.reverseRecordsBTop:not(:hover) {
-    opacity: 0;
+.downloadRecords {
+    background-image: url('/src/assets/icons/download.svg');
 
 }
 
 
+
+
+
+
+/* /// RECORDS /// */
 
 .record {
     padding: 5%;

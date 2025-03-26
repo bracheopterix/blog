@@ -5,6 +5,7 @@ import MainHeader from "./MainHeader";
 import Blog from "./Blog";
 import Games from "./Gamez";
 import MainBlogPage from "./MainBlogPage";
+import Carpentory from "../Carpentory/Carpentory";
 
 
 function Sertar() {
@@ -20,6 +21,7 @@ function Sertar() {
                     <Route path="/main" element={<MainBlogPage />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/games/*" element={<Games />} />
+                    <Route path="/carpentory" element={<Carpentory/>} />
                 </Routes>
             </Router>
         </>

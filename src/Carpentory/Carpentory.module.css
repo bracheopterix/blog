@@ -1,0 +1,54 @@
+
+h1{
+width:100%;
+text-align: center;
+}
+
+.mainContainer {
+    width: 70%;
+    margin: 3% auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: white;
+}
+
+.mainContainer .container {
+    min-width: 10px;
+    width: fit-content;
+    min-height: 10px;
+    height: fit-content;
+
+    padding: 10px;
+
+    /* background-color: blue; */
+
+    border: solid 1px white;
+    border-radius: 20px;
+}
+
+.mainContainer .player {
+    border-radius: 20px 0 0 20px;
+}
+
+.container.x1 {
+    flex-grow: 1;
+}
+
+.container.x2 {
+    flex-grow: 2;
+}
+
+.container.x3 {
+    flex-grow: 3;
+}
+
+.adminPanel {
+
+    background-color: red;
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+}
+

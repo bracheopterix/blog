@@ -39,6 +39,13 @@
     animation-duration: 2s;
 }
 
+.pseudo {
+    font-size: 30px;
+    color: burlywood;
+    font-weight: 700;
+
+}
+
 @keyframes announcementing {
 from{
     top:80%;
