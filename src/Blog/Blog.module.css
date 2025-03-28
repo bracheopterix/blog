@@ -150,6 +150,7 @@ form {
     opacity: 0;
     transition: opacity 200ms ease-in;
 
+
 }
 
 
@@ -158,6 +159,7 @@ form {
 }
 
 .editPanel .button {
+    color: black;
     height: 35px;
     width: 35px;
     background-size: 100%;

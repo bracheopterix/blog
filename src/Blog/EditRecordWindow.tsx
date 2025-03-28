@@ -258,11 +258,11 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
                 <h3>{editRecordWindowMode}</h3>
                 <form onSubmit={(event) => event.preventDefault()} className={defStyles.flexColumn}>
 
-                    <input ref={titleRef} id="title" onInput={saveTitle} className={styles.title} placeholder="Title" autoComplete="no"></input>
+                    <input ref={titleRef} aria-label="title" id="title" onInput={saveTitle} className={styles.title} placeholder="Title" autoComplete="no"></input>
 
-                    <input ref={noteRef} id="note" onInput={saveNote} placeholder="Note" autoComplete="no"></input>
+                    <input ref={noteRef} aria-label="note" id="note" onInput={saveNote} placeholder="Note" autoComplete="no"></input>
 
-                    <textarea ref={textareaRef} onInput={saveText} onMouseUp={saveSize} placeholder="Text goes here..." autoComplete="no"></textarea>
+                    <textarea ref={textareaRef} aria-label="text" onInput={saveText} onMouseUp={saveSize} placeholder="Text goes here..." autoComplete="no"></textarea>
 
                     <p className={`${errorMessage ? styles.errorMessage : defStyles.hidden}`}>{errorMessage}</p>
 
