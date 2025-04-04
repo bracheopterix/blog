@@ -2,9 +2,10 @@ $accent-color: aquamarine;
 $secont-accent-color: coral;
 $warning-color: palevioletred;
 
-$text-color: black;
+$text-color: rgb(31, 31, 31);
 
-$white-translucent: rgba(255, 255, 255, 0.639);
+$white-translucent: rgba(250, 248, 243, 0.639);
+$white-transparent: rgba(255, 255, 255, 0);
 
 
 
@@ -188,7 +189,6 @@ $white-translucent: rgba(255, 255, 255, 0.639);
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    // background-color: lighten(wheat,10%);
 
     h3 {
         margin: 0 auto;
@@ -218,21 +218,21 @@ $white-translucent: rgba(255, 255, 255, 0.639);
             font-size: medium;
 
             outline: none;
-            background-color: opacify($color: #ffffff00, $amount: 0);
+            background-color: $white-transparent;
             display: table-cell;
             vertical-align: middle;
             align-self: center;
             text-align: center;
-            // border: solid 0px white;
 
             &:focus {
                 border: solid 0px white;
                 outline: none;
-                // box-shadow: inset 0 0 5px wheat;
                 box-shadow: inset 0 0 5px lightgray;
 
             }
         }
+
+       
     }
 
 
@@ -261,14 +261,12 @@ $white-translucent: rgba(255, 255, 255, 0.639);
             box-shadow: inset 0 2px 2px gray;
         }
 
-        // &:focus{
-        //     outline: none;
-        //     box-shadow: inset 0 2px 2px gray;
-
-        //     box-shadow: 0 0 10px $accent-color;
-        // }
     }
 
+    & button{
+        font-weight: 400;
+        padding: 5px;
+    }
 
     .twiceButton {
         width: 150px;
@@ -276,16 +274,20 @@ $white-translucent: rgba(255, 255, 255, 0.639);
         border: solid 1px white;
         border-radius: 20px;
         box-shadow: inset 0 2px 2px lightgrey;
+        padding: 0;
 
         user-select: none;
 
-        .background {
+    
+        .innerButton{
             border: solid 10px white;
             border-radius: 20px;
             height: 25pt;
             width: 25pt;
             border-width: 0;
             background-color: $accent-color;
+            margin: 0;
+            padding: 0;
 
             transition: width 800ms ease-in-out;
             transition-delay: 100ms;
@@ -296,10 +298,10 @@ $white-translucent: rgba(255, 255, 255, 0.639);
         }
 
         &:hover {
-            // we just make shadows deeper in tone and the button raise up. No need in moving div! Magic!
+            // we just made shadows deeper in tone and the button raise up. No need in moving div! Magic!
             // box-shadow: inset 0 2px 2px gray;
 
-            .background {
+            .innerButton {
                 box-shadow: 0 2px 2px gray, inset 0 1px 2px white;
 
             }
@@ -307,17 +309,11 @@ $white-translucent: rgba(255, 255, 255, 0.639);
         }
 
         &:active {
-
-            .background {
+            .innerButton {
                 width: 100%;
                 box-shadow: 0 2px 2px gray,inset 0 1px 2px white;
             }
         }
-
-        // &:focus{
-        //     outline: none;
-        //     box-shadow: 0 0 10px $accent-color;
-        // }
 
 
         position: relative;
@@ -325,6 +321,7 @@ $white-translucent: rgba(255, 255, 255, 0.639);
         p {
             position: absolute;
             left: 50%;
+            top:15%;
             transform: translate(-50%, 10%);
             z-index: 1;
             color: gray;

@@ -1,0 +1,108 @@
+$white-translucent80: rgba(255, 255, 255, 0.8);
+$white-translucent50: rgba(255, 255, 255, 0.5);
+$white-transparent: rgba(255, 255, 255, 0);
+
+$black80: rgba(0, 0, 0, 0.8);
+$black70: rgba(0, 0, 0, 0.7);
+
+$aquamarine-translucent: rgba(127, 255, 212, 0.207);
+$aquamarine-dark: rgb(30, 149, 139);
+
+.hidden{
+    display: none;
+}
+
+.lectures {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+section {
+    @extend .lectures;
+    margin-bottom: 30px; /////
+}
+
+.text {
+    color: $black80;
+    margin-top: 0%;
+    margin: 0;
+}
+
+h2 {
+    @extend .text;
+    // text-decoration: underline;
+}
+
+h3 {
+    @extend .text;
+    font-size: larger;
+}
+
+h4 {
+    @extend .text;
+    margin-bottom: 0;
+    color: $black70;
+}
+
+p {
+    @extend .text;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+code {
+    width: fit-content;
+    background-color: $aquamarine-translucent;
+    padding: 2px 6px;
+    border: solid 0px;
+    border-radius: 2px;
+}
+
+.codeBlock {
+    width: fit-content;
+    background-color: $aquamarine-translucent;
+    padding: 2px 6px;
+    border: solid 0px;
+    border-radius: 2px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+
+    & code {
+        background-color: $white-transparent;
+    }
+}
+
+a {
+    text-decoration: underline;
+    text-decoration-color: aquamarine;
+
+    &:hover {
+        color: $aquamarine-dark;
+    }
+}
+
+
+.sectionHeader {
+    border: solid 0 white;
+    margin: 0;
+    padding: 0;
+    display: table;
+    vertical-align: middle;
+
+    & h3{
+        display: table-cell;
+    }
+
+    &:hover h3{
+        color: $aquamarine-dark;
+    }
+}
+
+.sectionInner{
+    @extend .lectures
+}

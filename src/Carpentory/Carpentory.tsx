@@ -43,23 +43,31 @@ function Carpentory(): JSX.Element {
 
 
                 <div className={styles.card}>
-                    <form id="niceForm" className={styles.buttonGallery}>
+                    <form id="niceForm" className={styles.buttonGallery} onSubmit={(e) => { e.preventDefault() }}>
                         <h3>Nice input</h3>
 
                         <div id="niceForm" className={styles.niceInput}>
                             <input id="niceForm" placeholder="Text"></input>
                         </div>
-                        <div id="niceForm" tabIndex={0} className={styles.onceButton}>
+
+                        {/* <div id="niceForm" tabIndex={0} className={styles.onceButton}>
                             <p>Submit</p>
-                        </div>
-                        <div id="niceForm" tabIndex={0} className={styles.twiceButton}>
+                        </div> */}
+
+                        <button id="niceForm" className={styles.onceButton}>
+                            Submit
+                        </button>
+
+
+                        <button className={styles.twiceButton}>
                             <div className={styles.inner}>
                                 <p>Hold</p>
-                                <div className={styles.background}>
+                                <div className={styles.innerButton}>
 
                                 </div>
+
                             </div>
-                        </div>
+                        </button>
                     </form>
 
 

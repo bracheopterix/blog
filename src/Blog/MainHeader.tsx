@@ -19,6 +19,9 @@ function MainHeader() {
             <NavLink to="/games/" className={ ({isActive})=>isActive? `${styles.headerLink} ${styles.headerLinkActive}`:styles.headerLink}>
             Games
             </NavLink>
+            <NavLink to="/conspectus/" className={ ({isActive})=>isActive? `${styles.headerLink} ${styles.headerLinkActive}`:styles.headerLink}>
+            Conspectus
+            </NavLink>
 
 
             {/* <div className={styles.headerLink}>Games</div> */}
