@@ -5,12 +5,10 @@ import { Code, Record } from './Blog'
 
 
 type BlogRecordParams = {
-    // index: number,
     code: Code,
     note?: string,
     title: string,
     text: string,
-    deleteRecord: (code: Code) => void,
     setEditRecordIsVisible: (EditRecordIsVisible: boolean) => void,
     setEditRecordWindowTitle: (editRecordWindowTitle: string) => void,
     setEditRecordSave: (editRecordSave: Record) => void,
@@ -18,7 +16,7 @@ type BlogRecordParams = {
     setDeleteCode: (deleteCode: Code | undefined)=> void,
 }
 
-function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisible, setEditRecordWindowTitle, setEditRecordSave, setDeleteWarningVisible, setDeleteCode }: BlogRecordParams): JSX.Element {
+function BlogRecord({ code, note, title, text, setEditRecordIsVisible, setEditRecordWindowTitle, setEditRecordSave, setDeleteWarningVisible, setDeleteCode }: BlogRecordParams): JSX.Element {
 
 
 
@@ -33,7 +31,6 @@ function BlogRecord({ code, note, title, text, deleteRecord, setEditRecordIsVisi
     function binOnClick() {
         setDeleteWarningVisible(true);
         setDeleteCode(code);
-        // deleteRecord(code);
     }
 
 

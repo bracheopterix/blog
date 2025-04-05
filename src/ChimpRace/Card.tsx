@@ -1,4 +1,4 @@
-import { useState, JSX, useEffect } from "react";
+import {JSX } from "react";
 import styles from './Game.module.css'
 import { CardType } from './types'
 

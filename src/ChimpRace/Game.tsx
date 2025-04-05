@@ -11,7 +11,7 @@ function ChimpRace(): JSX.Element {
     /// DATA ///
 
     function timeFormula(checkGame:number[]){
-        return game.length * 1000;
+        return checkGame.length * 1000;
     }
 
 

@@ -1,12 +1,11 @@
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css';
 
-import loadedDiary from './diary.json'
+// import loadedDiary from './diary.json'
 
 import BlogRecord from './BlogRecord';
 import { useEffect, useState } from 'react';
 import EditRecordWindow from './EditRecordWindow'
-import { diary } from './InjectDiary';
 // import { useEffect } from 'react';
 
 export type Code = {
@@ -30,17 +29,17 @@ function Blog() {
     /// INJECT DEFAULT DIARY ///
     // localStorage.setItem("diary",JSON.stringify(loadedDiary));
 
-    function loadDiaryFromBackUp (){
-        const diaryCheck = localStorage.getItem("diary");
-        if(!diary){
-            localStorage.setItem("diary",JSON.stringify(loadedDiary));
-        }
-        else{
-            // for every existing record check analogue
-            // try to inject records in the right order by dates
-            // it is hard, you know.
-        }
-    }
+    // function loadDiaryFromBackUp (){
+    //     const diaryCheck = localStorage.getItem("diary");
+    //     if(!diary){
+    //         localStorage.setItem("diary",JSON.stringify(loadedDiary));
+    //     }
+    //     else{
+    //         // for every existing record check analogue
+    //         // try to inject records in the right order by dates
+    //         // it is hard, you know.
+    //     }
+    // }
 
 
 
@@ -248,12 +247,10 @@ function Blog() {
                 diaryTwin.map((record: Record, index: number) => (
                     <BlogRecord
                         key={index}
-                        // index={index}
                         code={record.code}
                         note={record.note}
                         title={record.title}
                         text={record.text}
-                        deleteRecord={deleteRecord}
                         setDeleteWarningVisible={setDeleteWarningVisible}
                         setEditRecordIsVisible={setEditRecordIsVisible}
                         setEditRecordWindowTitle={setEditRecordWindowTitle}

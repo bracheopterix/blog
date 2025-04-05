@@ -91,7 +91,7 @@ function Carpentory(): JSX.Element {
                     </div>
                 </div>
 
-                <div className={styles.card}> No2</div>
+                {/* <div className={styles.card}> No2</div>
                 <div className={styles.card}> No3</div>
                 <div className={styles.card}> No1</div>
                 <div className={styles.card}> No2</div>
@@ -108,7 +108,7 @@ function Carpentory(): JSX.Element {
                 <div className={styles.card}> No1</div>
                 <div className={styles.card}> No2</div>
                 <div className={styles.card}> No3</div>
-                <div className={styles.card}> No1</div>
+                <div className={styles.card}> No1</div> */}
 
 
 
