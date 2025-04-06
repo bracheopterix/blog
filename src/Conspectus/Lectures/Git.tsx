@@ -189,8 +189,8 @@ function Git({ isGit }: GitProps) {
 
 
             <section>
-                <button  className={styles.sectionHeader} onClick={() => setP5((prev) => !prev)}>
-                <h3>Remote</h3>
+                <button className={styles.sectionHeader} onClick={() => setP5((prev) => !prev)}>
+                    <h3>Remote</h3>
                 </button>
 
                 <div className={isP5 ? styles.sectionInner : styles.hidden}>
@@ -226,7 +226,7 @@ function Git({ isGit }: GitProps) {
                         <span><code>git reset --hard origin/main</code> - to reset or match</span>
                         <span>As usual, leave through <mark>Shift</mark> + <mark>Q</mark></span>
                     </div>
-                    
+
                     <div>
                         <h4>Pulling data from remote repo</h4>
                         <code>git pull</code>
@@ -238,7 +238,16 @@ function Git({ isGit }: GitProps) {
                         <span>or just <code>git push</code> if you want to push whatever branch you're on</span>
                         <span>(working only if the upstream is already set)</span>
                     </div>
-                    
+
+                    {/* was */}
+                    {/* "scripts": {
+                        "dev": "vite",
+                    "build": "tsc -b && vite build",
+                    "lint": "eslint .",
+                    "preview": "vite preview"
+                    }, */}
+
+
 
                 </div>
             </section>
