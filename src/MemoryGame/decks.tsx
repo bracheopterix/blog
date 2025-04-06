@@ -12,96 +12,100 @@ export const AllStyles: StyleObj = {
         },
         {
             name: 'cheese',
-            src: new URL('./src/MemoryGame/img/market/cheese.png', import.meta.url).href            
+            src: new URL('./MemoryGame/img/market/cheese.png', import.meta.url).href            
         },
         {
             name: 'bread',
-            src: new URL('./src/MemoryGame/img/market/rolls.png', import.meta.url).href
+            src: new URL('./MemoryGame/img/market/rolls.png', import.meta.url).href
         },
         {
             name: 'vegs',
-            src: new URL('./src/MemoryGame/img/market/vegetable.png', import.meta.url).href
+            src: new URL('./MemoryGame/img/market/vegetable.png', import.meta.url).href
         },
         {
             name: 'beer',
-            src: new URL('./src/MemoryGame/img/market/beer.png', import.meta.url).href
+            src: new URL('./MemoryGame/img/market/beer.png', import.meta.url).href
         },
         {
             name: 'apple3',
-            src: new URL('./src/MemoryGame/img/market/apple(3).png', import.meta.url).href
+            src: new URL('./MemoryGame/img/market/apple(3).png', import.meta.url).href
         },
         {
             name: 'bread&fish',
-            src: new URL('./src/MemoryGame/img/market/bread-and-fish.png', import.meta.url).href
+            src: new URL('./MemoryGame/img/market/bread-and-fish.png', import.meta.url).href
         }],
     'sushi': [
         {
             name: 'sauce',
-            src: '/src/MemoryGame/img/sushi/sauce.png'
+            src: new URL('./MemoryGame/img/sushi/sauce.png', import.meta.url).href
+
         },
         {
             name: 'nigiri',
-            src: '/src/MemoryGame/img/sushi/nigiri.png'
+            src: new URL('./MemoryGame/img/sushi/nigiri.png', import.meta.url).href
+
         },
         {
             name: 'jjamppong',
-            src: '/src/MemoryGame/img/sushi/jjamppong.png'
+            src: new URL('./MemoryGame/img/sushi/jjamppong.png', import.meta.url).href
+
         },
         {
             name: 'tepache',
-            src: '/src/MemoryGame/img/sushi/tepache.png'
+            src: new URL('./MemoryGame/img/sushi/tepache.png', import.meta.url).href
+
         },
         {
             name: 'wasabi',
-            src: '/src/MemoryGame/img/sushi/wasabi.png'
+            src: new URL('./MemoryGame/img/sushi/wasabi.png', import.meta.url).href
         },
         {
             name: 'maki',
-            src: '/src/MemoryGame/img/sushi/anakyu-maki.png'
+            src: new URL('./MemoryGame/img/sushi/anakyu-maki.png', import.meta.url).href
         },
         {
             name: 'dumplings',
-            src: '/src/MemoryGame/img/sushi/dumplings.png'
+            src: new URL('./MemoryGame/img/sushi/dumplings.png', import.meta.url).href
         },
         {
             name: 'gyoza',
-            src: '/src/MemoryGame/img/sushi/gyoza.png'
+            src: new URL('./MemoryGame/img/sushi/gyoza.png', import.meta.url).href
         }],
     'harvest': [
         {
             name: 'apple',
-            src: '/src/MemoryGame/img/harvest/apple.png'
+            src: new URL('./MemoryGame/img/harvest/apple.png', import.meta.url).href
         },
         {
             name: 'apple1',
-            src: '/src/MemoryGame/img/harvest/apple(1).png'
+            src: new URL('./MemoryGame/img/harvest/apple(1).png', import.meta.url).href
         },
         {
             name: 'apple2',
-            src: '/src/MemoryGame/img/harvest/apple(2).png'
+            src: new URL('./MemoryGame/img/harvest/apple(2).png', import.meta.url).href
         },
         {
             name: 'blueberry',
-            src: '/src/MemoryGame/img/harvest/blueberry.png'
+            src: new URL('./MemoryGame/img/harvest/blueberry.png', import.meta.url).href
         },
         {
             name: 'oak',
-            src: '/src/MemoryGame/img/harvest/oak.png'
+            src: new URL('./MemoryGame/img/harvest/oak.png', import.meta.url).href
         },
         {
             name: 'orange',
-            src: '/src/MemoryGame/img/harvest/orange.png'
+            src: new URL('./MemoryGame/img/harvest/orange.png', import.meta.url).href
         },
         {
             name: 'pomegranate',
-            src: '/src/MemoryGame/img/harvest/pomegranate.png'
+            src: new URL('./MemoryGame/img/harvest/pomegranate.png', import.meta.url).href
         },
         {
             name: 'pumpkin',
-            src: '/src/MemoryGame/img/harvest/pumpkin.png'
+            src: new URL('./MemoryGame/img/harvest/pumpkin.png', import.meta.url).href
         },
         {
             name: 'grape',
-            src: '/src/MemoryGame/img/harvest/grape.png'
+            src: new URL('./MemoryGame/img/harvest/grape.png', import.meta.url).href
         }],
 };
