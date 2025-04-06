@@ -17,7 +17,7 @@ function Sertar() {
             <Router>
                 <MainHeader />
 
-                <Routes> - nohilates with hashRouter
+                <Routes> 
                     <Route path="/" element={<MainBlogPage />} />
                     <Route path="/main/" element={<MainBlogPage />} />
                     <Route path="/blog/" element={<Blog />} />
