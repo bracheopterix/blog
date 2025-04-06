@@ -289,6 +289,8 @@ function Git({ isGit }: GitProps) {
                         <code>{`"deploy": "gh-pages -d dist"`}</code>
                         <span>Make sure your homepage is either omitted or matches the base path if you're using it.</span>
                         <span>Commit your changes</span>
+                        <span><mark>!</mark> you can insert build command into deploy one</span>
+                        <code> "deploy": "vite build && gh-pages -d dist"</code>
                         <span></span>
                     </div>
                     <div>

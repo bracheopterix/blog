@@ -2,6 +2,7 @@ import { JSX, useState, useEffect } from "react";
 import styles from "./card.module.css";
 import Card from "./Card.tsx";
 import { CardType, Style, StyleObj } from './types.ts'
+import {AllStyles} from './decks.tsx'
 
 
 
@@ -21,12 +22,13 @@ function MemoryGame(): JSX.Element {
     let stylePool: string[] = ['market', 'sushi', 'harvest'];
 
 
-    const AllStyles: StyleObj = {
-        'market': [{ name: 'fish', src: '/src/MemoryGame/img/market/salmon.png' }, { name: 'cider', src: '/src/MemoryGame/img/market/cider-drink.png' }, { name: 'cheese', src: '/src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: '/src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: '/src/MemoryGame/img/market/vegetable.png' }, { name: 'beer', src: '/src/MemoryGame/img/market/beer.png' }, { name: 'apple3', src: '/src/MemoryGame/img/market/apple(3).png' }, { name: 'bread&fish', src: '/src/MemoryGame/img/market/bread-and-fish.png' }],
-        'sushi': [{ name: 'sauce', src: '/src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: '/src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: '/src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: '/src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: '/src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: '/src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: '/src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: '/src/MemoryGame/img/sushi/gyoza.png' }],
-        'harvest': [{ name: 'apple', src: '/src/MemoryGame/img/harvest/apple.png' }, { name: 'apple1', src: '/src/MemoryGame/img/harvest/apple(1).png' }, { name: 'apple2', src: '/src/MemoryGame/img/harvest/apple(2).png' }, { name: 'blueberry', src: '/src/MemoryGame/img/harvest/blueberry.png' }, { name: 'oak', src: '/src/MemoryGame/img/harvest/oak.png' }, { name: 'orange', src: '/src/MemoryGame/img/harvest/orange.png' }, { name: 'pomegranate', src: '/src/MemoryGame/img/harvest/pomegranate.png' }, { name: 'pumpkin', src: '/src/MemoryGame/img/harvest/pumpkin.png' }, { name: 'grape', src: '/src/MemoryGame/img/harvest/grape.png' }],
+    // now imported
+    // const AllStyles: StyleObj = {
+    //     'market': [{ name: 'fish', src: '/src/MemoryGame/img/market/salmon.png' }, { name: 'cider', src: '/src/MemoryGame/img/market/cider-drink.png' }, { name: 'cheese', src: '/src/MemoryGame/img/market/cheese.png' }, { name: 'bread', src: '/src/MemoryGame/img/market/rolls.png' }, { name: 'vegs', src: '/src/MemoryGame/img/market/vegetable.png' }, { name: 'beer', src: '/src/MemoryGame/img/market/beer.png' }, { name: 'apple3', src: '/src/MemoryGame/img/market/apple(3).png' }, { name: 'bread&fish', src: '/src/MemoryGame/img/market/bread-and-fish.png' }],
+    //     'sushi': [{ name: 'sauce', src: '/src/MemoryGame/img/sushi/sauce.png' }, { name: 'nigiri', src: '/src/MemoryGame/img/sushi/nigiri.png' }, { name: 'jjamppong', src: '/src/MemoryGame/img/sushi/jjamppong.png' }, { name: 'tepache', src: '/src/MemoryGame/img/sushi/tepache.png' }, { name: 'wasabi', src: '/src/MemoryGame/img/sushi/wasabi.png' }, { name: 'maki', src: '/src/MemoryGame/img/sushi/anakyu-maki.png' }, { name: 'dumplings', src: '/src/MemoryGame/img/sushi/dumplings.png' }, { name: 'gyoza', src: '/src/MemoryGame/img/sushi/gyoza.png' }],
+    //     'harvest': [{ name: 'apple', src: '/src/MemoryGame/img/harvest/apple.png' }, { name: 'apple1', src: '/src/MemoryGame/img/harvest/apple(1).png' }, { name: 'apple2', src: '/src/MemoryGame/img/harvest/apple(2).png' }, { name: 'blueberry', src: '/src/MemoryGame/img/harvest/blueberry.png' }, { name: 'oak', src: '/src/MemoryGame/img/harvest/oak.png' }, { name: 'orange', src: '/src/MemoryGame/img/harvest/orange.png' }, { name: 'pomegranate', src: '/src/MemoryGame/img/harvest/pomegranate.png' }, { name: 'pumpkin', src: '/src/MemoryGame/img/harvest/pumpkin.png' }, { name: 'grape', src: '/src/MemoryGame/img/harvest/grape.png' }],
 
-    };
+    // };
 
     /// STATES ///
 
