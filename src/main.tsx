@@ -8,9 +8,9 @@ import { HashRouter } from 'react-router-dom';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {/* I am your new Router insted of BrowserRouter */}
-    <HashRouter> 
+    {/* <HashRouter>  */}
     {/* <App /> */}
     <Sertar />
-    </HashRouter>
+    {/* </HashRouter> */}
   </StrictMode>,
 )

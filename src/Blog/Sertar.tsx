@@ -17,14 +17,14 @@ function Sertar() {
             <Router>
                 <MainHeader />
 
-                {/* <Routes> - nohilates with hashRouter */}
+                <Routes> - nohilates with hashRouter
                     <Route path="/" element={<MainBlogPage />} />
                     <Route path="/main/" element={<MainBlogPage />} />
                     <Route path="/blog/" element={<Blog />} />
                     <Route path="/games/*" element={<Games />} />
                     <Route path="/conspectus/" element={<Conspectus/>} />
                     <Route path="/carpentory/" element={<Carpentory/>} />
-                {/* </Routes> */}
+                </Routes>
             </Router>
         </>
     )
