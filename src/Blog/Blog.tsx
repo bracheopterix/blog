@@ -23,6 +23,7 @@ export type Record = {
 };
 
 
+
 function Blog() {
 
 
@@ -66,7 +67,23 @@ function Blog() {
         if (tempLocStorCast) {
             let parsedDiary: Record[] = JSON.parse(tempLocStorCast);
 
+
+        }
+        else {
+            const today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth() + 1;
+            let year = today.getFullYear();
+            let parsedDiary: Record[] = [{
+
+                "code": { "day": day, "month": month, "year": year, "order": 0 },
+                "title": "The first record",
+                "note": "",
+                "text": "The diary is yet empty. Now you can add, edit or delete records with the menu to the right",
+            }];
+
             setDiaryTwin([...parsedDiary].reverse());
+
         }
 
         // loading visibility of the editRecordWindow //
