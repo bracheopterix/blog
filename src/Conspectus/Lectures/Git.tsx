@@ -310,7 +310,6 @@ function Git({ isGit }: GitProps) {
                     </div>
                     <div>
                         <h4>Change all absolute img pathes to relative ones</h4>
-                        <h4>Title</h4>
                         <span>from <code>{`<img src="/assets/something.png">`}</code></span>
                         <span>to <code>{`<img src="./assets/something.png" />`}</code></span>
                         <span>Or import them for assets</span>
