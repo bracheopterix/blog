@@ -173,11 +173,11 @@ form {
 }
 
 .record .bin {
-    background-image: url('/assets/icons/BinBlack.svg');
+    background-image: url('../assets/icons/BinBlack.svg');
 }
 
 .record .edit {
-    background-image: url('./assets/icons/EditBlack.svg');
+    background-image: url('../assets/icons/EditBlack.svg');
 }
 
 @keyframes recordFall {
