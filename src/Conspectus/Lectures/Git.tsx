@@ -311,7 +311,7 @@ function Git({ isGit }: GitProps) {
                         <code>https://your-username.github.io/your-repo-name/</code>
                     </div>
                     <div>
-                        <h4>Change all absolute img pathes to relative ones</h4>
+                        <h4>7. Change all absolute img pathes to relative ones</h4>
                         <span>from <code>{`<img src="/assets/something.png">`}</code></span>
                         <span>to <code>{`<img src="./assets/something.png" />`}</code></span>
                         <span>Or import them for assets</span>
@@ -319,6 +319,12 @@ function Git({ isGit }: GitProps) {
                             <code>{`import logo from './assets/logo.png'`}</code><br />
                             <code>{`<img src={logo} />`}</code>
                         </div>
+                    </div>
+                    <div>
+                        <h4>8. For better images</h4>
+                        <span>use <mark>new Url</mark></span>
+                        <code> src: new URL('./img/market/rolls.png', import.meta.url).href</code>
+                        <span>will work both for <mark>npm run dev</mark> and <mark>GitHub Pages</mark> deployment</span>
                     </div>
                 </div>
             </section>
