@@ -50,6 +50,7 @@ h4 {
     @extend .text;
     margin-bottom: 0;
     color: $black70;
+    margin-bottom: 10px;
 }
 
 p {
@@ -86,7 +87,7 @@ code {
     display: flex;
     flex-direction: column;
     gap: 3px;
-
+    margin: 5px 0;
 
     & code {
         background-color: $white-transparent;

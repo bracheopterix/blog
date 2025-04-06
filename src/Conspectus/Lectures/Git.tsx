@@ -14,6 +14,8 @@ function Git({ isGit }: GitProps) {
     const [isP3, setP3] = useState<boolean>(false);
     const [isP4, setP4] = useState<boolean>(false);
     const [isP5, setP5] = useState<boolean>(false);
+    const [isP6, setP6] = useState<boolean>(false);
+
 
 
 
@@ -238,24 +240,90 @@ function Git({ isGit }: GitProps) {
                         <span>or just <code>git push</code> if you want to push whatever branch you're on</span>
                         <span>(working only if the upstream is already set)</span>
                     </div>
-
-                    {/* was */}
-                    {/* "scripts": {
-                        "dev": "vite",
-                    "build": "tsc -b && vite build",
-                    "lint": "eslint .",
-                    "preview": "vite preview"
-                    }, */}
-
-
-
                 </div>
             </section>
 
+            <section>
+                <button className={styles.sectionHeader} onClick={() => setP6((prev) => !prev)}>
+                    <h3>Github Pages</h3>
+                </button>
+                <div className={isP6 ? styles.sectionInner : styles.hidden}>
+                    <div>
+                        <h4>Step-by-step guide to deploy a Vite app to GHP</h4>
+                        <span>1. Check your <mark>vite.config.js/.ts</mark> for the <mark>base</mark> option</span>
+                        <span>add a line to it</span>
+                        <div className={styles.codeBlock}>
+                            <code>{`import { defineConfig } from 'vite'`}</code>
+                            <code>import react from '@vitejs/plugin-react'</code>
+                            <code></code>
+                            <code>{`export default defineConfig({`}</code>
+                            <span> &nbsp; <code>{`plugins: [react()],`}</code></span>
+                            <span> &nbsp; <code>{`  base: '/your-repo-name/', // <-- IMPORTANT!`}</code></span>
+                            <code>{`})`}</code>
+                        </div>
+                        <span>If you want to be able to deploy AND use <mark>npm run dev</mark> option - change all <mark>export default config</mark> block</span>
+                        <div className={styles.codeBlock}>
+                            <code>{`export default defineConfig(({ command }) => ({`}</code>
+                            <span> &nbsp; <code>{`plugins: [react()],`}</code></span>
+                            <span> &nbsp; <code>{`base: command === 'build' ? '/blog/' : '/', // base only for production`}</code></span>
+                            <code>{`}))`}</code>
+                        </div>
+                        <span>This would check input command and react accordingly</span>
+                    </div>
+                    <div>
+                        <h4>{`2.Install gh-pages (only once) `}</h4>
+                        <code>npm install --save-dev gh-pages</code>
+                    </div>
+                    <div>
+                        <h4>3. Update your package.json</h4>
+                        <span>This is how they were looking before</span>
+                        <div className={styles.codeBlock}>
+                            <code>{`"scripts": {`}</code>
+                            <span> &nbsp; <code>{`"dev": "vite",`}</code></span>
+                            <span> &nbsp; <code>{`"build": "tsc -b && vite build",`}</code></span>
+                            <span> &nbsp; <code>{`"lint": "eslint .",`}</code></span>
+                            <span> &nbsp; <code>{`"preview": "vite preview"`}</code></span>
+                            <code>{`},`}</code>
+                        </div>
+                        <span>Add one more line</span>
+                        <code>{`"deploy": "gh-pages -d dist"`}</code>
+                        <span>Make sure your homepage is either omitted or matches the base path if you're using it.</span>
+                        <span>Commit your changes</span>
+                        <span></span>
+                    </div>
+                    <div>
+                        <h4>4. Build and deploy</h4>
+                        <code>npm run build</code>
+                        <code>npm run deploy</code>
+                        <span></span>
+                    </div>
+                    <div>
+                        <h4>5. Enable GitHub Pages</h4>
+                        <span> &nbsp; - go to your repo on GitHub</span>
+                        <span> &nbsp; - click on Settings → Pages</span>
+                        <span> &nbsp; - under Source, select from branch, gh-pages branch and root</span>
+                        <span> &nbsp; - hit Save</span>
+                    </div>
+                    <div>
+                        <h4>6. Wait a few seconds and go</h4>
+                        <code>https://your-username.github.io/your-repo-name/</code>
+                    </div>
+                    <div>
+                        <h4>Change all absolute img pathes to relative ones</h4>
+                        <h4>Title</h4>
+                        <span>from <code>{`<img src="/assets/something.png">`}</code></span>
+                        <span>to <code>{`<img src="./assets/something.png" />`}</code></span>
+                        <span>Or import them for assets</span>
+                        <div className={styles.codeBlock}>
+                            <code>{`import logo from './assets/logo.png'`}</code><br />
+                            <code>{`<img src={logo} />`}</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <div>
-                <h4>Title</h4>
-                <code>code</code>
+
             </div>
 
         </div>
