@@ -209,7 +209,7 @@ datalist {
 .harvest {
     background-color: bisque;
     accent-color: rgb(145, 14, 53);
-    box-shadow: wheat;
+    box-shadow: 0 0 2px wheat;
     color: rgb(145, 14, 53);
 }
 

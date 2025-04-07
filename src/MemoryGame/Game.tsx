@@ -145,7 +145,6 @@ function MemoryGame(): JSX.Element {
 
                         }
 
-                        console.log('resetting')
                         setChosen1(undefined);
                         // setChosen2(undefined);
                         setStepCounter((stepCounter) => stepCounter + 1);

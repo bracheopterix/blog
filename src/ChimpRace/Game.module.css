@@ -1,5 +1,3 @@
-
-
 .gameTable {
     background-color: white;
     border: solid 0px black;
@@ -19,7 +17,7 @@
 
 }
 
-.gameHeader{
+.gameHeader {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,7 +25,7 @@
 }
 
 .stepCounter {
-    color:black;
+    color: black;
     min-width: 100px;
     max-width: fit-content;
     height: fit-content;
@@ -53,8 +51,8 @@
 
 }
 
-.clue{
-    color:black;
+.clue {
+    color: black;
     font-size: 15px;
     width: 25px;
     height: 25px;
@@ -67,16 +65,16 @@
     text-align: center;
 }
 
-.clue:hover{
+.clue:hover {
     box-shadow: 0 0 5px black;
 }
 
-.clue:active{
+.clue:active {
     box-shadow: 0 0 5px crimson;
     background-color: crimson;
 }
 
-.timer{
+.timer {
     /* padding: 10px; */
     margin: 0;
     color: black;
@@ -99,7 +97,7 @@
 
 .cardHolder {
     height: 180px;
-    width:600px;
+    width: 600px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -128,7 +126,7 @@
 }
 
 .directionLever {
-    width:50px;
+    width: 50px;
     margin: 0;
 }
 
@@ -160,18 +158,16 @@
     user-select: none;
 }
 
-.startGame:active{
+.startGame:active {
     background-color: crimson;
     box-shadow: 0 0 5px crimson;
     border: solid 1px crimson;
 }
 
-.calc66{
-
-}
+.calc66 {}
 
 
-.amount{
+.amount {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -194,7 +190,7 @@
 
 }
 
-.tileCount:focus{
+.tileCount:focus {
     accent-color: red;
 }
 
@@ -215,14 +211,14 @@
 /* for future use */
 
 .open {
-    box-shadow: black 0px 0px 5px;
+    box-shadow: 0px 0px 5px black;
 }
 
 
 .lost {
     background-color: crimson;
-    box-shadow: crimson 0px 0px 5px;
-    
+    box-shadow: 0px 0px 5px crimson;
+
     border: solid 1px crimson;
     border-radius: 0;
     animation: lostRotation 3s 1 forwards;
@@ -232,11 +228,8 @@
     from {
         transform: rotate(0deg);
     }
-  
+
     to {
         transform: rotate(45deg);
     }
-  }
-
-  
-  
+}

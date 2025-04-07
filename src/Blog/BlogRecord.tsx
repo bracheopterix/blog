@@ -9,28 +9,41 @@ type BlogRecordParams = {
     note?: string,
     title: string,
     text: string,
-    setEditRecordIsVisible: (EditRecordIsVisible: boolean) => void,
-    setEditRecordWindowTitle: (editRecordWindowTitle: string) => void,
-    setEditRecordSave: (editRecordSave: Record) => void,
-    setDeleteWarningVisible: (deleteWarningIsVisible: boolean) => void,
-    setDeleteCode: (deleteCode: Code | undefined)=> void,
+    isReal: boolean,
+    setEditRecordIsVisible?: (EditRecordIsVisible: boolean) => void,
+    setEditRecordWindowTitle?: (editRecordWindowTitle: string) => void,
+    setEditRecordSave?: (editRecordSave: Record) => void,
+    setDeleteWarningVisible?: (deleteWarningIsVisible: boolean) => void,
+    setDeleteCode?: (deleteCode: Code | undefined) => void,
 }
 
-function BlogRecord({ code, note, title, text, setEditRecordIsVisible, setEditRecordWindowTitle, setEditRecordSave, setDeleteWarningVisible, setDeleteCode }: BlogRecordParams): JSX.Element {
+function BlogRecord({ code, note, title, text, isReal, setEditRecordIsVisible, setEditRecordWindowTitle, setEditRecordSave, setDeleteWarningVisible, setDeleteCode }: BlogRecordParams): JSX.Element {
 
 
 
     function editOnClick() {
-        setEditRecordWindowTitle("edit");
-        setEditRecordIsVisible(true);
-        localStorage.setItem("editRecordIsVisible", "true");
-        const newRecord: Record = { "code": code, "note": note, "title": title, "text": text };
-        setEditRecordSave(newRecord);
+        if (setEditRecordWindowTitle && setEditRecordIsVisible && setEditRecordSave) {
+            setEditRecordWindowTitle("edit");
+            setEditRecordIsVisible(true);
+            localStorage.setItem("editRecordIsVisible", "true");
+            const newRecord: Record = { "code": code, "note": note, "title": title, "text": text };
+            setEditRecordSave(newRecord);
+        }
+        else {
+            throw new Error("setEditRecordWindowTitle or setEditRecordIsVisible or setEditRecordSave is absent")
+        }
+
     }
 
     function binOnClick() {
-        setDeleteWarningVisible(true);
-        setDeleteCode(code);
+        if (setDeleteWarningVisible && setDeleteCode) {
+            setDeleteWarningVisible(true);
+            setDeleteCode(code);
+        }
+        else {
+            throw new Error("setDeleteWarningVisible or setDeleteCode is absent")
+        }
+
     }
 
 
@@ -38,8 +51,8 @@ function BlogRecord({ code, note, title, text, setEditRecordIsVisible, setEditRe
         <div className={`${styles.record} ${defStyles.flexColumn}`}>
 
             <div className={`${styles.editPanel} ${defStyles.flexRow}`}>
-                <div className={`${styles.button} ${styles.edit}`} onClick={editOnClick}></div>
-                <div className={`${styles.button} ${styles.bin}`} onClick={binOnClick}></div>
+                {isReal && (<div className={`${styles.button} ${styles.edit}`} onClick={editOnClick}></div>)}
+                {isReal && (<div className={`${styles.button} ${styles.bin}`} onClick={binOnClick}></div>)}
 
 
             </div>

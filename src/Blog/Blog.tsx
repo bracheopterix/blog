@@ -1,7 +1,7 @@
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css';
 
-// import loadedDiary from './diary.json'
+import loadedDiary from './diary.json'
 
 import BlogRecord from './BlogRecord';
 import { useEffect, useState } from 'react';
@@ -28,7 +28,7 @@ function Blog() {
 
 
     /// INJECT DEFAULT DIARY ///
-    // localStorage.setItem("diary",JSON.stringify(loadedDiary));
+    localStorage.setItem("diary",JSON.stringify(loadedDiary));
 
     // function loadDiaryFromBackUp (){
     //     const diaryCheck = localStorage.getItem("diary");
@@ -47,6 +47,7 @@ function Blog() {
     /// STATES ///
 
     const [diaryTwin, setDiaryTwin] = useState<Record[]>([]);
+    const [firstMessage, setFirstMessage] = useState<boolean>(false);
     const [refreshed, setRefershed] = useState<number>(0);
 
     const [editRecordIsVisible, setEditRecordIsVisible] = useState<boolean>(false);
@@ -64,29 +65,31 @@ function Blog() {
     useEffect(() => {
 
         let tempLocStorCast: string | null = localStorage.getItem("diary");
-        let parsedDiary: Record[] =[]
+        let parsedDiary: Record[] = []
         if (tempLocStorCast) {
-             parsedDiary = JSON.parse(tempLocStorCast);
+            parsedDiary = JSON.parse(tempLocStorCast);
             // setDiaryTwin([...parsedDiary].reverse());
+            setDiaryTwin([...parsedDiary].reverse());
 
         }
         else {
-            const today = new Date();
-            let day = today.getDate();
-            let month = today.getMonth() + 1;
-            let year = today.getFullYear();
-            parsedDiary = [{
+            // const today = new Date();
+            // let day = today.getDate();
+            // let month = today.getMonth() + 1;
+            // let year = today.getFullYear();
+            // parsedDiary = [{
 
-                "code": { "day": day, "month": month, "year": year, "order": 0 },
-                "title": "The first record",
-                "note": "",
-                "text": "The diary is yet empty. Now you can add, edit or delete records with the menu to the right",
-            }]
+            //     "code": { "day": day, "month": month, "year": year, "order": 0 },
+            //     "title": "The first record",
+            //     "note": "",
+            //     "text": "The diary is yet empty. Now you can add, edit or delete records using the menu to the right",
+            // }]
+
+            setFirstMessage(true);
 
             // setDiaryTwin([...parsedDiary].reverse());
         }
 
-        setDiaryTwin([...parsedDiary].reverse());
 
         // loading visibility of the editRecordWindow //
         const storedEditRecordIsVisible = localStorage.getItem("editRecordIsVisible");
@@ -257,6 +260,14 @@ function Blog() {
 
             {/* All records map */}
 
+            {firstMessage && (<BlogRecord
+                code={{ "day": 0, "month": 0, "year": 0, "order": 0 }}
+                note={"Nice day for fishing, ain't it? Ha-ha!"}
+                title={"There is no records yet"}
+                text={"Now you can create one by yourself using the menu to the right"}
+                isReal = {false}
+            />)}
+
             {
                 diaryTwin.map((record: Record, index: number) => (
                     <BlogRecord
@@ -265,6 +276,7 @@ function Blog() {
                         note={record.note}
                         title={record.title}
                         text={record.text}
+                        isReal ={true}
                         setDeleteWarningVisible={setDeleteWarningVisible}
                         setEditRecordIsVisible={setEditRecordIsVisible}
                         setEditRecordWindowTitle={setEditRecordWindowTitle}
