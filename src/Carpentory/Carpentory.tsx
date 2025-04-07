@@ -80,13 +80,13 @@ function Carpentory(): JSX.Element {
                             <br />
                             so for now is detached.
                         </p>
-                        {/* <iframe style={{ border: 0, width: "100%", height: "42px" }}
+                        <iframe style={{ border: 0, width: "100%", height: "42px" }}
                         src="https://bandcamp.com/EmbeddedPlayer/album=3178444248/size=small/bgcol=ffffff/linkcol=e99708/track=3584292138/transparent=true/" seamless>
                         <a href="https://arsenylitvin.bandcamp.com/album/pmr-91-pk-2025-the-ominous-sounds-of-jupiter">The Ominous Sounds Of Jupiter</a>
-                    </iframe> */}
+                    </iframe>
 
-                        {/* <iframe width="100%" height="200px" src="https://www.youtube.com/embed/H5NZtbbiyKM?si=Xw-yoosMjhiMcbnF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                    </iframe> */}
+                        <iframe width="100%" height="200px" src="https://www.youtube.com/embed/H5NZtbbiyKM?si=Xw-yoosMjhiMcbnF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                    </iframe>
 
                     </div>
                 </div>

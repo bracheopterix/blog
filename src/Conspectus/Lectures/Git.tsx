@@ -326,6 +326,15 @@ function Git({ isGit }: GitProps) {
                         <code> src: new URL('./img/market/rolls.png', import.meta.url).href</code>
                         <span>will work both for <mark>npm run dev</mark> and <mark>GitHub Pages</mark> deployment</span>
                     </div>
+                    <div> 
+                        <h4>9. Fixing Router problems</h4>
+                        <span>We used <mark>BrowserRouter</mark> to handle our URLs, but to successfully embrace routing within GitHubPages,</span>
+                        <span> it is adviced to use <mark>HashRouter</mark>.</span>
+                        <span>Just place it on the top level around your <code>{`<App/>`}</code> in <mark>main.tsx</mark> and erase <code>{`<BrowserRouter>`}</code> tags</span> 
+                        <span><mark><b> !</b></mark> &nbsp; Important! If you made <code>{`import {BrowserRouter as Router,  Routes, Route, } from "react-router-dom";`}</code></span>
+                        <span>Erase there <code>BrowserRouter as Router</code> cause it will cause misconception between two Routers.</span>
+                        <span><mark><b>*</b></mark> &nbsp; Also, always use <code>{`<Link to ="lalala.com">`}</code> instead of <code>{`<a href="lalala.com>`}</code></span>
+                    </div>
                 </div>
             </section>
 
