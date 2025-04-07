@@ -14,7 +14,7 @@ function Sertar() {
         <>
 
 
-            <Router>
+            {/* <Router> */}
                 <MainHeader />
 
                 <Routes> 
@@ -25,7 +25,7 @@ function Sertar() {
                     <Route path="/conspectus/" element={<Conspectus/>} />
                     <Route path="/carpentory/" element={<Carpentory/>} />
                 </Routes>
-            </Router>
+            {/* </Router> */}
         </>
     )
 
