@@ -1,7 +1,7 @@
 import { JSX, useState, useEffect } from "react";
 import styles from "./card.module.css";
 import Card from "./Card.tsx";
-import { CardType, Style, StyleObj } from './types.ts'
+import { CardType, Style } from './types.ts'
 import {AllStyles} from './decks.tsx'
 
 

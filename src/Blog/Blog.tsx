@@ -1,7 +1,7 @@
 import styles from './Blog.module.css';
 import defStyles from './Sertar.module.css';
 
-import loadedDiary from './diary.json'
+// import loadedDiary from './diary.json'
 
 import BlogRecord from './BlogRecord';
 import { useEffect, useState } from 'react';
@@ -28,7 +28,7 @@ function Blog() {
 
 
     /// INJECT DEFAULT DIARY ///
-    localStorage.setItem("diary",JSON.stringify(loadedDiary));
+    // localStorage.setItem("diary",JSON.stringify(loadedDiary));
 
     // function loadDiaryFromBackUp (){
     //     const diaryCheck = localStorage.getItem("diary");
