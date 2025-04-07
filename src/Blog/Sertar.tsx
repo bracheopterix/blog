@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
+import {  Routes, Route, } from "react-router-dom";
+
 // import {Link, Navigate} from "react-router-dom";
 // import styles from './Sertar.module.css'
 import MainHeader from "./MainHeader";
