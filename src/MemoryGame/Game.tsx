@@ -78,7 +78,6 @@ function MemoryGame(): JSX.Element {
             [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
 
         }
-        console.log('game shuffled');
         return array;
     }
 
@@ -101,7 +100,6 @@ function MemoryGame(): JSX.Element {
             game.push(el1);
             game.push(el2);
         }
-        console.log('game created');
 
         game = shuffleArray(game);
         return game;

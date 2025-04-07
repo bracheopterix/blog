@@ -64,9 +64,10 @@ function Blog() {
     useEffect(() => {
 
         let tempLocStorCast: string | null = localStorage.getItem("diary");
+        let parsedDiary: Record[] =[]
         if (tempLocStorCast) {
-            let parsedDiary: Record[] = JSON.parse(tempLocStorCast);
-
+             parsedDiary = JSON.parse(tempLocStorCast);
+            // setDiaryTwin([...parsedDiary].reverse());
 
         }
         else {
@@ -74,17 +75,18 @@ function Blog() {
             let day = today.getDate();
             let month = today.getMonth() + 1;
             let year = today.getFullYear();
-            let parsedDiary: Record[] = [{
+            parsedDiary = [{
 
                 "code": { "day": day, "month": month, "year": year, "order": 0 },
                 "title": "The first record",
                 "note": "",
                 "text": "The diary is yet empty. Now you can add, edit or delete records with the menu to the right",
-            }];
+            }]
 
-            setDiaryTwin([...parsedDiary].reverse());
-
+            // setDiaryTwin([...parsedDiary].reverse());
         }
+
+        setDiaryTwin([...parsedDiary].reverse());
 
         // loading visibility of the editRecordWindow //
         const storedEditRecordIsVisible = localStorage.getItem("editRecordIsVisible");
@@ -103,9 +105,6 @@ function Blog() {
     }, [deleteWarningIsVisible, editRecordIsVisible])
 
 
-    console.log(diaryTwin);
-
-
     function openEditRecordWindow() {
         // setting visibility of the editRecordWindow //
         setEditRecordIsVisible(true);
@@ -117,10 +116,8 @@ function Blog() {
 
 
     function onClickDeleteRecordYes() {
-        console.log(deleteCode);
         if (deleteCode) {
             deleteRecord(deleteCode);
-            console.log(deleteCode);
             setDeleteWarningVisible(false);
         }
         // setRefershed((refreshed)=>refreshed+1);
