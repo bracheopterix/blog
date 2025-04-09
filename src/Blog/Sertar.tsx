@@ -3,7 +3,7 @@ import {  Routes, Route, } from "react-router-dom";
 
 // import {Link, Navigate} from "react-router-dom";
 // import styles from './Sertar.module.css'
-import MainHeader from "./MainHeader";
+import NavigationBar from "./NavigationBar";
 import Blog from "./Blog";
 import Games from "./Gamez";
 import MainBlogPage from "./MainBlogPage";
@@ -17,7 +17,7 @@ function Sertar() {
 
 
             {/* <Router> */}
-                <MainHeader />
+                <NavigationBar />
                 <div>
                     {/* router-proof */}
                 <Routes> 
