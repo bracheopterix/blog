@@ -66,28 +66,20 @@ function Blog() {
 
         let tempLocStorCast: string | null = localStorage.getItem("diary");
         let parsedDiary: Record[] = []
-        if (tempLocStorCast) {
-            parsedDiary = JSON.parse(tempLocStorCast);
-            // setDiaryTwin([...parsedDiary].reverse());
-            setDiaryTwin([...parsedDiary].reverse());
+        if (!tempLocStorCast) {
+            setFirstMessage(true);
 
         }
         else {
-            // const today = new Date();
-            // let day = today.getDate();
-            // let month = today.getMonth() + 1;
-            // let year = today.getFullYear();
-            // parsedDiary = [{
+            parsedDiary = JSON.parse(tempLocStorCast);
 
-            //     "code": { "day": day, "month": month, "year": year, "order": 0 },
-            //     "title": "The first record",
-            //     "note": "",
-            //     "text": "The diary is yet empty. Now you can add, edit or delete records using the menu to the right",
-            // }]
-
-            setFirstMessage(true);
-
-            // setDiaryTwin([...parsedDiary].reverse());
+            if (parsedDiary.length === 0) {
+                setFirstMessage(true);
+            }
+            else {
+                setRefershed((prev)=>prev+1);
+                setDiaryTwin([...parsedDiary].reverse());
+            }
         }
 
 
@@ -167,13 +159,7 @@ function Blog() {
             const a = document.createElement("a");
             a.href = blobUrl;
 
-            // const today = new Date();
-            // const day = today.getDate();
-            // const month = today.getMonth() + 1;
-            // const year = today.getFullYear();
-            // const date = `${day.toString().padStart(2,"0")}-${month.toString().padStart(2,"0")}-${year}`;
 
-            // a.download = `diary from ${date}`;
             a.download = `diary`;
             document.body.appendChild(a);
             a.click();
@@ -265,7 +251,7 @@ function Blog() {
                 note={"Nice day for fishing, ain't it? Ha-ha!"}
                 title={"There is no records yet"}
                 text={"Now you can create one by yourself using the menu to the right"}
-                isReal = {false}
+                isReal={false}
             />)}
 
             {
@@ -276,7 +262,7 @@ function Blog() {
                         note={record.note}
                         title={record.title}
                         text={record.text}
-                        isReal ={true}
+                        isReal={true}
                         setDeleteWarningVisible={setDeleteWarningVisible}
                         setEditRecordIsVisible={setEditRecordIsVisible}
                         setEditRecordWindowTitle={setEditRecordWindowTitle}

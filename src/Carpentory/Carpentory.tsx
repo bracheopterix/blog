@@ -3,6 +3,7 @@ import { JSX } from "react"
 // import styles from "./Carpentory.module.css";
 
 import styles from "./Carpentory.module.scss";
+import Player from "./Player/Player";
 
 
 function Carpentory(): JSX.Element {
@@ -91,7 +92,9 @@ function Carpentory(): JSX.Element {
                     </div>
                 </div>
 
-                 <div className={styles.card}> Player</div>
+
+                <Player/>
+
                 {/*<div className={styles.card}> No3</div>
                 <div className={styles.card}> No1</div>
                 <div className={styles.card}> No2</div>
