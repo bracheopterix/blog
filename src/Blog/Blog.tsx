@@ -48,7 +48,7 @@ function Blog() {
 
     const [diaryTwin, setDiaryTwin] = useState<Record[]>([]);
     const [firstMessage, setFirstMessage] = useState<boolean>(false);
-    const [refreshed, setRefershed] = useState<number>(0);
+    const [refreshed, setRefreshed] = useState<boolean>(true);
 
     const [editRecordIsVisible, setEditRecordIsVisible] = useState<boolean>(false);
     const [deleteWarningIsVisible, setDeleteWarningVisible] = useState<boolean>(false);
@@ -77,15 +77,23 @@ function Blog() {
                 setFirstMessage(true);
             }
             else {
-                setRefershed((prev)=>prev+1);
                 setDiaryTwin([...parsedDiary].reverse());
             }
+            console.log("Diary content", tempLocStorCast);
         }
 
 
         // loading visibility of the editRecordWindow //
         const storedEditRecordIsVisible = localStorage.getItem("editRecordIsVisible");
         setEditRecordIsVisible(storedEditRecordIsVisible ? JSON.parse(storedEditRecordIsVisible) : false);
+
+
+        return () => {
+            // Cleaning up if blog unmounts
+            setDiaryTwin([]);
+            setFirstMessage(false);
+        }
+
     }, [refreshed])
 
     useEffect(() => {
@@ -99,6 +107,9 @@ function Blog() {
 
     }, [deleteWarningIsVisible, editRecordIsVisible])
 
+    function refreshBlogRecords(){
+        setRefreshed((prev)=>!prev);
+    }
 
     function openEditRecordWindow() {
         // setting visibility of the editRecordWindow //
@@ -115,19 +126,18 @@ function Blog() {
             deleteRecord(deleteCode);
             setDeleteWarningVisible(false);
         }
-        // setRefershed((refreshed)=>refreshed+1);
     }
 
     function closeEditRecordWindow() {
         setDeleteWarningVisible(false);
-    }
+        refreshBlogRecords()    }
 
     function deleteRecord(code: Code) {
         const updatedDiary = diaryTwin.filter((record) => record.code !== code);
         // console.log(updatedDiary);
         localStorage.setItem("diary", JSON.stringify(updatedDiary.reverse()));
-        setRefershed((refreshed) => refreshed + 1);
-    }
+        refreshBlogRecords()
+        }
 
     function curtainOnClick() {
 
@@ -181,7 +191,7 @@ function Blog() {
         <EditRecordWindow
             editRecordIsVisible={editRecordIsVisible}
             setEditRecordIsVisible={setEditRecordIsVisible}
-            setRefershed={setRefershed}
+            refreshBlogRecords={refreshBlogRecords}
             editRecordWindowMode={editRecordWindowMode}
             editRecordSave={editRecordSave}
         />

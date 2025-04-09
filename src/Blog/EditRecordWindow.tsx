@@ -7,12 +7,12 @@ import { Code, Record } from './Blog'
 type EditRecordWindowProps = {
     editRecordIsVisible: boolean,
     setEditRecordIsVisible: (editRecordIsVisible: boolean) => void,
-    setRefershed: (refreshedFn: (prev: number) => number) => void,
+    refreshBlogRecords:()=>void,
     editRecordWindowMode: string,
     editRecordSave: Record | undefined,
 }
 
-function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRecordIsVisible: setEditRecordIsVisible, setRefershed, editRecordWindowMode, editRecordSave }: EditRecordWindowProps): JSX.Element {
+function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRecordIsVisible: setEditRecordIsVisible, refreshBlogRecords, editRecordWindowMode, editRecordSave }: EditRecordWindowProps): JSX.Element {
 
     // checking if this an add or an edit window
 
@@ -180,7 +180,7 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
                 if (noteRef.current) { noteRef.current.value = ''; }
                 textareaRef.current.value = '';
 
-                setRefershed((prevRefreshed) => prevRefreshed + 1);
+                refreshBlogRecords();
                 setErrorMessage(undefined);
 
             }
@@ -221,7 +221,7 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
                     localStorage.setItem("savedNote", '');
                     localStorage.setItem("savedText", '');
 
-                    setRefershed((prevRefreshed) => prevRefreshed + 1);
+                    refreshBlogRecords();
                     setErrorMessage(undefined);
 
                 }

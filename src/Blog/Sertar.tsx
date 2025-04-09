@@ -18,7 +18,8 @@ function Sertar() {
 
             {/* <Router> */}
                 <MainHeader />
-
+                <div>
+                    {/* router-proof */}
                 <Routes> 
                     <Route path="/" element={<MainBlogPage />} />
                     <Route path="/main/" element={<MainBlogPage />} />
@@ -27,6 +28,7 @@ function Sertar() {
                     <Route path="/conspectus/" element={<Conspectus/>} />
                     <Route path="/carpentory/" element={<Carpentory/>} />
                 </Routes>
+                </div>
             {/* </Router> */}
         </>
     )
