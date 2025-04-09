@@ -155,9 +155,10 @@ function Git({ isGit }: GitProps) {
 
                     <div>
                         <h4>Merging branches</h4>
-                        <span>Step on the branch you want to pour - for example </span>
-                        <span><mark>newBranch</mark> into <mark>main</mark>, step on the <mark>newBranch</mark></span>
-                        <code></code>
+                        <span>Step on the branch you want to pour into - for example you want to merge</span>
+                        <span><mark>newBranch</mark> into <mark>master</mark>, step on the <mark>master</mark></span>
+                        <code>git checkout master</code>
+                        <code>git merge newBranch</code>
                     </div>
                 </div>
 
