@@ -95,12 +95,13 @@ $accent-color: aquamarine;
             background-repeat: no-repeat;
 
             transition: filter 200ms ease-in-out, background-color 200ms ease-in-out;
-            filter: none;
+            transition: border-radius 200ms ease-in-out;
+            
 
             &:hover {
-                background-color: $white-transparent;
-                filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
-
+                // background-color: $white-transparent;
+                // filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
+                border-radius: 20px;
             }
         }
     }
