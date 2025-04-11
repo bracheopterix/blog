@@ -10,7 +10,7 @@ function Therms({isTherms}:ThermsProps) {
 
     return (
 
-        <div className={isTherms ? styles.mainContainer : styles.folded}>
+        <div className={isTherms ? styles.mainContainer : styles.hidden}>
             <section>
                 <div>
                     <h4>Universal</h4>
