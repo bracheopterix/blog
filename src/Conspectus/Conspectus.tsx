@@ -25,7 +25,7 @@ function Conspectus() {
                     <h2>Therms</h2>
                 </button>
                 <div className={isTherms ? styles.cardContent : styles.folded}>
-                    <Therms isGit={isTherms} />
+                    <Therms isTherms={isTherms} />
                 </div>
 
             </div>
