@@ -17,10 +17,6 @@ function Git({ isGit }: GitProps) {
     const [isP6, setP6] = useState<boolean>(false);
 
 
-
-
-
-
     return (
         < div className={isGit ? styles.lectures : styles.hidden}>
 
@@ -173,7 +169,7 @@ function Git({ isGit }: GitProps) {
                     <div>
                         <h4>Listing commit history</h4>
                         <code>git log</code>
-                        <span>To quit this mode if you don't see <mark>:</mark> - press<mark>Shift</mark> + <mark> :</mark></span>
+                        <span>To quit this mode if you don't see <mark>:</mark> - press <mark>Shift</mark> + <mark> :</mark></span>
                         <span>and then press <mark>Q</mark></span>
                     </div>
 

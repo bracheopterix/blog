@@ -93,10 +93,27 @@ function Carpentory(): JSX.Element {
                 </div>
 
 
-                <Player/>
+                <Player />
 
-                {/*<div className={styles.card}> No3</div>
-                <div className={styles.card}> No1</div>
+                <div className={styles.card}>
+                    <h3> SVG sun</h3>
+                    <svg width="100" height="100" viewBox="-15 -15 30 30" className={styles.SVGsun}>
+                        <circle r="6" />
+                        <path id="ray" d="M 0,11 L 0,14" />
+                        <use href="#ray" transform="rotate(45)" />
+                        <use href="#ray" transform="rotate(90)" />
+                        <use href="#ray" transform="rotate(135)" />
+                        <use href="#ray" transform="rotate(180)" />
+                        <use href="#ray" transform="rotate(225)" />
+                        <use href="#ray" transform="rotate(270)" />
+                        <use href="#ray" transform="rotate(315)" />
+                    </svg>
+
+                </div>
+
+
+
+                {/*<div className={styles.card}> No1</div>
                 <div className={styles.card}> No2</div>
                 <div className={styles.card}> No3</div>
                 <div className={styles.card}> No1</div>

@@ -358,3 +358,24 @@ $shadow-dark: gray;
 
     }
 }
+
+
+svg {
+
+    filter:none;
+    transition: filter 500ms ease-in-out;
+
+    &:hover {
+        filter: invert(54%) sepia(80%) saturate(10%) hue-rotate(15deg) brightness(100%) contrast(100%);
+    }
+
+
+}
+
+.SVGsun path,
+.SVGsun use,
+.SVGsun circle {
+    stroke: $accent-color;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
