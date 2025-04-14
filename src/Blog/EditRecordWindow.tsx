@@ -98,10 +98,10 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
             if (savedHeight) { textareaRef.current.style.height = `${savedHeight}px` };
         }
 
-        // checking mode //
+        // loading pre-reload saves if they exist
+        checkAndLoadSavedRecord();
 
-
-
+       
     }, []);
 
     useEffect(() => {
@@ -120,6 +120,9 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
         }
         if (editRecordWindowMode === "add") {
         }
+
+        clearSavedRecord();
+
     }, [editRecordSave])
 
 
@@ -240,15 +243,40 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
     }
 
 
-    // function loadRecord(){
-    //     const diaryGhost = localStorage.getItem("diary");
-    //     if(diaryGhost){
-    //         const castRecords:Record[] = JSON.parse(diaryGhost);
-    //         const loadedRecord = castRecords.filter((record)=>record.code=code)
-    //         //// NEEDS CODE
-    //     }
+    function checkAndLoadSavedRecord(){
+        if(titleRef.current){
+            const savedTitle = localStorage.getItem("savedTitle");
+            if(savedTitle){
+                titleRef.current.value = JSON.parse(savedTitle);
+            }
+        }
+        if(noteRef.current){
+            const savedNote = localStorage.getItem("savedNote");
+            if(savedNote){
+                noteRef.current.value = JSON.parse(savedNote);
+            }
+        }
+        if(textareaRef.current){
+            const savedText = localStorage.getItem("savedText");
+            if(savedText){
+                textareaRef.current.value = JSON.parse(savedText);
+            }
+        }
+    }
 
-    // }
+    function clearSavedRecord() {
+        
+        if(localStorage.getItem("savedTitle")){
+            localStorage.removeItem("savedTitle");
+        }
+        if(localStorage.getItem("savedNote")){
+            localStorage.removeItem("savedNote");
+
+        }
+        if(localStorage.getItem("savedText")){
+            localStorage.removeItem("savedText");
+        }
+    }
 
 
     return (

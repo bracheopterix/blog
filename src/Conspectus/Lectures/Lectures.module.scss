@@ -5,6 +5,7 @@ $white-transparent: rgba(255, 255, 255, 0);
 $black80: rgba(0, 0, 0, 0.8);
 $black70: rgba(0, 0, 0, 0.7);
 
+$accent-color: aquamarine;
 $aquamarine-translucent: rgba(127, 255, 212, 0.2);
 $aquamarine-dark: rgb(30, 149, 139);
 
@@ -21,6 +22,11 @@ $coral-translucent: rgba(255, 127, 80, 0.2);
 }
 
 .lectures {
+
+
+
+    box-sizing: border-box;
+
     display: flex;
     flex-direction: column;
     gap: 30px;

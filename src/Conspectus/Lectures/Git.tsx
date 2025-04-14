@@ -19,6 +19,8 @@ function Git({ isGit }: GitProps) {
 
     return (
         < div className={isGit ? styles.lectures : styles.hidden}>
+            
+            <h2>Git</h2>
 
             <p>Is a command line tool letting you to safely travel between versions and changes of your project.</p>
 
@@ -30,6 +32,7 @@ function Git({ isGit }: GitProps) {
                         Setting up
                     </h3>
                 </button>
+
                 <div className={isP1 ? styles.sectionInner : styles.hidden}>
                     <div>
                         <h4>Installing:</h4>
@@ -80,21 +83,21 @@ function Git({ isGit }: GitProps) {
                     <h3>Manipulations and navigation</h3>
                 </button>
                 <div className={isP2 ? styles.sectionInner : styles.hidden}>
-                    <p>
+                    <div>
                         <h4>Showing content of the folder</h4>
                         <code>ls</code>
-                    </p>
+                    </div>
 
-                    <p>
+                    <div>
                         <h4>Navigation</h4>
                         <code>cd folderName</code>
                         <code>cd parentFolder/folderName</code>
-                    </p>
+                    </div>
 
-                    <p>
+                    <div>
                         <h4>Directory up </h4>
                         <code>cd .. </code>
-                    </p>
+                    </div>
                 </div>
             </section>
 
@@ -102,6 +105,7 @@ function Git({ isGit }: GitProps) {
                 <button className={styles.sectionHeader} onClick={() => setP3((prev) => !prev)}>
                     <h3>Work</h3>
                 </button>
+                
                 <div className={isP3 ? styles.sectionInner : styles.hidden}>
                     <div>
                         <h4>Starting</h4>

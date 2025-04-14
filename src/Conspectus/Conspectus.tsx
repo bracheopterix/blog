@@ -14,53 +14,61 @@ function Conspectus() {
 
     return (
 
+
         <div className={styles.mainContainer}>
+            <div className={styles.navigationBlock}>
+                <h2>Conspectus Frontendus</h2>
 
-
-            <div className={styles.card}>
                 <button id="thermsButton"
                     className={isTherms ? styles.cardHeaderOpen : styles.cardHeaderClosed}
                     onClick={() => setTherms((prev) => !prev)}
                 >
-                    <h2>Therms</h2>
+                    <h3>Therms</h3>
                 </button>
-                <div className={isTherms ? styles.cardContent : styles.folded}>
-                    <Therms isTherms={isTherms} />
-                </div>
 
-            </div>
-
-
-            <div className={styles.card}>
                 <button id="gitButton"
                     className={isGit ? styles.cardHeaderOpen : styles.cardHeaderClosed}
                     onClick={() => setGit((prev) => !prev)}
                 >
-                    <h2>Git</h2>
+                    <h3>Git</h3>
                 </button>
-                <div className={isGit ? styles.cardContent : styles.folded}>
-                    <Git isGit={isGit} />
-                </div>
-
-            </div>
-
-            <div className={styles.card}>
 
                 <button id="misButton"
                     className={isMis ? styles.cardHeaderOpen : styles.cardHeaderClosed}
                     onClick={() => setMis((prev) => !prev)}
                 >
-                    <h2>Miscellaneous</h2>
+                    <h3>Miscellaneous</h3>
                 </button>
-                <div className={isMis ? styles.cardContent : styles.folded}>
-                    <Miscellaneous isMis={isMis} />
+
+            </div>
+
+            <div className={styles.lecturesBox}>
+
+                <div className={isTherms ? styles.card : styles.hidden}>
+                    <div className={isTherms ? styles.cardContent : styles.folded}>
+                        <Therms isTherms={isTherms} />
+                    </div>
                 </div>
 
 
+                <div className={isGit ? styles.card : styles.hidden}>
+                    <div className={isGit ? styles.cardContent : styles.folded}>
+                        <Git isGit={isGit} />
+                    </div>
+                </div>
+
+                <div className={isMis ? styles.card : styles.hidden}>
+                    <div className={isMis ? styles.cardContent : styles.folded}>
+                        <Miscellaneous isMis={isMis} />
+                    </div>
+                </div>
             </div>
 
 
         </div >
+
+
+
     )
 }
 

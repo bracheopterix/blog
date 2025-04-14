@@ -16,6 +16,7 @@ function Miscellaneous({ isMis }: MisProps) {
 
     return (
         <div className={isMis ? styles.lectures : styles.hidden}>
+            <h2>Miscellaneous</h2>
             <p>Non specific lectures galore</p>
             <section>
                 <button className={styles.sectionHeader} onClick={() => setP1((prev)=>!prev)}>
