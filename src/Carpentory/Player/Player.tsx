@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 function Player() {
 
-    const [isTrack1, setTrack1]=useState<boolean>(false);
-    const [isTrack2, setTrack2]=useState<boolean>(false);
-    const [isTrack3, setTrack3]=useState<boolean>(false);
+    // const [isTrack1, setTrack1]=useState<boolean>(false);
+    // const [isTrack2, setTrack2]=useState<boolean>(false);
+    // const [isTrack3, setTrack3]=useState<boolean>(false);
 
     const [activeTrack,setActiveTrack]=useState<(()=>void)|undefined>(undefined);
     
