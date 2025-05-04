@@ -3,6 +3,7 @@ import styles from './Conspectus.module.scss'
 import { useState } from 'react'
 import Miscellaneous from './Lectures/Miscellaneous';
 import Therms from './Lectures/Therms';
+import Links from './Lectures/Links';
 
 
 function Conspectus() {
@@ -10,6 +11,9 @@ function Conspectus() {
     const [isTherms, setTherms] = useState<boolean>(false);
     const [isGit, setGit] = useState<boolean>(false);
     const [isMis, setMis] = useState<boolean>(false);
+
+    const [isLinks, setLinks] = useState<boolean>(false);
+
 
 
     return (
@@ -40,6 +44,13 @@ function Conspectus() {
                     <h3>Miscellaneous</h3>
                 </button>
 
+                <button id="LinksButton"
+                    className={isLinks ? styles.cardHeaderOpen : styles.cardHeaderClosed}
+                    onClick={() => setLinks((prev) => !prev)}
+                >
+                    <h3>Links</h3>
+                </button>
+
             </div>
 
             <div className={styles.lecturesBox}>
@@ -60,6 +71,12 @@ function Conspectus() {
                 <div className={isMis ? styles.card : styles.hidden}>
                     <div className={isMis ? styles.cardContent : styles.folded}>
                         <Miscellaneous isMis={isMis} />
+                    </div>
+                </div>
+
+                <div className={isLinks ? styles.card : styles.hidden}>
+                    <div className={isLinks ? styles.cardContent : styles.folded}>
+                        <Links isLinks={isLinks} />
                     </div>
                 </div>
             </div>

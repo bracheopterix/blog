@@ -41,6 +41,7 @@
         color: burlywood;
     }
 
+
     .links {
         width: fit-content;
         margin: auto;
@@ -48,21 +49,26 @@
         flex-direction: row;
         gap: 10px;
 
+
         img {
             height: 50px;
         }
+
 
         .tanStackClue {
             display: none;
             width: fit-content;
             white-space: nowrap;
             position: absolute;
-            transform: translateX(-45%);
+            right: 50%;
+            transform: translateX(50%);
             margin: auto;
             color: gray;
         }
 
-
+        img:hover{
+            border-bottom: solid 4px aquamarine;
+        }
 
         .tanStack:hover .tanStackClue {
             display: block;

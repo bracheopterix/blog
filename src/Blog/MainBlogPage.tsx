@@ -20,7 +20,18 @@ function MainBlogPage() {
             </h3>
             <div className={styles.links}>
 
-                
+                {/* Pages */}
+                <a className={styles.tanStack} href="https://bracheopterix.github.io/blog/" target="_blank">
+                <img src={`${new URL("../assets/icons/linksIcons/MyPages-logo.svg", import.meta.url).href}`}></img>
+                <p className={styles.tanStackClue}>github pages</p>
+                </a>
+
+                {/* GitHub */}
+                <a className={styles.tanStack} href="https://www.github.com" target="_blank">
+                <img src={`${new URL("../assets/icons/linksIcons/Github-logo.svg", import.meta.url).href}`}></img>
+                <p className={styles.tanStackClue}>код</p>
+                </a>
+
                 {/* Notion */}
                 <a className={styles.tanStack} href="https://www.notion.so" target="_blank">
                 <img src={`${new URL("../assets/icons/linksIcons/Notion-logo.svg", import.meta.url).href}`}></img>
@@ -38,6 +49,7 @@ function MainBlogPage() {
                 <img src={`${new URL("../assets/icons/linksIcons/ChatGPT-logo.svg", import.meta.url).href}`}></img>
                 <p className={styles.tanStackClue}>Магистр</p>
                 </a>
+
 
                 
 
