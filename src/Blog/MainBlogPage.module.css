@@ -13,14 +13,14 @@
 
 @keyframes yatoSanMooooving {
     from {
-        margin-top:100px;
+        margin-top: 100px;
         margin-left: -500px;
         transform: rotate(-90deg);
         opacity: 50%;
     }
 
     to {
-        margin-top:10px;
+        margin-top: 10px;
         margin-left: -50px;
         transform: rotate(0deg);
         opacity: 100%;
@@ -28,15 +28,52 @@
 }
 
 .announcement {
-    font-size: 30px;
-    color: burlywood;
     width: fit-content;
     position: absolute;
-    top:50%;
+    top: 50%;
     left: 40%;
     animation: announcementing;
     animation-delay: 0s;
     animation-duration: 2s;
+
+    h3 {
+        font-size: 30px;
+        color: burlywood;
+    }
+
+    .links {
+        width: fit-content;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        img {
+            height: 50px;
+        }
+
+        .tanStackClue {
+            display: none;
+            width: fit-content;
+            white-space: nowrap;
+            position: absolute;
+            transform: translateX(-45%);
+            margin: auto;
+            color: gray;
+        }
+
+
+
+        .tanStack:hover .tanStackClue {
+            display: block;
+        }
+
+        .additionalLinks{
+            display: block;
+            user-select: none;
+        }
+
+    }
 }
 
 .pseudo {
@@ -47,13 +84,14 @@
 }
 
 @keyframes announcementing {
-from{
-    top:80%;
+    from {
+        top: 80%;
 
-}
-to{
-    top:50%;
+    }
 
-}
+    to {
+        top: 50%;
+
+    }
 
 }
