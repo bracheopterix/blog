@@ -121,7 +121,6 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
         if (editRecordWindowMode === "add") {
         }
 
-        clearSavedRecord();
 
     }, [editRecordSave])
 
@@ -226,6 +225,7 @@ function EditRecordWindow({ editRecordIsVisible: editRecordIsVisible, setEditRec
 
                     refreshBlogRecords();
                     setErrorMessage(undefined);
+                    clearSavedRecord();
 
                 }
 
