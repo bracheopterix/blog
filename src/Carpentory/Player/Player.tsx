@@ -8,19 +8,19 @@ function Player() {
     // const [isTrack2, setTrack2]=useState<boolean>(false);
     // const [isTrack3, setTrack3]=useState<boolean>(false);
 
-    const [activeTrack,setActiveTrack]=useState<(()=>void)|undefined>(undefined);
+    // const [activeTrack,setActiveTrack]=useState<(()=>void)|undefined>(undefined);
     
 
     // on turning one on - other shoud go off.
     // Use effect with trigger? Every musicContainer knows only about their setTrack
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        // checking which is on last
-        // turning off previous one
-        console.log('ok');
+    //     // checking which is on last
+    //     // turning off previous one
+    //     console.log('ok');
 
-    },[activeTrack])
+    // },[activeTrack])
 
     return (
         <>
