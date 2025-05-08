@@ -215,7 +215,7 @@ function Blog() {
 
                 <div className={styles.blogButton}>
                     <div className={`${styles.blogButtonInner} ${styles.border}`}></div>
-                    <div className={`${styles.blogButtonInner} ${styles.buttonIcon} ${styles.addRecord}`} onClick={openEditRecordWindow}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.buttonIcon} ${styles.addRecord}`} onClick={openEditRecordWindow} tabIndex={0}></div>
                     <div className={`${styles.blogButtonInner} ${styles.background}`}></div>
                     {/* clue on hover */}
                     <p className={styles.clue}>Add record</p>
@@ -230,7 +230,7 @@ function Blog() {
 
                 <div className={styles.blogButton}>
                     <div className={`${styles.blogButtonInner} ${styles.border}`}></div>
-                    <div className={`${styles.blogButtonInner} ${styles.buttonIcon} ${styles.downloadRecords}`} onClick={diaryDownload}></div>
+                    <div className={`${styles.blogButtonInner} ${styles.buttonIcon} ${styles.downloadRecords}`} onClick={diaryDownload} tabIndex={0}></div>
                     <div className={`${styles.blogButtonInner} ${styles.background}`}></div>
                     {/* clue on hover */}
                     <p className={styles.clue}>Download records</p>

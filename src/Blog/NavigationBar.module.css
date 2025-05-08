@@ -25,6 +25,10 @@
 .headerLinkActive{
     text-decoration: underline aquamarine;
     color: black;
+}
+
+.headerLink:focus-visible{
+    outline: solid 2px aquamarine;
 
 }
 

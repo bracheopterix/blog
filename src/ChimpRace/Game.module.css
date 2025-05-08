@@ -72,6 +72,7 @@
 .clue:active {
     box-shadow: 0 0 5px crimson;
     background-color: crimson;
+    color: wheat;
 }
 
 .timer {
@@ -162,6 +163,8 @@
     background-color: crimson;
     box-shadow: 0 0 5px crimson;
     border: solid 1px crimson;
+    color: wheat;
+
 }
 
 

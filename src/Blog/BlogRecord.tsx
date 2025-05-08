@@ -48,11 +48,11 @@ function BlogRecord({ code, note, title, text, isReal, setEditRecordIsVisible, s
 
 
     return (
-        <div className={`${styles.record} ${defStyles.flexColumn}`}>
+        <div className={`${styles.record} ${defStyles.flexColumn}`} tabIndex={0}>
 
             <div className={`${styles.editPanel} ${defStyles.flexRow}`}>
-                {isReal && (<div className={`${styles.button} ${styles.edit}`} onClick={editOnClick}></div>)}
-                {isReal && (<div className={`${styles.button} ${styles.bin}`} onClick={binOnClick}></div>)}
+                {isReal && (<div className={`${styles.button} ${styles.edit}`} onClick={editOnClick} tabIndex={0}></div>) }
+                {isReal && (<div className={`${styles.button} ${styles.bin}`} onClick={binOnClick} tabIndex={0}></div>)}
 
 
             </div>
@@ -70,8 +70,5 @@ function BlogRecord({ code, note, title, text, isReal, setEditRecordIsVisible, s
 }
 
 
-//POPUP DO you really want to delete a record?
-//button for redacting your message
-//add clue to the Monkey-do game
 
 export default BlogRecord;

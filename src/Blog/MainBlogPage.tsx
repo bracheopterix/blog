@@ -29,25 +29,25 @@ function MainBlogPage() {
                 {/* GitHub */}
                 <a className={styles.tanStack} href="https://www.github.com" target="_blank">
                 <img src={`${new URL("../assets/icons/linksIcons/Github-logo.svg", import.meta.url).href}`}></img>
-                <p className={styles.tanStackClue}>код</p>
+                <p className={styles.tanStackClue}>code</p>
                 </a>
 
                 {/* Notion */}
                 <a className={styles.tanStack} href="https://www.notion.so" target="_blank">
                 <img src={`${new URL("../assets/icons/linksIcons/Notion-logo.svg", import.meta.url).href}`}></img>
-                <p className={styles.tanStackClue}>конспекты</p>
+                <p className={styles.tanStackClue}>conspects</p>
                 </a>
 
                 {/* LeetCode */}
                 <a className={styles.tanStack} href="https://leetcode.com" target="_blank">
                 <img src={`${new URL("../assets/icons/linksIcons/Leetcode-logo.svg", import.meta.url).href}`}></img>
-                <p className={styles.tanStackClue}>задачки</p>
+                <p className={styles.tanStackClue}>exercises</p>
                 </a>
 
                 {/* ChatGPT*/}
                 <a className={styles.tanStack} href="https://chatgpt.com/c" target="_blank">
                 <img src={`${new URL("../assets/icons/linksIcons/ChatGPT-logo.svg", import.meta.url).href}`}></img>
-                <p className={styles.tanStackClue}>Магистр</p>
+                <p className={styles.tanStackClue}>Magister</p>
                 </a>
 
 

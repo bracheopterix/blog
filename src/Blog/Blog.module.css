@@ -43,7 +43,7 @@ form {
     align-items: center;
     transition: filter 200ms ease-in-out;
     position: relative;
-    margin: 0 5px 0px 0 ;
+    margin: 0 5px 0px 0;
 }
 
 .blogButtonInner {
@@ -55,6 +55,12 @@ form {
     user-select: none;
     position: absolute;
     filter: invert(54%) sepia(7%) saturate(13%) hue-rotate(35deg) brightness(92%) contrast(91%);
+    transition: filter 200ms ease-in-out;
+}
+
+.blogButtonInner:focus{
+    outline: solid 3px aquamarine;
+    filter: none;
     transition: filter 200ms ease-in-out;
 }
 
@@ -136,6 +142,14 @@ form {
     animation-duration: 3s; */
     /* margin: 0 50px; */
     z-index: 0;
+    accent-color: none;
+
+}
+
+.record:focus {
+    outline: none;
+    outline: solid 2px aquamarine;
+
 }
 
 
@@ -158,6 +172,11 @@ form {
     opacity: 1;
 }
 
+
+.record:focus-within .editPanel{
+    opacity: 1;
+}
+
 .editPanel .button {
     color: black;
     height: 35px;
@@ -168,8 +187,14 @@ form {
     transition: filter 200ms ease-in;
 }
 
+
 .record .button:hover {
     filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
+}
+.record .button:focus {
+    outline: solid 2px aquamarine;
+    box-sizing: border-box;
+
 }
 
 .record .bin {
@@ -313,10 +338,10 @@ form {
     justify-content: space-between;
     gap: 20px;
 
-    
+
 }
 
-.buttonHolder button{
+.buttonHolder button {
     flex-grow: 1;
     width: fit-content;
     height: fit-content;
