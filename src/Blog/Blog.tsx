@@ -198,7 +198,7 @@ function Blog() {
 
         {/* DELETE STOP POP UP */}
 
-        <div className={`${deleteWarningIsVisible ? '' : defStyles.hidden} ${styles.popUp} ${styles.deleteWarning} ${defStyles.flexColumn} `}>
+        <div className={`${deleteWarningIsVisible ? styles.deleteWarning : defStyles.hidden} ${styles.popUp} ${defStyles.flexColumn} `}>
             <p>Do you really want to delete this record?</p>
             <div className={`${styles.buttonHolder}`}>
                 <button onClick={onClickDeleteRecordYes} onSubmit={(event) => event.preventDefault()}>Yes</button>

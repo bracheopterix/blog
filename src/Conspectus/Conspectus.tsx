@@ -18,7 +18,7 @@ function Conspectus() {
 
     return (
 
-
+        /// NAVIGATION BLOCK ///
         <div className={styles.mainContainer}>
             <div className={styles.navigationBlock}>
                 <h2>Conspectus Frontendus</h2>
@@ -28,6 +28,9 @@ function Conspectus() {
                     onClick={() => setTherms((prev) => !prev)}
                 >
                     <h3>Therms</h3>
+                    <svg height="15" width="15" className={isTherms ? '': styles.folded}>
+                        <polygon points="0,0 10,7.5 0,15"  />
+                    </svg>
                 </button>
 
                 <button id="gitButton"
@@ -35,6 +38,9 @@ function Conspectus() {
                     onClick={() => setGit((prev) => !prev)}
                 >
                     <h3>Git</h3>
+                    <svg height="15" width="15" className={isGit ? '': styles.folded}>
+                        <polygon points="0,0 10,7.5 0,15"  />
+                    </svg>
                 </button>
 
                 <button id="misButton"
@@ -42,6 +48,9 @@ function Conspectus() {
                     onClick={() => setMis((prev) => !prev)}
                 >
                     <h3>Miscellaneous</h3>
+                    <svg height="15" width="15" className={isMis ? '': styles.folded}>
+                        <polygon points="0,0 10,7.5 0,15"  />
+                    </svg>
                 </button>
 
                 <button id="LinksButton"
@@ -49,6 +58,9 @@ function Conspectus() {
                     onClick={() => setLinks((prev) => !prev)}
                 >
                     <h3>Links</h3>
+                    <svg height="15" width="15" className={isLinks ? '': styles.folded}>
+                        <polygon points="0,0 10,7.5 0,15"  />
+                    </svg>
                 </button>
 
             </div>

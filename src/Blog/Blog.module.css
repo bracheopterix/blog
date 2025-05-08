@@ -304,10 +304,24 @@ form {
 
 .deleteWarning .buttonHolder {
     margin: auto;
+    width: 50%;
+    /* width: fit-content; */
     display: flex;
     flex-direction: row;
-    align-content: center;
-    gap: 10%;
+    /* align-content: center;
+    align-items: center; */
+    justify-content: space-between;
+    gap: 20px;
+
+    
+}
+
+.buttonHolder button{
+    flex-grow: 1;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 20px;
+    padding: 10px 20px;
 }
 
 
