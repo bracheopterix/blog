@@ -67,30 +67,42 @@ function Conspectus() {
 
             <div className={styles.lecturesBox}>
 
-                <div className={isTherms ? styles.card : styles.hidden}>
+                {/* <div className={isTherms ? styles.card : styles.hidden}>
                     <div className={isTherms ? styles.cardContent : styles.folded}>
                         <Therms isTherms={isTherms} />
                     </div>
-                </div>
+                </div> */}
+
+                {isTherms && <Therms isTherms={isTherms} />}
 
 
-                <div className={isGit ? styles.card : styles.hidden}>
+                {/* <div className={isGit ? styles.card : styles.hidden}>
                     <div className={isGit ? styles.cardContent : styles.folded}>
                         <Git isGit={isGit} />
                     </div>
-                </div>
+                </div> */}
 
-                <div className={isMis ? styles.card : styles.hidden}>
+                {isGit && <Git isGit={isGit} />}
+
+
+                {/* <div className={isMis ? styles.card : styles.hidden}>
                     <div className={isMis ? styles.cardContent : styles.folded}>
                         <Miscellaneous isMis={isMis} />
                     </div>
-                </div>
+                </div> */}
 
-                <div className={isLinks ? styles.card : styles.hidden}>
+                {isMis && <Miscellaneous isMis={isMis} />}
+
+                {/* <div className={isLinks ? styles.card : styles.hidden}>
                     <div className={isLinks ? styles.cardContent : styles.folded}>
                         <Links isLinks={isLinks} />
                     </div>
-                </div>
+                </div> */}
+                
+                {isLinks && <Links isLinks={isLinks} />}
+
+
+
             </div>
 
 

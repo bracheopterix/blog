@@ -12,6 +12,9 @@ function Therms({isTherms}:ThermsProps) {
 
         <div className={isTherms ? styles.mainContainer : styles.hidden}>
             <section>
+                <h2>Therms</h2>
+                
+                <div className={styles.sectionInner}>
                 <div>
                     <h4>Universal</h4>
                     <span> Child and parent - relations of elements inlays</span>
@@ -29,6 +32,7 @@ function Therms({isTherms}:ThermsProps) {
                 <div>
                     <h4>HTML</h4>
                     <span>Has <u>tags</u>, which have <u>attributes</u> and <u>value</u></span>
+                </div>
                 </div>
             </section>
         </div>

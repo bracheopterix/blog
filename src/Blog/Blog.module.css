@@ -170,11 +170,15 @@ form {
 
 .record:hover .editPanel {
     opacity: 1;
+    background-color: white;
+    box-shadow: 0 0 3px gray;
+
 }
 
 
 .record:focus-within .editPanel{
     opacity: 1;
+    background-color: white;
 }
 
 .editPanel .button {

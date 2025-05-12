@@ -5,12 +5,14 @@ import './index.css'
 import Sertar from './Blog/Sertar.tsx'
 import { HashRouter } from 'react-router-dom';
 
+import New from './New'
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {/* I am your new Router insted of BrowserRouter */}
-    <HashRouter> 
-    {/* <App /> */}
-    <Sertar />
+    <HashRouter>
+      {/* <App /> */}
+      <Sertar />
     </HashRouter>
-  </StrictMode>,
+  </StrictMode >,
 )
