@@ -195,10 +195,10 @@ form {
 .record .button:hover {
     filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
 }
+
 .record .button:focus {
     outline: solid 2px aquamarine;
     box-sizing: border-box;
-
 }
 
 .record .bin {
@@ -245,6 +245,7 @@ form {
 
 .popUp {
     position: fixed;
+    /* position: sticky; */
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);

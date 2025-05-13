@@ -51,10 +51,12 @@ function BlogRecord({ code, note, title, text, isReal, setEditRecordIsVisible, s
         <div className={`${styles.record} ${defStyles.flexColumn}`} tabIndex={0}>
 
             <div className={`${styles.editPanel} ${defStyles.flexRow}`}>
-                {isReal && (<div className={`${styles.button} ${styles.edit}`} onClick={editOnClick} tabIndex={0}></div>) }
-                {isReal && (<div className={`${styles.button} ${styles.bin}`} onClick={binOnClick} tabIndex={0}></div>)}
+                {/* {isReal && (<div className={`${styles.button} ${styles.edit}`} onClick={editOnClick} tabIndex={0}></div>)}
+                {isReal && (<div className={`${styles.button} ${styles.bin}`} onClick={binOnClick} tabIndex={0}></div>)} */}
 
-
+                {isReal && (<button className={`${styles.button} ${styles.edit}`} onClick={editOnClick} tabIndex={0}></button>)}
+                {isReal && (<button className={`${styles.button} ${styles.bin}`} onClick={binOnClick} tabIndex={0}></button>)}
+                
             </div>
 
             <h2 id='recordHeader'>{title}</h2>
