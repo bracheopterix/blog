@@ -245,16 +245,19 @@ form {
 
 .popUp {
     position: fixed;
-    /* position: sticky; */
-    top: 40%;
+    top: clamp(0%, 50%, 70%);
     left: 50%;
     transform: translate(-50%, -50%);
     border: solid 0px;
     border-radius: 20px;
     padding: 25px;
     background-color: white;
-    min-width: 50px;
-    min-height: 50px;
+    min-width: 100px;
+    min-height: 100px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
     width: fit-content;
     height: fit-content;
     z-index: 3;

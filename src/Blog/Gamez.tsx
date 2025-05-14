@@ -4,13 +4,14 @@ import styles from './Gamez.module.css';
 import defStyles from './Sertar.module.css'
 import ChimpRace from "../ChimpRace/Game";
 import MemoryGame from "../MemoryGame/Game";
+import TetrisGame from '../TetrisGame/Game';
 
 
 
 function Games() {
 
     const [gameNumber, setGameNumber] = useState<number>(0);
-    const maxGameAmount: number = 1;
+    const maxGameAmount: number = 2;
 
     const navigate = useNavigate();
 
@@ -51,6 +52,7 @@ function Games() {
                     <Route path="/" element={<Navigate to="/games/game0" replace />} />
                     <Route path="/game0" element={<MemoryGame />} />
                     <Route path="/game1" element={<ChimpRace />} />
+                    <Route path="/game2" element={< TetrisGame/>} />
                 </Routes>
             </div>
             <div className={defStyles.blockFooter}></div>
