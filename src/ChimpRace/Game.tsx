@@ -176,7 +176,7 @@ function ChimpRace(): JSX.Element {
 
         <div className={styles.gameName}>Monkey-do
 
-            <div className={styles.clue}>?</div>
+            {/* <div className={styles.clue}>?</div> */}
         </div>
 
         <div className={styles.gameHeader}>
