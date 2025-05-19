@@ -23,7 +23,7 @@ function NavigationBar() {
             {renderLink("/main","Main")}
             {renderLink("/blog","Blog")}
             {renderLink("/games","Games")}
-            {renderLink("/conspectus","Conspectus")}
+            {/* {renderLink("/conspectus","Conspectus")} */}
 
             <div className={styles.headerDummy}></div>
         </div>
