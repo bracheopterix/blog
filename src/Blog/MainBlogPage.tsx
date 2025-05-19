@@ -29,34 +29,41 @@ function MainBlogPage() {
             <div className={styles.links}>
 
                 {/* Pages */}
-                <a className={styles.tanStack} href="https://bracheopterix.github.io/blog/" target="_blank">
+                {/* <a className={styles.tanStack} href="https://bracheopterix.github.io/blog/" target="_blank">
                     <img src={`${new URL("../assets/icons/linksIcons/MyPages-logo.svg", import.meta.url).href}`}></img>
                     <p className={styles.tanStackClue}>github pages</p>
+                </a> */}
+
+                {/* My GitHub */}
+                <a className={styles.tanStack} href="https://github.com/bracheopterix" target="_blank">
+                    <img src={`${new URL("../assets/icons/linksIcons/Github-logo.svg", import.meta.url).href}`}></img>
+                    <p className={styles.tanStackClue}>GitHub</p>
                 </a>
 
-                {/* GitHub */}
+                {/* My LinkedIn */}
                 <a className={styles.tanStack} href="https://www.github.com" target="_blank">
-                    <img src={`${new URL("../assets/icons/linksIcons/Github-logo.svg", import.meta.url).href}`}></img>
-                    <p className={styles.tanStackClue}>code</p>
+                    <img src={`${new URL("../assets/icons/linksIcons/Linkedin-logo.svg", import.meta.url).href}`}></img>
+                    <p className={styles.tanStackClue}>LinkedIn</p>
                 </a>
+
 
                 {/* Notion */}
-                <a className={styles.tanStack} href="https://www.notion.so" target="_blank">
+                {/* <a className={styles.tanStack} href="https://www.notion.so" target="_blank">
                     <img src={`${new URL("../assets/icons/linksIcons/Notion-logo.svg", import.meta.url).href}`}></img>
                     <p className={styles.tanStackClue}>conspects</p>
-                </a>
+                </a> */}
 
                 {/* LeetCode */}
-                <a className={styles.tanStack} href="https://leetcode.com" target="_blank">
+                {/* <a className={styles.tanStack} href="https://leetcode.com" target="_blank">
                     <img src={`${new URL("../assets/icons/linksIcons/Leetcode-logo.svg", import.meta.url).href}`}></img>
                     <p className={styles.tanStackClue}>exercises</p>
-                </a>
+                </a> */}
 
                 {/* ChatGPT*/}
-                <a className={styles.tanStack} href="https://chatgpt.com/c" target="_blank">
+                {/* <a className={styles.tanStack} href="https://chatgpt.com/c" target="_blank">
                     <img src={`${new URL("../assets/icons/linksIcons/ChatGPT-logo.svg", import.meta.url).href}`}></img>
                     <p className={styles.tanStackClue}>Magister</p>
-                </a>
+                </a> */}
 
 
 
