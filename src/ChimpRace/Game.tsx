@@ -178,6 +178,7 @@ function ChimpRace(): JSX.Element {
 
             {/* <div className={styles.clue}>?</div> */}
         </div>
+        <p className={styles.motto}>Find what it is by yourself</p>
 
         <div className={styles.gameHeader}>
 

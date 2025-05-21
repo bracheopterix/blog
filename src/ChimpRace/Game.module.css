@@ -17,6 +17,10 @@
 
 }
 
+.motto {
+    margin-bottom: 5px;
+}
+
 .gameHeader {
     display: flex;
     flex-direction: row;
