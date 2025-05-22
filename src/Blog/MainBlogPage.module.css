@@ -36,6 +36,7 @@
     animation: announcementing;
     animation-delay: 0s;
     animation-duration: 2s;
+    opacity: 1;
 
     display: flex;
     flex-direction: column;
@@ -108,11 +109,12 @@
 
 @keyframes announcementing {
     from {
-        top: 80%;
-
+        top: 50%;
+        opacity: 0;
     }
 
     to {
+        opacity: 1;
         top: 35%;
 
     }
