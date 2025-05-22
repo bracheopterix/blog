@@ -58,11 +58,12 @@ form {
     transition: filter 200ms ease-in-out;
 }
 
-.blogButtonInner:focus{
+.blogButtonInner:focus-visible {
     outline: solid 3px aquamarine;
     filter: none;
     transition: filter 200ms ease-in-out;
 }
+
 
 .blogButton .border {
     background-image: url('/src/assets/icons/BorderColor.svg');
@@ -158,7 +159,6 @@ form {
     position: absolute;
     top: 15px;
     right: 15px;
-    /* background-color: red; */
     height: fit-content;
     width: fit-content;
     opacity: 0;
@@ -176,7 +176,7 @@ form {
 }
 
 
-.record:focus-within .editPanel{
+.record:focus-within .editPanel {
     opacity: 1;
     background-color: white;
 }
@@ -189,14 +189,21 @@ form {
     background-position: center;
     background-repeat: no-repeat;
     transition: filter 200ms ease-in;
+    border: none;
 }
 
 
 .record .button:hover {
     filter: invert(83%) sepia(48%) saturate(394%) hue-rotate(92deg) brightness(104%) contrast(101%);
+    outline: none;
+    /* border: none; */
 }
 
-.record .button:focus {
+/* .record .button:hover{
+    outline: none;
+} */
+
+.record .button:focus-visible {
     outline: solid 2px aquamarine;
     box-sizing: border-box;
 }
