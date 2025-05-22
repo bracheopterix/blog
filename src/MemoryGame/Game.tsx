@@ -188,6 +188,7 @@ function MemoryGame(): JSX.Element {
         <div className={styles.gameName}>Fair and Square
             <p className={wonCounter !== game.length ? styles.hidden : styles.winningP}>WON</p>
         </div>
+        <p className={styles.subHeader}>Memory game</p>
         <div className={styles.cardHolder}>
             {
                 game.map((card: CardType, index: number) => ( ///////////////
