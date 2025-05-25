@@ -79,7 +79,7 @@ function Blog() {
             else {
                 setDiaryTwin([...parsedDiary].reverse());
             }
-            console.log("Diary content", tempLocStorCast);
+            // console.log("Diary content", tempLocStorCast);
         }
 
 
