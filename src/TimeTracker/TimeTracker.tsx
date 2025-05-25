@@ -28,17 +28,32 @@ function TimeTracker() {
     // save in (to the serv) , save out triggers => calc delta and save the record to the "server", clean "in";
     // We should have a clock on the panel that is counting time from the last "in" if it exists;
 
+    const [today,setToday] = useState<Date|undefined>(undefined);
+    const week = ["Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const [checkIn, setCheckIn] = useState<Date|undefined>(undefined);
 
 
     function checkInOut(){
-        const newDate:Date = new Date();
+        const newDate = new Date();        
+
         if(!checkIn){
             setCheckIn(newDate);
         }
-        const newDelta:number = (newDate-checkIn)/millHour;
+        else{
+            const newDelta:number = (newDate-checkIn);
+            setCheckIn(undefined);
+            console.log(newDelta);
+        }
+        
     }
 
+
+    useEffect(()=>{
+
+        setToday(new Date());
+
+
+    },[])
 
     return (
         <div className={styles.mainContainer}>
@@ -58,10 +73,12 @@ function TimeTracker() {
 
                 <div className={styles.action}>
                     <p>Today is</p>
-                    <strong><p>25.05.25</p></strong>
-                    <button>Check Out</button>
+                    <p>{today ? week[today.getDay()] : ""}</p>
+                    <strong><p>{today ? (today.getDate().toString().padStart(2, "0") + "." + (today.getMonth()+1).toString().padStart(2, "0") + "." +today.getFullYear().toString()) : "00.00.0000"}</p></strong>
+                    <button onClick={checkInOut}>Check Out</button>
                     <p>Current session lasts from</p>
-                    <strong><p>15:30</p></strong>
+                    <strong><p>{checkIn ? (checkIn.getHours().toString().padStart(2, "0")+":"+checkIn.getMinutes().toString().padStart(2, "0")) : "00:00"}</p></strong>
+                    
                 </div>
             </div>
         </div>
