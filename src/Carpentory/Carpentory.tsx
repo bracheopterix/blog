@@ -4,6 +4,7 @@ import { JSX, useMemo, useCallback, useState } from "react"
 
 import styles from "./Carpentory.module.scss";
 import Player from "./Player/Player";
+import TimeTracker from "../TimeTracker/TimeTracker";
 
 
 function Carpentory(): JSX.Element {
@@ -147,6 +148,10 @@ function Carpentory(): JSX.Element {
                     </div>
                 </div>
 
+                <div className={styles.card}> 
+                    <TimeTracker/>
+                </div>
+
                 {/* SUN SVG PATH CIRCLE */}
                 <div className={styles.card}>
                     <h3> SVG sun</h3>
@@ -169,8 +174,10 @@ function Carpentory(): JSX.Element {
                 </div>
 
 
-                {/*<div className={styles.card}> No3</div>
-                <div className={styles.card}> No1</div>
+                
+
+
+                {/*<div className={styles.card}> No1</div>
                 <div className={styles.card}> No2</div>
                 <div className={styles.card}> No3</div>
                 <div className={styles.card}> No1</div>

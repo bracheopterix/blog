@@ -6,7 +6,10 @@ function MainBlogPage() {
 
 
     return (<>
-        <img src={`${new URL("../assets/curious-yato-san.png", import.meta.url).href}`} className={styles.yatoSan}></img>
+        {/* YATO */}
+        {/* <img src={`${new URL("../assets/curious-yato-san.png", import.meta.url).href}`} className={styles.yatoSan}></img> */}
+        {/* BIRB */}
+        <img src={`${new URL("../assets/bird.png", import.meta.url).href}`} className={styles.yatoSan}></img>
         {/* <h2 className={styles.announcement}> Here is yet.... n0thing</h2> */}
 
         <div className={styles.announcement}>
