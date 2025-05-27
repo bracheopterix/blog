@@ -9,7 +9,7 @@ type BlogRecordParams = {
     note?: string,
     title: string,
     text: string,
-    isReal: boolean,
+    isReal: boolean, // because we have a placeholder record if the history is empty that doesn't need edit or delete buttons
     setEditRecordIsVisible?: (EditRecordIsVisible: boolean) => void,
     setEditRecordWindowTitle?: (editRecordWindowTitle: string) => void,
     setEditRecordSave?: (editRecordSave: Record) => void,

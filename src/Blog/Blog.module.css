@@ -44,16 +44,16 @@ form {
 @media(max-width: 768px) {
     .blogButtons {
         transform: translate(105%, 10%);
-        flex-direction: column;    
+        flex-direction: column;
         gap: 5px;
     }
-    
+
     .blogButton {
         width: 30px;
         height: 30px;
     }
 
-    
+
 }
 
 
@@ -63,15 +63,13 @@ form {
         flex-direction: row;
         gap: 10px;
     }
-    
+
     .blogButton {
         width: 50px;
         height: 50px;
     }
 
 }
-
-
 
 
 .blogButtons {
@@ -195,7 +193,6 @@ form {
     /* margin: 0 50px; */
     z-index: 0;
     accent-color: none;
-
 }
 
 .record:focus {
@@ -280,8 +277,16 @@ form {
     }
 }
 
+
+/* .record .field {
+    text-wrap: pretty;
+    overflow: scroll;
+} */
+
 .record h2 {
     margin: 0;
+    text-wrap: pretty;
+
 }
 
 .record .details {
@@ -292,10 +297,12 @@ form {
     font-size: small;
     color: gray;
     margin: 0 10px 0 0;
+    text-wrap: pretty;
 }
 
 .record p {
     margin: 0;
+    text-wrap: pretty;
     /* margin-bottom: 5px; */
     /* padding: 0 10px 0 0 ; */
 }
@@ -324,7 +331,7 @@ form {
     box-shadow: 0 0 5px black;
 }
 
-.popUp h3{
+.popUp h3 {
     text-transform: capitalize;
 }
 
