@@ -1,15 +1,14 @@
-
-@media(max-width: 768px){
+@media(max-width: 768px) {
     .blog {
         color: black;
-        width: 75%;
+        width: 80%;
         height: fit-content;
         margin: 0 auto 0 0;
         position: relative;
     }
 }
 
-@media(min-width: 768px){
+@media(min-width: 768px) {
     .blog {
         color: black;
         width: 50%;
@@ -42,12 +41,38 @@ form {
 
 /* BLOG MENU BUTONS */
 
+@media(max-width: 768px) {
+    .blogButton {
+        width: 30px;
+        height: 30px;
+    }
+
+    .blogButtons {
+        transform: translate(105%, 50%);
+    }
+}
+
+
+@media(min-width: 768px) {
+    .blogButton {
+        width: 50px;
+        height: 50px;
+    }
+
+    .blogButtons {
+        transform: translate(110%, 50%);
+    }
+}
+
+
+
+
 .blogButtons {
     width: fit-content;
     height: fit-content;
     position: absolute;
     right: -0;
-    transform: translate(120%, 50%);
+    /* transform: translate(120%, 50%); */
     z-index: 1;
     display: flex;
     flex-direction: row;
@@ -56,8 +81,8 @@ form {
 
 
 .blogButton {
-    width: 50px;
-    height: 50px;
+    /* width: 50px;
+    height: 50px; */
     user-select: none;
     display: flex;
     align-items: center;
