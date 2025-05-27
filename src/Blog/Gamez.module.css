@@ -1,4 +1,4 @@
-@media(max-width: 748px){
+@media(max-width: 800px){
     .page {
         margin: 0 auto 0 auto;
         width: 100%;
@@ -10,7 +10,20 @@
     }
 }
 
-@media(min-width: 748px){
+@media(min-width: 801px) and (max-width: 1399px){
+    .page {
+        margin: 0 auto 0 auto;
+        width: 50%;
+        height: 50%;
+        overflow: hidden;
+        padding: 30px 0 0px 0;
+        background-color: white;
+        box-shadow: 0 0 5px lightgray;
+    }
+}
+
+
+@media(min-width: 1400px){
     .page {
         margin: 0 auto 0 auto;
         width: 30%;
@@ -30,14 +43,21 @@
 
 .gamesHolder {
     margin-bottom: 30px;
+    min-width: 475px;
 }
 
-@media(max-width: 748px){
+
+
+
+@media(max-width: 800px){
     .arrowHolder {
         width: 100%;
+        min-width: 70%;
+        max-width: 100%;
         margin: auto;
         align-items: center;
         position: absolute;
+        background-color: brown;
     } 
 
 
@@ -52,7 +72,30 @@
         top: 10px;
     }
 }
-@media(min-width: 748px){
+
+
+@media(min-width: 801px) and (max-width: 1399px){
+    .arrowHolder {
+        width: 100%;
+        margin: auto;
+        align-items: center;
+        position: absolute;
+    } 
+
+
+    .arrow.left {
+        left: 10px;
+        top: 10px;
+        transform: rotate(180deg);
+    }
+    
+    .arrow.right {
+        right: 10px;
+        top: 10px;
+    }
+
+}
+@media(min-width: 1450px){
     .arrowHolder {
         width: 100%;
         margin: auto;

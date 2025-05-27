@@ -39,10 +39,10 @@ function Games() {
         <div className={`${styles.page} ${defStyles.flexColumn}`}>
 
             <div className={`${styles.arrowHolder} ${defStyles.flexRow}`}>
-                <img src={`${new URL("../assets/icons/ArrowCopyGray.svg", import.meta.url).href}`} className={`${styles.arrow} ${styles.left}`}></img>
+                {/* <img src={`${new URL("../assets/icons/ArrowCopyGray.svg", import.meta.url).href}`} className={`${styles.arrow} ${styles.left}`}></img>
                 <div className={`${styles.arrow} ${styles.left} ${styles.arrowTop}`} onClick={onClickLeft}></div>
                 <img src={`${new URL("../assets/icons/ArrowCopyGray.svg", import.meta.url).href}`} className={`${styles.arrow} ${styles.right}`}></img>
-                <div className={`${styles.arrow} ${styles.right} ${styles.arrowTop}`} onClick={onClickRight}></div>
+                <div className={`${styles.arrow} ${styles.right} ${styles.arrowTop}`} onClick={onClickRight}></div> */}
 
 
             </div>
