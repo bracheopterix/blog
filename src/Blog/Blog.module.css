@@ -1,11 +1,31 @@
-.blog {
-    /* background-color: rgb(213, 244, 233); */
+
+@media(max-width: 768px){
+    .blog {
+        color: black;
+        width: 75%;
+        height: fit-content;
+        margin: 0 auto 0 0;
+        position: relative;
+    }
+}
+
+@media(min-width: 768px){
+    .blog {
+        color: black;
+        width: 50%;
+        height: fit-content;
+        margin: auto;
+        position: relative;
+    }
+}
+
+/* .blog {
     color: black;
     width: 50%;
     height: fit-content;
     margin: auto;
     position: relative;
-}
+} */
 
 h2 {
     margin: 10px 0;

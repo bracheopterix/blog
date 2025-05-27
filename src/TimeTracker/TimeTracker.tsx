@@ -18,7 +18,7 @@ function TimeTracker() {
 
     // Current month data
     // DATA (JSON).parse => curentMonth:Record[] => currentMonthHours:Number[] => finalMonthHoursCalc
-    
+
     const [currentMonth, setCurrentMonth] = useState<Record[]>([]); // fill with useEffect
     const currentMonthHours: number[] = useMemo<number[]>(() => currentMonth.map((x) => x.delta), [currentMonth]); // auto calc map from deltas of all the records of the month
     const finalMonthHoursCalc: number = useMemo<number>(() => currentMonthHours.reduce((acc, current) => acc + current, 0), [currentMonthHours]); // auto calc hours from all the deltas
@@ -28,32 +28,49 @@ function TimeTracker() {
     // save in (to the serv) , save out triggers => calc delta and save the record to the "server", clean "in";
     // We should have a clock on the panel that is counting time from the last "in" if it exists;
 
-    const [today,setToday] = useState<Date|undefined>(undefined);
-    const week = ["Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const [checkIn, setCheckIn] = useState<Date|undefined>(undefined);
+    const [today, setToday] = useState<Date | undefined>(undefined);
+    const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
 
 
-    function checkInOut(){
-        const newDate = new Date();        
+    function checkInOut() {
+        const newDate = new Date();
 
-        if(!checkIn){
+        if (!checkIn) {
             setCheckIn(newDate);
         }
-        else{
-            const newDelta:number = (newDate-checkIn);
+        else {
+            const newDelta: number = (newDate - checkIn);
             setCheckIn(undefined);
-            console.log(newDelta);
+            // console.log(newDelta);
+
+            const newRecord: Record = {
+                "in": checkIn,
+                "out": newDate,
+                "delta": newDelta
+            }
+
+            const storageRecords = localStorage.getItem("TimeTrackerRecords");
+            if (storageRecords) {
+                const parsedRecords = JSON.parse(storageRecords);
+                parsedRecords.push(newRecord);
+                localStorage.setItem("TimeTrackerRecords", JSON.stringify(parsedRecords));
+            }
+            else {
+                localStorage.setItem("TimeTrackerRecords", JSON.stringify([newRecord]));
+            }
+            console.log(localStorage.getItem("TimeTrackerRecords"));
         }
-        
+
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
         setToday(new Date());
 
 
-    },[])
+    }, [])
 
     return (
         <div className={styles.mainContainer}>
@@ -74,11 +91,17 @@ function TimeTracker() {
                 <div className={styles.action}>
                     <p>Today is</p>
                     <p>{today ? week[today.getDay()] : ""}</p>
-                    <strong><p>{today ? (today.getDate().toString().padStart(2, "0") + "." + (today.getMonth()+1).toString().padStart(2, "0") + "." +today.getFullYear().toString()) : "00.00.0000"}</p></strong>
-                    <button onClick={checkInOut}>Check Out</button>
-                    <p>Current session lasts from</p>
-                    <strong><p>{checkIn ? (checkIn.getHours().toString().padStart(2, "0")+":"+checkIn.getMinutes().toString().padStart(2, "0")) : "00:00"}</p></strong>
-                    
+                    <strong><p>{today ? (today.getDate().toString().padStart(2, "0") + "." + (today.getMonth() + 1).toString().padStart(2, "0") + "." + today.getFullYear().toString()) : "is a nice day."}</p></strong>
+                    <button onClick={checkInOut}>{!checkIn ? "Chek In" : "Check Out"}</button>
+
+                    {checkIn && <div className={styles.dataBox}>
+                        <p>Current session lasts from</p>
+                        <strong><p>{checkIn.getHours().toString().padStart(2, "0") + ":" + checkIn.getMinutes().toString().padStart(2, "0")}</p></strong>
+                    </div>}
+                    <div className={styles.dataBox}>
+                        In this month you worked <strong>N</strong> hours
+                    </div>
+
                 </div>
             </div>
         </div>
