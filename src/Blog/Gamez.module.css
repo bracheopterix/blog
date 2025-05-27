@@ -45,7 +45,9 @@
 
 .gamesHolder {
     margin-bottom: 30px;
-    min-width: 475px;
+    /* min-width: 475px; */
+    min-width: fit-content;
+
 }
 
 
