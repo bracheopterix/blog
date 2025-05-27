@@ -1,13 +1,28 @@
+@media(max-width:800px){
+.gameTable{
+    padding: 0px;
+    width: 100%;
+}
+}
+
+@media(min-width:801px){
+    .gameTable{
+        padding: 20px;
+        width: 75%;
+    }
+    }
+
+
 .gameTable {
     /* background-color: lightblue; */
     border: solid 0;
     border-radius: 20px;
     margin: auto;
-    width: 75%;
+    /* width: 75%; */
     min-width: 60%;
     min-height: 100px;
     height: fit-content;
-    padding: 20px;
+    /* padding: 20px; */
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
