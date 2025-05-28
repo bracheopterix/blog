@@ -15,22 +15,22 @@ function Games() {
 
     const navigate = useNavigate();
 
-    function onClickLeft(): void {
-        if (gameNumber !== 0) {
+    // function onClickLeft(): void {
+    //     if (gameNumber !== 0) {
 
-            const prevGame = gameNumber - 1;
-            setGameNumber(prevGame);
-            navigate(`/games/game${prevGame}`);
-        }
-    }
+    //         const prevGame = gameNumber - 1;
+    //         setGameNumber(prevGame);
+    //         navigate(`/games/game${prevGame}`);
+    //     }
+    // }
 
-    function onClickRight(): void {
-        if (gameNumber < maxGameAmount) {
-            const nextGame = gameNumber + 1;
-            setGameNumber(nextGame);
-            navigate(`/games/game${nextGame}`)
-        }
-    }
+    // function onClickRight(): void {
+    //     if (gameNumber < maxGameAmount) {
+    //         const nextGame = gameNumber + 1;
+    //         setGameNumber(nextGame);
+    //         navigate(`/games/game${nextGame}`)
+    //     }
+    // }
 
 
 

@@ -15,21 +15,13 @@ import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 type Record = {
     "in": Date,
     "out": Date,
-    "delta": number
 }
 
 
 function TimeTracker() {
 
-    // How many milliseconds in an hour
-    const millHour = 3.6e+6;
-
     // Current month data
     // DATA (JSON).parse => curentMonth:Record[] => currentMonthHours:Number[] => finalMonthHoursCalc
-
-    // const [currentMonth, setCurrentMonth] = useState<Record[]>([]); // fill with useEffect
-    // const currentMonthHours: number[] = useMemo<number[]>(() => currentMonth.map((x) => x.delta), [currentMonth]); // auto calc map from deltas of all the records of the month
-    // const finalMonthHoursCalc: number = useMemo<number>(() => currentMonthHours.reduce((acc, current) => acc + current, 0), [currentMonthHours]); // auto calc hours from all the deltas
 
 
     // save today interval like
@@ -42,10 +34,49 @@ function TimeTracker() {
     const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
 
-    // Data //
+    // Data - records //
 
     const [records, setRecords] = useState<Record[]>([]);
-    const [refresh,setRefresh] = useState<boolean>(false);
+    const [refresh, setRefresh] = useState<boolean>(false);
+
+    // Calculating delta of all the worked hours from the records
+    const finalDelta = useMemo(() => {
+        return records.reduce((acc, current) => acc + (current.out.getTime() - current.in.getTime()), 0);
+    }, [records])
+    // const [delta,setDelta] = useState<number>(0);
+
+    // saved Elements //
+
+    const superContainer = useRef<HTMLInputElement>(null);
+
+
+
+
+
+    // ON MOUNT (and refresh) //
+    useEffect(() => {
+        // decoration date
+        setToday(new Date());
+
+        // loading records
+        const savedRecords = localStorage.getItem("TimeTrackerRecords");
+        if (savedRecords) {
+
+            // const parsedRecordsRaw = JSON.parse(savedRecords);
+            // const parsedRecords = parsedRecordsRaw.map((el: any) => ({ "in": new Date(el.in), "out": new Date(el.out) }));
+            // the same as V
+            const parsedRecords = parseRecords(savedRecords)
+            setRecords(parsedRecords);
+        }
+    }, [refresh])
+
+    // Height of superContainer depends on records.length
+    useEffect(() => {
+        if (superContainer.current) {
+            superContainer.current.style.height = (records.length * 24) + "px";
+        }
+    }, [records])
+
 
 
     // MAIN PART //
@@ -57,19 +88,20 @@ function TimeTracker() {
             setCheckIn(newDate);
         }
         else {
-            const newDelta: number = (newDate - checkIn);
             setCheckIn(undefined);
-            // console.log(newDelta);
 
             const newRecord: Record = {
                 "in": checkIn,
                 "out": newDate,
-                "delta": newDelta
             }
 
             const storageRecords = localStorage.getItem("TimeTrackerRecords");
             if (storageRecords) {
-                const parsedRecords = JSON.parse(storageRecords);
+
+                // const parsedRecordsRAW = JSON.parse(storageRecords);
+                // const parsedRecords = parsedRecordsRAW.map((el: any) => ({ "in": new Date(el.in), "out": new Date(el.out) }));
+                // the same as V
+                const parsedRecords = parseRecords(storageRecords)
                 parsedRecords.push(newRecord);
                 localStorage.setItem("TimeTrackerRecords", JSON.stringify(parsedRecords));
                 setRecords(parsedRecords);
@@ -82,22 +114,22 @@ function TimeTracker() {
 
     }
 
+    // Parsing JSON records to the date format in and out
+    function parseRecords(records:string):Record[]{
+        const parsedRecordsRAW = JSON.parse(records);
+        const parsedRecords = parsedRecordsRAW.map((el: any) => ({ "in": new Date(el.in), "out": new Date(el.out) }));
+        return parsedRecords;
+    }
 
-    useEffect(() => {
+    // Counts how many hours and seconds in your time delta in milliseconds
+    function millToTime(mill: number) {
+        const hours = Math.floor(mill / (1000 * 60 * 60));
+        let rest = mill - (hours * (1000 * 60 * 60));
+        const minutes = Math.round(rest / (1000 * 60));
+        // return { "hours": hours, "minutes": minutes };
+        return (hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0"));
+    }
 
-        const savedRecords = localStorage.getItem("TimeTrackerRecords");
-
-        if (savedRecords) {
-            const parsedRecords = JSON.parse(savedRecords);
-            setRecords(parsedRecords);
-        }
-
-        setToday(new Date());
-    }, [refresh])
-
-    
-
-    
 
     return (
         <div className={styles.mainContainer}>
@@ -109,25 +141,29 @@ function TimeTracker() {
                         <span><p>Date</p><p>In</p><p>Out</p><p>{`Sum (h)`}</p></span>
                     </div>
 
-                    <div className={styles.superContainer}>
-                        <span><p>24.05.25</p><p>08:00</p><p>13:00</p><p>5:00</p></span>
-                        <span><p>24.05.25</p><p>15:00</p><p>18:30</p><p>3:30</p></span>
+                    <div className={styles.superContainer} ref={superContainer}>
+                        {/* testing records */}
+                        {/* <span><p>24.05.25</p><p>08:00</p><p>13:00</p><p>5:00</p></span> */}
+                        {/* <span><p>24.05.25</p><p>15:00</p><p>18:30</p><p>3:30</p></span> */}
 
-                        {
-                            records.map((record, index) => {
 
-                                const rIn = new Date(record.in);
-                                const rOut = new Date(record.out);
-                                const delta: number = rOut - rIn;
-                                const hours = Math.floor(delta / (1000 * 60 * 60));
-                                let rest = delta - (hours * (1000 * 60 * 60));
-                                const minutes = Math.floor(rest / (1000 * 60));
+                        {/* ADDED RECORDS */}
+                        {records.map((record, index) => {
 
-                                return <span key={index}><p>{rIn.getDate().toString().padStart(2, "0") + "." + (rIn.getMonth() + 1).toString().padStart(2, "0") + "." + rIn.getFullYear().toString()}</p>
-                                    <p>{rIn.getHours().toString().padStart(2, "0") + ":" + rIn.getMinutes().toString().padStart(2, "0")}</p>
-                                    <p>{rOut.getHours().toString().padStart(2, "0") + ":" + rOut.getMinutes().toString().padStart(2, "0")}</p>
-                                    <p>{hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0")}</p></span>
-                            })
+                            const rIn = record.in;
+                            const rOut = record.out;
+                            const delta: number = rOut.getTime() - rIn.getTime();
+                            const timeDelta = millToTime(delta);
+                            // const hours = timeDelta.hours;
+                            // const minutes = timeDelta.minutes;
+
+
+
+                            return <span key={index}><p>{rIn.getDate().toString().padStart(2, "0") + "." + (rIn.getMonth() + 1).toString().padStart(2, "0") + "." + (rIn.getFullYear() % 100).toString()}</p>
+                                <p>{rIn.getHours().toString().padStart(2, "0") + ":" + rIn.getMinutes().toString().padStart(2, "0")}</p>
+                                <p>{rOut.getHours().toString().padStart(2, "0") + ":" + rOut.getMinutes().toString().padStart(2, "0")}</p>
+                                <p>{timeDelta}</p></span>
+                        })
 
 
 
@@ -135,12 +171,14 @@ function TimeTracker() {
                     </div>
                 </div>
 
+
+                {/* ACTION CONTAINER */}
                 <div className={styles.action}>
                     <p>Today is</p>
                     <p>{today ? week[today.getDay()] : ""}</p>
                     <strong><p>{today ? (today.getDate().toString().padStart(2, "0") + "." + (today.getMonth() + 1).toString().padStart(2, "0") + "." + today.getFullYear().toString()) : "is a nice day."}</p></strong>
-                    <button onClick={checkInOut}>{!checkIn ? "Chek In" : "Check Out"}</button>
-                    <button onClick={()=>setRefresh((prev)=>!prev)}>Refresh</button>
+                    <button onClick={checkInOut}>{!checkIn ? "Check In" : "Check Out"}</button>
+                    <button onClick={() => setRefresh((prev) => !prev)}>Refresh</button>
 
 
                     {checkIn && <div className={styles.dataBox}>
@@ -148,7 +186,10 @@ function TimeTracker() {
                         <strong><p>{checkIn.getHours().toString().padStart(2, "0") + ":" + checkIn.getMinutes().toString().padStart(2, "0")}</p></strong>
                     </div>}
                     <div className={styles.dataBox}>
-                        In this month you worked <strong>N</strong> hours
+
+
+                        Total time:
+                        <strong>{millToTime(finalDelta)}</strong>
                     </div>
 
                 </div>
